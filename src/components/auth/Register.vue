@@ -78,7 +78,6 @@ export default {
   data() {
     return {
       name: "",
-      name: "",
       password: "",
       serverError: "",
       password_confirmation: "",

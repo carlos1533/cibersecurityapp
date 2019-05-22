@@ -6,7 +6,8 @@ axios.defaults.baseURL = 'http://localhost:3000/users'
 
 export default new Vuex.Store({
     state: {
-        token: localStorage.getItem('token') || null
+        token: localStorage.getItem('token') || null,
+        respuestareto1: ''
     },
     getters: {
         loggedIn(state) {
@@ -20,6 +21,9 @@ export default new Vuex.Store({
 
         destroyToken(state) {
             state.token = null
+        },
+        validatePassword(state, respuestareto1) {
+            state.respuestareto1 = respuestareto1;
         }
     },
     actions: {
@@ -29,7 +33,6 @@ export default new Vuex.Store({
                 axios
                     .post('/registro', {
                         name: data.name,
-                        email: data.email,
                         password: data.password
                     })
                     .then(response => {
@@ -37,6 +40,7 @@ export default new Vuex.Store({
                         resolve(response)
                     })
                     .catch(error => {
+                        console.log(error)
                         reject(error)
                     })
             })
@@ -44,20 +48,11 @@ export default new Vuex.Store({
         destroyToken(context) {
 
             if (context.getters.loggedIn) {
-                return new Promise((resolve, reject) => {
-                    axios
-                        .post('/logout')
-                        .then(response => {
-                            localStorage.removeItem('token')
-                            context.commit('destroyToken')
-                            resolve(response)
+                return new Promise((resolve) => {
+                    localStorage.removeItem('token')
+                    context.commit('destroyToken')
+                    resolve()
 
-                        })
-                        .catch(error => {
-                            localStorage.removeItem('token')
-                            context.commit('destroyToken')
-                            reject(error)
-                        })
                 })
             }
         },
@@ -66,7 +61,7 @@ export default new Vuex.Store({
             return new Promise((resolve, reject) => {
                 axios
                     .post('/login', {
-                        email: credentials.email,
+                        name: credentials.name,
                         password: credentials.password
 
                     })
@@ -84,6 +79,24 @@ export default new Vuex.Store({
                         reject(error)
                     })
             })
+        },
+        validatePassword(context, credentials) {
+            return new Promise((resolve, reject) => {
+
+                axios
+                    .post('/reto01', { password: credentials.password })
+                    .then(response => {
+                        const respuestareto1 = response.data
+                        context.commit('validatePassword', respuestareto1)
+                        resolve(response)
+                    })
+                    .catch(error => {
+                        console.log(error)
+                        reject(error)
+                    })
+
+            })
         }
     }
+
 })

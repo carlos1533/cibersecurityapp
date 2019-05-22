@@ -24,8 +24,8 @@
                 <img src="../../assets/login/Usuario.png" class="img-fluid">
                 <input
                   type="text"
-                  name="username"
-                  id="username"
+                  name="name"
+                  id="name"
                   class="form-control form-control-lg rounded border border-primary input"
                   v-model="name"
                 >

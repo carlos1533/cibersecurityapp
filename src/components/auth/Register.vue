@@ -39,6 +39,7 @@
                 type="password"
                 class="form-control form-control-lg rounded border border-primary input"
                 ref="password"
+                v-model="pass"
               >
             </div>
             <div class="input-group">
@@ -78,7 +79,7 @@ export default {
   data() {
     return {
       name: "",
-      password: "",
+      pass: "",
       serverError: "",
       password_confirmation: "",
       successMessage: ""
@@ -99,16 +100,17 @@ export default {
       });
     },
     register() {
+      //console.log(this.password);
       this.$store
         .dispatch("register", {
           name: this.name,
-          password: this.password
+          password: this.pass
         })
         .then(response => {
           this.successMessage = "Registered Successfully!";
           this.$router.push({
-            name: "login",
-            params: { dataSuccessMessage: this.successMessage }
+            name: "login"
+            //params: { dataSuccessMessage: this.successMessage }
           });
           this.$toast.success({
             title: this.successMessage,

@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 Vue.use(Vuex)
-axios.defaults.baseURL = 'https://cibersecurityapi.herokuapp.com/users'
+    //axios.defaults.baseURL = 'https://cibersecurityapi.herokuapp.com/users'
+axios.defaults.baseURL = 'http://localhost:3000/users'
 
 export default new Vuex.Store({
     state: {
@@ -68,7 +69,7 @@ export default new Vuex.Store({
                     .then(response => {
 
                         const token = response.data.token
-
+                        console.log(token)
                         localStorage.setItem('token', token)
 
                         context.commit('retrieveToken', token)

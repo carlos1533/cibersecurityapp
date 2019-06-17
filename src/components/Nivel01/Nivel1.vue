@@ -31,68 +31,53 @@
               class="img-fluid"
             >
           </div>
-          <div class="col-md-3">
-            <!-- <v-select :options="options" label="title">
-              <template slot="option" slot-scope="option">
-                <img :src="option.cardImage">
-                {{ option.title }}
-              </template>
-            </v-select>
-            -->
-            <div class="btn-group">
-              <button
-                type="button"
-                class="btn btn-default dropdown-toggle"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
+          <select v-model="imageSelected">
+            <option
+              v-for="( element, index ) in elements"
+              :value="element.src"
+              :key="index"
+            >{{element.alt}}</option>
+          </select>
+          <hr>Pokemón elegido:
+          <template v-if="imageSelected!=='' ">
+            <img :src="imageSelected">
+          </template>
+
+          <!--<form action="#" @submit.prevent="login">
+            <div class="input-group">
+              <input
+                type="text"
+                name="username"
+                id="username"
+                class="form-control form-control-lg rounded border border-primary input"
+                v-model="name"
               >
-                <img src="../../assets/nivel01/bulbasur.png">
-
-                <span class="glyphicon glyphicon-chevron-down"></span>
-              </button>
-
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="#" title="Select this card">
-                    <img src="../../assets/nivel01/squirtle.png">
-                  </a>
-                </li>
-                <li>
-                  <a href="#" title="Select this card">
-                    <img src="../../assets/nivel01/charmander.png">
-                  </a>
-                </li>
-              </ul>
             </div>
-            <!-- <form action="#" @submit.prevent="login">
-              <div class="input-group">
-                <input
-                  type="text"
-                  name="username"
-                  id="username"
-                  class="form-control form-control-lg rounded border border-primary input"
-                  v-model="name"
-                >
-              </div>
-              
-            </form>-->
-          </div>
-          <div class="col-sm-12">
-            <router-link :to="{ name: 'reto1' }">
-              <button class="boton-login rounded" :disabled="loading">
-                <img src="../../assets/nivel01/Empezar.png" class="img-fluid">
-              </button>
-            </router-link>
-          </div>
+          </form>-->
+        </div>
+        <div class="col-sm-12">
+          <router-link :to="{ name: 'reto1' }">
+            <button
+              @click="onHandleSelectedPokemon"
+              class="boton-login rounded"
+              :disabled="loading"
+            >
+              <img src="../../assets/nivel01/Empezar.png" class="img-fluid">
+            </button>
+          </router-link>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import VueSelectImage from "vue-select-image";
+require("vue-select-image/dist/vue-select-image.css");
 export default {
   name: "Nivel1",
+  components: {
+    VueSelectImage
+  },
   computed: {
     loggedIn() {
       return this.$store.getters.loggedIn;
@@ -105,24 +90,48 @@ export default {
   },
   data() {
     return {
+      imageSelected: "",
       name: "",
       password: "",
       serverError: "",
       successMessage: this.dataSuccessMessage,
       loading: false,
-      options: [
+      elements: [
         {
-          title: "Visa",
-          cardImage: "@assets/nivel01/bulbasur.png"
+          id: "1",
+          src: require("@/assets/nivel01/charmander.png"),
+          alt: "Charmander"
         },
         {
-          title: "Mastercard",
-          cardImage: "./../assets/nivel01/bulbasur.png"
+          id: "2",
+          src: require("@/assets/nivel01/squirtle.png"),
+          alt: "Squirtle"
+        },
+        {
+          id: "1",
+          src: require("@/assets/nivel01/bulbasur.png"),
+          alt: "Bulbasur"
         }
       ]
     };
   },
-  methods: {}
+  created() {
+    const id = localStorage.getItem("auth");
+    console.log(id);
+  },
+  methods: {
+    onHandleSelectedPokemon: () => {
+       const id = localStorage.getItem("auth");
+      console.log(id);
+    },
+    onSelectImage: function(data) {
+      console.log("fire event onSelectImage: ", data);
+      this.imageSelected = data;
+    },
+    onUnselectSingleImage: function() {
+      this.$refs["single-select-image"].removeFromSingleSelected();
+    }
+  }
 };
 </script>
 <style>

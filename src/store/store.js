@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 Vue.use(Vuex)
-axios.defaults.baseURL = 'https://cibersecurityapi.herokuapp.com/users'
-    //axios.defaults.baseURL = 'http://localhost:3000/users'
+//axios.defaults.baseURL = 'https://cibersecurityapi.herokuapp.com/users'
+axios.defaults.baseURL = 'http://localhost:3000/users'
 
 export default new Vuex.Store({
     state: {
@@ -33,9 +33,9 @@ export default new Vuex.Store({
             return new Promise((resolve, reject) => {
                 axios
                     .post('/registro', {
-                        name: data.name,
-                        password: data.password
-                    })
+                    name: data.name,
+                    password: data.password
+                })
                     .then(response => {
                         console.log(response)
                         resolve(response)
@@ -62,14 +62,14 @@ export default new Vuex.Store({
             return new Promise((resolve, reject) => {
                 axios
                     .post('/login', {
-                        name: credentials.name,
-                        password: credentials.password
+                    name: credentials.name,
+                    password: credentials.password
 
-                    })
+                })
                     .then(response => {
 
                         const token = response.data.token
-                        console.log(token)
+                        //console.log(token)
                         localStorage.setItem('token', token)
 
                         context.commit('retrieveToken', token)
@@ -85,7 +85,7 @@ export default new Vuex.Store({
             return new Promise((resolve, reject) => {
 
                 axios
-                    .post('/reto01', { password: credentials.password })
+                    .post('/reto01', {password: credentials.password})
                     .then(response => {
                         const respuestareto1 = response.data
                         context.commit('validatePassword', respuestareto1)

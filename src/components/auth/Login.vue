@@ -97,6 +97,9 @@ export default {
           password: this.password
         })
         .then(response => {
+          //console.log(response.data.user._id);
+          const user_id = response.data.user._id;
+          localStorage.setItem("auth", response.data.user._id);
           this.loading = false;
           this.$router.push({ name: "home" });
         })

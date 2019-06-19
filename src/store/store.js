@@ -34,7 +34,8 @@ export default new Vuex.Store({
                 axios
                     .post('/registro', {
                     name: data.name,
-                    password: data.password
+                    password: data.password,
+                    validez: data.validez
                 })
                     .then(response => {
                         console.log(response)

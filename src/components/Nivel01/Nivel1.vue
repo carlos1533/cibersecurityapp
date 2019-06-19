@@ -121,7 +121,7 @@ export default {
   },
   methods: {
     onHandleSelectedPokemon: () => {
-       const id = localStorage.getItem("auth");
+      const id = localStorage.getItem("auth");
       console.log(id);
     },
     onSelectImage: function(data) {

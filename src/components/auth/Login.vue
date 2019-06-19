@@ -101,7 +101,7 @@ export default {
           const user_id = response.data.user._id;
           localStorage.setItem("auth", response.data.user._id);
           this.loading = false;
-          this.$router.push({ name: "home" });
+          this.$router.push({ name: "home0" });
         })
 
         .catch(error => {

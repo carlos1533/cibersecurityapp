@@ -1,4 +1,5 @@
 import LandingPage from './components/marketing/LandingPage'
+import LandingPage0 from './components/marketing/LandingPage0'
 import Login from './components/auth/Login'
 import Logout from './components/auth/Logout'
 import Register from './components/auth/Register'
@@ -9,6 +10,11 @@ const routes = [
         path: '/landinpage',
         name: 'home',
         component: LandingPage
+    }, {
+        path: '/landinpage0',
+        name: 'home0',
+        component: LandingPage0
+
     }, {
         path: '/',
         name: 'login',

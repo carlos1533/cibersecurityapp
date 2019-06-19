@@ -19,6 +19,29 @@
         <br>
         <div class="row align-items-center">
           <form action="#" @submit.prevent="validateBeforeSubmit">
+            <!-- 
+            <ul>
+              <li v-bind:class="{ is_valid: validez.contains_eight_characters }">8 Characters</li>
+              <li v-bind:class="{ is_valid: validez.contains_number }">Contains Number</li>
+              <li v-bind:class="{ is_valid: validez.contains_uppercase }">Contains Uppercase</li>
+              <li
+                v-bind:class="{ is_valid: validez.contains_special_character }"
+              >Contains Special Character</li>
+            </ul>
+
+            <div
+              class="checkmark_container"
+              v-bind:class="{ show_checkmark: validez.valid_password }"
+            >
+              <svg width="50%" height="50%" viewBox="0 0 140 100">
+                <path
+                  class="checkmark"
+                  v-bind:class="{ checked: validez.valid_password }"
+                  d="M10,50 l25,40 l95,-70"
+                ></path>
+              </svg>
+            </div>
+            -->
             <div class="input-group">
               <img src="../../assets/registro/Ingrese usuario.png" class="img-fluid">
               <input
@@ -40,6 +63,7 @@
                 class="form-control form-control-lg rounded border border-primary input"
                 ref="password"
                 v-model="pass"
+                @input="checkPassword"
               >
             </div>
             <div class="input-group">
@@ -50,6 +74,7 @@
                 type="password"
                 class="form-control form-control-lg rounded border border-primary input"
                 data-vv-as="password"
+                @input="checkPassword"
               >
             </div>
             <div class="alert alert-danger" v-show="errors.any()">
@@ -79,10 +104,17 @@ export default {
   data() {
     return {
       name: "",
-      pass: "",
+      pass: null,
       serverError: "",
       password_confirmation: "",
-      successMessage: ""
+      successMessage: "",
+      validez: {
+        contains_eight_characters: false,
+        contains_number: false,
+        contains_uppercase: false,
+        contains_special_character: false,
+        valid_password: false
+      }
     };
   },
   computed: {
@@ -91,6 +123,32 @@ export default {
     }
   },
   methods: {
+    checkPassword() {
+      this.pass_length = this.pass.length;
+      const format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+
+      if (this.pass_length > 8) {
+        this.validez.contains_eight_characters = true;
+      } else {
+        this.validez.contains_eight_characters = false;
+      }
+
+      this.validez.contains_number = /\d/.test(this.pass);
+      this.validez.contains_uppercase = /[A-Z]/.test(this.pass);
+      this.validez.contains_special_character = format.test(this.pass);
+
+      if (
+        this.validez.contains_eight_characters === true &&
+        this.validez.contains_special_character === true &&
+        this.validez.contains_uppercase === true &&
+        this.validez.contains_number === true
+      ) {
+        this.validez.valid_password = true;
+      } else {
+        this.validez.valid_password = false;
+      }
+      console.log(this.validez);
+    },
     validateBeforeSubmit() {
       this.$validator.validateAll().then(result => {
         if (result) {
@@ -100,11 +158,11 @@ export default {
       });
     },
     register() {
-      //console.log(this.password);
       this.$store
         .dispatch("register", {
           name: this.name,
-          password: this.pass
+          password: this.pass,
+          validez: this.validez
         })
         .then(response => {
           this.successMessage = "Registered Successfully!";

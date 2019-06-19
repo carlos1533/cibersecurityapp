@@ -19,10 +19,12 @@
         "sass-loader": "^6.0.7",
         "vee-validate": "^2.2.7",
         "vue": "^2.6.10",
+        "vue-password-strength-meter": "^1.4.2",
         "vue-router": "^3.0.3",
         "vue-select": "^3.1.0",
         "vue-select-image": "^1.7.0",
-        "vuex": "^3.0.1"
+        "vuex": "^3.0.1",
+        "zxcvbn": "^4.4.2"
     },
     "devDependencies": {
         "@vue/cli-plugin-babel": "^3.7.0",

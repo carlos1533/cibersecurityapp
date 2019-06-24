@@ -37,8 +37,19 @@
               <button class="boton-login rounded" type="submit" :disabled="loading">
                 <img src="../../assets/nivel01/reto01/Siguiente.png" class="img-fluid">
               </button>
+             
             </div>
           </form>
+           <router-link :to="{ name: 'fight' }">
+            <button
+              
+              class="boton-login rounded"
+              :disabled="loading"
+              
+            >
+             continuar
+            </button>
+          </router-link>
         </div>
       </div>
     </div>

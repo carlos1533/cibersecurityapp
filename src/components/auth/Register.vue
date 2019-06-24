@@ -113,7 +113,8 @@ export default {
         contains_number: false,
         contains_uppercase: false,
         contains_special_character: false,
-        valid_password: false
+        valid_password: false,
+        created:new Date()
       }
     };
   },

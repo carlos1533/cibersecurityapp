@@ -40,7 +40,8 @@
           </select>
           <hr>Pokemón elegido:
           <template v-if="imageSelected!=='' ">
-            <img :src="imageSelected">
+            <img :src="imageSelected"
+            :pokemon:src="imageSelected">
           </template>
 
           <!--<form action="#" @submit.prevent="login">
@@ -61,6 +62,7 @@
               @click="onHandleSelectedPokemon"
               class="boton-login rounded"
               :disabled="loading"
+              
             >
               <img src="../../assets/nivel01/Empezar.png" class="img-fluid">
             </button>

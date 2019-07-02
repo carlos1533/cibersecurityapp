@@ -4,7 +4,7 @@ import Login from './components/auth/Login'
 import Logout from './components/auth/Logout'
 import Register from './components/auth/Register'
 import Nivel1 from './components/Nivel01/Nivel1'
-import Reto01 from './components/Nivel01/Reto01'
+import Tuto from './components/Nivel01/Tuto'
 import fight from './components/Nivel01/fight'
 const routes = [
     {
@@ -35,9 +35,9 @@ const routes = [
         component: Nivel1
 
     }, {
-        path: '/reto1',
-        name: 'reto1',
-        component: Reto01
+        path: '/tuto',
+        name: 'tuto',
+        component: Tuto
 
     },
     {

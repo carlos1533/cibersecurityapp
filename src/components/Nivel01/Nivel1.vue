@@ -57,7 +57,7 @@
           </form>-->
         </div>
         <div class="col-sm-12">
-          <router-link :to="{ name: 'reto1' }">
+          <router-link :to="{ name: 'fight' }">
             <button
               @click="onHandleSelectedPokemon"
               class="boton-login rounded"

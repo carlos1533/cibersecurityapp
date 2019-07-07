@@ -13,7 +13,6 @@ const toastrConfigs = {
     timeOut: 5000,
     progressBar: true
 }
-
 Vue.use(VueSelectImage)
 Vue.config.productionTip = false
 Vue.use(CxltToastr, toastrConfigs)

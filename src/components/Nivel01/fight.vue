@@ -1,27 +1,29 @@
 <template>
   <div>
     <h1 class="title">Nivel 01 Batalla Pokemon</h1>
-    <!-- Begin battle scene -->
     <div class="battle-scene">
       <div class="box-top-left">
         <h2 class="pokemon">{{ opponentPokemon}}</h2>
         <div class="hp-bar-top">
           <div v-bind:style="opponentHpBar" class="hp-bar-fill"></div>
         </div>
-        <h4 class="level">Lvl. {{opponentLevel}}</h4>
+        <h4 class="level">Level {{opponentLevel}}</h4>
+          <h4 class="hp">{{opponentHP}}/{{startUserHP}}</h4>
       </div>
       <div class="box-top-right">
         <img v-if="opponentAlive" v-bind:src="opponentPokemonSrc" class="pokemon-top">
       </div>
       <div class="box-bottom-left">
-        <img v-if="userAlive" v-bind:src="userPokemonSrc" class="pokemon-bottom">
+        <img v-if="userAlive" v-bind:src="pokemonSelected" class="pokemon-bottom">
       </div>
       <div class="box-bottom-right">
-        <h2 class="pokemon">{{userPokemon}}</h2>
+      <h2 v-if="this.pokemonSelected=='/img/charmander.bbe96afb.png'" class="pokemon">{{pokemonNames}}</h2>
+       <h2 v-if="this.pokemonSelected=='/img/squirtle.fc2bf73d.png'" class="pokemon">{{pokemonNames}}</h2>
+       <h2 v-if="this.pokemonSelected=='/img/bulbasur.25b5984c.png'" class="pokemon">{{pokemonNames}}</h2>  
         <div class="hp-bar-bottom">
           <div v-bind:style="userHpBar" class="hp-bar-fill"></div>
         </div>
-        <h4 class="level">Lvl. {{userLevel}}</h4>
+        <h4 class="level">Level {{userLevel}}</h4>
         <h4 class="hp">{{userHP}}/{{startUserHP}}</h4>
       </div>
       <div class="bottom-menu">
@@ -30,17 +32,18 @@
           <div v-if="optionsOn" id="battleOptions">
             <h4 v-on:click="processOption(1)" class="battle-text-bottom-left">{{battleOptions[0]}}</h4>
             <!--
-<h4 v-on:click="processOption(2)" class="battle-text-top-right">{{battleOptions[1]}}</h4>
+            <h4 v-on:click="processOption(2)" class="battle-text-top-right">{{battleOptions[1]}}</h4>
             <h4 v-on:click="processOption(3)" class="battle-text-bottom-left">{{battleOptions[2]}}</h4>-->
             <h4 v-on:click="processOption(4)" class="battle-text-bottom-right">{{battleOptions[3]}}</h4>
           </div>
           <div v-if="fightOn" id="fightOptions">
-            <div v-if="responsedAnswer">
+            <!--
+            <div>
               <h4 v-on:click="processAttack(1)" class="battle-text-top-left">{{fightOptions[0]}}</h4>
               <h4 v-on:click="processAttack(2)" class="battle-text-top-right">{{fightOptions[1]}}</h4>
               <h4 v-on:click="processAttack(3)" class="battle-text-bottom-left">{{fightOptions[2]}}</h4>
               <h4 v-on:click="processAttack(4)" class="battle-text-bottom-right">{{fightOptions[3]}}</h4>
-            </div>
+            </div>-->
           </div>
           <div v-if="endOn" id="endOptions">
             <h4 v-on:click="resetBattle" class="battle-text-top-left">{{endOptions[0]}}</h4>
@@ -62,12 +65,18 @@
 
 <script>
 import question from "./question";
+import { mapActions, mapGetters, mapState } from 'vuex'
 export default {
   components: {
     question
   },
-  props: ["pokemon"],
-
+  computed:{
+     ...mapState({
+      pokemonSelected:state=>state.pokemonSelected
+    })
+  },
+  props: {}
+  ,
   data() {
     return {
       preguntas: {
@@ -75,8 +84,8 @@ export default {
           {
             text: "Cúal contraseña es más segura?",
             type: "mc",
-            answers: ["Pikachu$123", "Pikachu123", "PokemonRocks"],
-            answer: "Pikachu$123"
+            answers: ["Pikachu$123", "Pikachu123", "PokemonRocks"]
+            ,answer: "Pikachu$123"
           },
           {
             text: "Cúal contraseña es más segura?",
@@ -96,7 +105,7 @@ export default {
         "http://guidesmedia.ign.com/guides/059687/images/blackwhite/pokemans_006.gif",
       opponentPokemonSrc:
         "http://pre01.deviantart.net/959a/th/pre/f/2016/075/4/6/095_onix_by_rayo123000-d9vbjj3.png",
-      userPokemon: "Charizard",
+      userPokemon: "",
       opponentPokemon: "Onyx",
       userAlive: true,
       opponentAlive: true,
@@ -105,14 +114,15 @@ export default {
       userHP: 100,
       startUserHP: 100,
       opponentHP: 100,
-      userLevel: 50,
-      opponentLevel: 50,
-      battleText: "What will Charizard do?",
-      battleOptions: ["Fight", "Pokemon", "Item", "Run"],
-      userAttackDamage: [15, 40, 50, 25],
-      opponentAttacks: ["Tackle", "Iron Tail", "Rock Slide", "Slam"],
-      opponentAttackDamage: [15, 40, 50, 25],
-      fightOptions: ["Scratch", "Fly", "Flamethrower", "Ember"],
+      userLevel: 1,
+      opponentLevel: 1,
+      battleText: "Que hara el pokemon ahora?",
+      battleOptions: ["Pelear", "", "", "Escapar"],
+      userAttackDamage: [10, 50, 40, 10,50,40,10,50,40],
+      opponentAttacks: ["Tackle", "Iron Tail", "Rock Slide","Rock Slide"],
+      opponentAttackDamage: [10, 40, 50],
+      fightOptions: ["Arañazo", "Gruñido", "Lanzallamas", "Látigo","Hidrobomba",
+      "Cabezazo","Gruñido Growl","Bomba Germen","Polvo Veneno Poison Powder"],
       endOptions: ["Yes", "No"],
       fightOn: false,
       optionsOn: true,
@@ -123,7 +133,7 @@ export default {
       title: "",
       questions: [],
       currentQuestion: 0,
-      responsedAnswer: false,
+      responsedAnswer: "",
       answers: [],
       correct: 0,
       perc: null,
@@ -132,12 +142,20 @@ export default {
       },
       opponentHpBar: {
         width: "100%"
-      }
+      },
+      pokemonNames:""
     };
   },
   created() {
     this.questions = this.preguntas.questions;
     this.introStage = true;
+     if(this.pokemonSelected=='/img/charmander.bbe96afb.png'){
+          this.pokemonNames="Charmander"
+      }else if(this.pokemonSelected=='/img/squirtle.fc2bf73d.png'){
+           this.pokemonNames="Squirtle"
+      } else if (this.pokemonSelected=='/img/bulbasur.25b5984c.png'){
+        this.pokemonNames="Bulbasur"
+      }
 
     /* fetch('https://api.myjson.com/bins/ahn1p')
     .then(res => res.json())
@@ -147,7 +165,9 @@ export default {
       this.introStage = true;
     })*/
   },
+  
   methods: {
+    
     processOption: function(option) {
       switch (option) {
         case 1:
@@ -158,9 +178,9 @@ export default {
         case 4:
           //handle run
           setTimeout(() => {
-            this.battleText = "What will " + this.userPokemon + " do?";
+            this.battleText = "Que haras " + this.userPokemon + " do?";
           }, 2000);
-          this.battleText = "Can't escape.";
+          this.battleText = "No puedes.";
           break;
       }
     },
@@ -168,14 +188,21 @@ export default {
       switch (attack) {
         case 1:
           //handle scratch
-          this.opponentHP -= this.userAttackDamage[attack - 1];
-          //edit if HP !== 0
-          this.opponentFill -= this.userAttackDamage[attack - 1];
-          if (this.opponentFill <= 0) {
+              this.opponentHP -= this.userAttackDamage[attack - 1];
+              this.opponentFill -= this.userAttackDamage[attack - 1];
+              if (this.opponentFill <= 0) {
             this.opponentHpBar.width = "0%";
           } else {
             this.opponentHpBar.width = this.opponentFill + "%";
           }
+              console.log(this.opponentHP)
+               console.log(this.opponentFill)
+          
+           
+        
+          //edit if HP !== 0
+         
+          
           if (this.checkOpponentHp()) {
             this.battleText = this.opponentPokemon + " fainted! Play again?";
             this.processFaint(1);
@@ -185,7 +212,7 @@ export default {
             }, 2000);
 
             this.battleText =
-              this.userPokemon + " used " + this.fightOptions[attack - 1] + "!";
+              this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
             //call opponent attack function
             setTimeout(() => {
               if (this.userAlive) {
@@ -198,9 +225,11 @@ export default {
           break;
         case 2:
           //handle fly
-          this.opponentHP -= this.userAttackDamage[attack - 1];
+              this.opponentHP -= this.userAttackDamage[attack - 1];
+              this.opponentFill -= this.userAttackDamage[attack - 1];
+        
           //edit if HP !== 0
-          this.opponentFill -= this.userAttackDamage[attack - 1];
+      
           if (this.opponentFill <= 0) {
             this.opponentHpBar.width = "0%";
           } else {
@@ -215,7 +244,7 @@ export default {
             }, 2000);
 
             this.battleText =
-              this.userPokemon + " used " + this.fightOptions[attack - 1] + "!";
+              this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
             //call opponent attack function
             setTimeout(() => {
               if (this.userAlive) {
@@ -229,7 +258,6 @@ export default {
         case 3:
           //handle flamethrower
           this.opponentHP -= this.userAttackDamage[attack - 1];
-          //edit if HP !== 0
           this.opponentFill -= this.userAttackDamage[attack - 1];
           if (this.opponentFill <= 0) {
             this.opponentHpBar.width = "0%";
@@ -245,7 +273,7 @@ export default {
             }, 2000);
 
             this.battleText =
-              this.userPokemon + " used " + this.fightOptions[attack - 1] + "!";
+              this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
             //call opponent attack function
             setTimeout(() => {
               if (this.userAlive) {
@@ -275,7 +303,7 @@ export default {
             }, 2000);
 
             this.battleText =
-              this.userPokemon + " used " + this.fightOptions[attack - 1] + "!";
+              this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
             //call opponent attack function
             setTimeout(() => {
               if (this.userAlive) {
@@ -286,11 +314,197 @@ export default {
             }, 2000);
           }
           break;
+          case 5:
+          //handle scratch
+              this.opponentHP -= this.userAttackDamage[attack - 1];
+              this.opponentFill -= this.userAttackDamage[attack - 1];
+              if (this.opponentFill <= 0) {
+            this.opponentHpBar.width = "0%";
+          } else {
+            this.opponentHpBar.width = this.opponentFill + "%";
+          }
+              console.log(this.opponentHP)
+               console.log(this.opponentFill)
+          
+           
+        
+          //edit if HP !== 0
+         
+          
+          if (this.checkOpponentHp()) {
+            this.battleText = this.opponentPokemon + " fainted! Play again?";
+            this.processFaint(1);
+          } else if (this.checkOpponentHp() === false) {
+            setTimeout(() => {
+              this.processOpponentAttack();
+            }, 2000);
+
+            this.battleText =
+              this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
+            //call opponent attack function
+            setTimeout(() => {
+              if (this.userAlive) {
+                setTimeout(() => {
+                  this.battleText = "What will " + this.userPokemon + " do?";
+                }, 2000);
+              }
+            }, 2000);
+          }
+          break;
+             case 6:
+          //handle scratch
+              this.opponentHP -= this.userAttackDamage[attack - 1];
+              this.opponentFill -= this.userAttackDamage[attack - 1];
+              if (this.opponentFill <= 0) {
+            this.opponentHpBar.width = "0%";
+          } else {
+            this.opponentHpBar.width = this.opponentFill + "%";
+          }
+              console.log(this.opponentHP)
+               console.log(this.opponentFill)
+          
+           
+        
+          //edit if HP !== 0
+         
+          
+          if (this.checkOpponentHp()) {
+            this.battleText = this.opponentPokemon + " fainted! Play again?";
+            this.processFaint(1);
+          } else if (this.checkOpponentHp() === false) {
+            setTimeout(() => {
+              this.processOpponentAttack();
+            }, 2000);
+
+            this.battleText =
+              this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
+            //call opponent attack function
+            setTimeout(() => {
+              if (this.userAlive) {
+                setTimeout(() => {
+                  this.battleText = "What will " + this.userPokemon + " do?";
+                }, 2000);
+              }
+            }, 2000);
+          }
+          break;
+             case 7:
+          //handle scratch
+              this.opponentHP -= this.userAttackDamage[attack - 1];
+              this.opponentFill -= this.userAttackDamage[attack - 1];
+              if (this.opponentFill <= 0) {
+            this.opponentHpBar.width = "0%";
+          } else {
+            this.opponentHpBar.width = this.opponentFill + "%";
+          }
+              console.log(this.opponentHP)
+               console.log(this.opponentFill)
+          
+           
+        
+          //edit if HP !== 0
+         
+          
+          if (this.checkOpponentHp()) {
+            this.battleText = this.opponentPokemon + " fainted! Play again?";
+            this.processFaint(1);
+          } else if (this.checkOpponentHp() === false) {
+            setTimeout(() => {
+              this.processOpponentAttack();
+            }, 2000);
+
+            this.battleText =
+              this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
+            //call opponent attack function
+            setTimeout(() => {
+              if (this.userAlive) {
+                setTimeout(() => {
+                  this.battleText = "What will " + this.userPokemon + " do?";
+                }, 2000);
+              }
+            }, 2000);
+          }
+          break;
+             case 8:
+          //handle scratch
+              this.opponentHP -= this.userAttackDamage[attack - 1];
+              this.opponentFill -= this.userAttackDamage[attack - 1];
+              if (this.opponentFill <= 0) {
+            this.opponentHpBar.width = "0%";
+          } else {
+            this.opponentHpBar.width = this.opponentFill + "%";
+          }
+              console.log(this.opponentHP)
+               console.log(this.opponentFill)
+          
+           
+        
+          //edit if HP !== 0
+         
+          
+          if (this.checkOpponentHp()) {
+            this.battleText = this.opponentPokemon + " fainted! Play again?";
+            this.processFaint(1);
+          } else if (this.checkOpponentHp() === false) {
+            setTimeout(() => {
+              this.processOpponentAttack();
+            }, 2000);
+
+            this.battleText =
+              this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
+            //call opponent attack function
+            setTimeout(() => {
+              if (this.userAlive) {
+                setTimeout(() => {
+                  this.battleText = "What will " + this.userPokemon + " do?";
+                }, 2000);
+              }
+            }, 2000);
+          }
+          break;  
+           case 9:
+          //handle scratch
+              this.opponentHP -= this.userAttackDamage[attack - 1];
+              this.opponentFill -= this.userAttackDamage[attack - 1];
+              if (this.opponentFill <= 0) {
+            this.opponentHpBar.width = "0%";
+          } else {
+            this.opponentHpBar.width = this.opponentFill + "%";
+          }
+              console.log(this.opponentHP)
+               console.log(this.opponentFill)
+          
+           
+        
+          //edit if HP !== 0
+         
+          
+          if (this.checkOpponentHp()) {
+            this.battleText = this.opponentPokemon + " fainted! Play again?";
+            this.processFaint(1);
+          } else if (this.checkOpponentHp() === false) {
+            setTimeout(() => {
+              this.processOpponentAttack();
+            }, 2000);
+
+            this.battleText =
+              this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
+            //call opponent attack function
+            setTimeout(() => {
+              if (this.userAlive) {
+                setTimeout(() => {
+                  this.battleText = "What will " + this.userPokemon + " do?";
+                }, 2000);
+              }
+            }, 2000);
+          }
+          break;   
       }
     },
     checkOpponentHp: function() {
       if (this.opponentHP <= 0) {
         //fainted
+        this.currentQuestion=0
         return true;
       } else {
         //battle continues
@@ -302,6 +516,7 @@ export default {
       this.endOn = true;
       if (pokemon === 1) {
         this.opponentAlive = false;
+        this.currentQuestion=0
       } else {
         this.userHP = 0;
         this.userAlive = false;
@@ -326,7 +541,7 @@ export default {
         //continue battle
         this.battleText =
           this.opponentPokemon +
-          " used " +
+          " usa " +
           this.opponentAttacks[random - 1] +
           "!";
         this.fightOn = false;
@@ -336,6 +551,7 @@ export default {
     checkUserHp: function() {
       if (this.userHP <= 0) {
         //fainted
+        this.currentQuestion=0
         return true;
       } else {
         //battle continues
@@ -347,7 +563,7 @@ export default {
       this.endOn = false;
       this.fightOn = false;
       this.optionsOn = true;
-      this.battleText = "What will Charizard do?";
+      this.battleText = "Que hara el pokemon?";
       this.userAlive = true;
       this.opponentAlive = true;
       this.userHP = 100;
@@ -356,35 +572,60 @@ export default {
       this.opponentFill = 100;
       this.userHpBar.width = "100%";
       this.opponentHpBar.width = "100%";
+      this.currentQuestion=0
     },
     startQuiz() {
       this.introStage = false;
       this.questionStage = true;
     },
     handleAnswer(e) {
-      console.log("answer event ftw", e);
-      this.answers[this.currentQuestion] = e.answer;
-      console.log(e.answer)
-
-      if (this.currentQuestion + 1 === this.questions.length) {
-        //this.handleResults();
-        this.questionStage = false;
-        this.resultsStage = true;
-      } else {
-        if (this.answers[this.currentQuestion] === e.answer){
-             this.responsedAnswer = true;
-        console.log(this.responsedAnswer);
-        this.correct++;
+       this.answers[this.currentQuestion]=e.answer;
+       this.responsedAnswer =e.answer
+      
+        if(this.responsedAnswer =="Pikachu123" ||this.responsedAnswer =="charizard"
+        ||this.responsedAnswer =="Passw0rd"){
+         if( this.pokemonNames=="Charmander"){
+           this.processAttack(1)
+         }else if (this.pokemonNames=="Squirtle"){
+            this.processAttack(6)
+         }else if (this.pokemonNames=="Bulbasur"){
+            this.processAttack(8)
+         }
+           
+        }else if(this.responsedAnswer =="Pikachu$123" ||this.responsedAnswer =="charizard#@@P"
+       ||this.responsedAnswer =="oinyxy#@@P"){
+            if( this.pokemonNames=="Charmander"){
+           this.processAttack(2)
+         }else if (this.pokemonNames=="Squirtle"){
+            this.processAttack(5)
+         }else if (this.pokemonNames=="Bulbasur"){
+            this.processAttack(7)
+         }
+        }else if(this.responsedAnswer =="PokemonRocks" ||this.responsedAnswer =="pokemon"
+        ||this.responsedAnswer =="pokemon123"){
+             if( this.pokemonNames=="Charmander"){
+           this.processAttack(3)
+         }else if (this.pokemonNames=="Squirtle"){
+            this.processAttack(6)
+         }else if (this.pokemonNames=="Bulbasur"){
+            this.processAttack(9)
+         }
+        }
+        console.log(this.currentQuestion)
         this.currentQuestion++;
-        }else{
-             this.responsedAnswer = false;
-      }
-      }},
+      
+      },
     handleResults() {
-      console.log("handle results");
+      //console.log("handle results");
       this.questions.forEach((a, index) => {
-        if (this.answers[index] === a.answer)
-        this.correct++;
+        if (this.answers[index] === a.answer){
+          this.correct++;
+        }else{
+            this.perc = ((this.correct / this.questions.length)*100).toFixed(2);
+      console.log(this.correct+' '+this.perc);
+        }
+        
+       
       });
       this.perc = ((this.correct / this.questions.length) * 100).toFixed(2);
       console.log(this.correct + " " + this.perc);
@@ -496,10 +737,10 @@ body {
 
 .pokemon-bottom {
   height: 150%;
-  width: 50%;
+  width: 100%;
   position: absolute;
   top: -75%;
-  left: 25%;
+  left: 2%;
 }
 
 .box-bottom-left {

@@ -32,13 +32,10 @@
               >
             </div>
             <div v-if="messageServer" class="server-error">{{ messageServer }}</div>
-            
-            
             <div class="col-sm-12 siguiente">
               <button class="boton-login rounded" type="submit" :disabled="loading">
                 <img src="../../assets/nivel01/reto01/Siguiente.png" class="img-fluid">
               </button>
-             
             </div>
           </form>
         <div class="container ">

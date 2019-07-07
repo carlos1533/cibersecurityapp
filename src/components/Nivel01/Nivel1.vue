@@ -18,9 +18,11 @@
           alt="Smiley face"
           class="img-fluid"
         >
+        
       </div>
       <div class="col-md-10 offset-1">
         <img src="../../assets/nivel01/nivel01-texto.png" alt="Smiley face" class="img-fluid">
+       
       </div>
       <div class="col-md-10 offset-1">
         <div class="row">
@@ -30,40 +32,30 @@
               alt="Smiley face"
               class="img-fluid"
             >
+         
           </div>
-          <select v-model="imageSelected">
+        
+          <select
+           @click="onHandleSelectedPokemon()"
+           v-model="imageSelected"  ref="imageSelected" prop="imageSelected" name="imageSelected">
             <option
               v-for="( element, index ) in elements"
               :value="element.src"
               :key="index"
-            >{{element.alt}}</option>
+            >{{element.alt}}
+            </option>
           </select>
           <hr>Pokemón elegido:
+         
           <template v-if="imageSelected!=='' ">
-            <img :src="imageSelected"
-            :pokemon:src="imageSelected">
+            <img :src="imageSelected">
           </template>
-
-          <!--<form action="#" @submit.prevent="login">
-            <div class="input-group">
-              <input
-                type="text"
-                name="username"
-                id="username"
-                class="form-control form-control-lg rounded border border-primary input"
-                v-model="name"
-              >
-            </div>
-          </form>-->
         </div>
         <div class="col-sm-12">
-          <router-link :to="{ name: 'fight' }">
+      <router-link :to="{ name: 'fight'}">
             <button
-              @click="onHandleSelectedPokemon"
               class="boton-login rounded"
-              :disabled="loading"
-              
-            >
+              :disabled="loading">
               <img src="../../assets/nivel01/Empezar.png" class="img-fluid">
             </button>
           </router-link>
@@ -73,23 +65,25 @@
   </div>
 </template>
 <script>
-import VueSelectImage from "vue-select-image";
-require("vue-select-image/dist/vue-select-image.css");
+
+import { mapActions, mapGetters, mapState } from 'vuex'
 export default {
   name: "Nivel1",
-  components: {
-    VueSelectImage
-  },
   computed: {
     loggedIn() {
       return this.$store.getters.loggedIn;
-    }
-  },
+    },
+    ...mapState({
+      pokemonSelected:state=>state.pokemonSelected,
+      namePokemonSelected:state=>state.namePokemonSelected
+    })
+  }
+  ,
   props: {
     dataSuccessMessage: {
       type: String
-    }
-  },
+    } 
+    },
   data() {
     return {
       imageSelected: "",
@@ -118,13 +112,18 @@ export default {
     };
   },
   created() {
-    const id = localStorage.getItem("auth");
-    console.log(id);
+    const id = localStorage.getItem("auth")
   },
+  
   methods: {
-    onHandleSelectedPokemon: () => {
+
+    ...mapActions([
+          'setPokemonSelected'
+    ]),
+
+    onHandleSelectedPokemon (){
+      this.setPokemonSelected(this.imageSelected)
       const id = localStorage.getItem("auth");
-      console.log(id);
     },
     onSelectImage: function(data) {
       console.log("fire event onSelectImage: ", data);

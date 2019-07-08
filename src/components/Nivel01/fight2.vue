@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="title">Batalla Pokemon Inicial</h1>
+    <h1 class="title">Batalla Pokemon Final</h1>
     <div class="battle-scene">
       <div class="box-top-left">
         <h2 class="pokemon">{{ opponentPokemon}}</h2>
@@ -53,14 +53,13 @@
       </div>
     </div>
     <div class="col-md-8 offset-md-2 " >
-      <question
+    <question
       v-if="fightOn"
       :question="questions[currentQuestion]"
       v-on:answer="handleAnswer"
       :question-number="currentQuestion+1"
     ></question>
     </div>
-    
 
     <!-- end battle scene -->
   </div>
@@ -70,6 +69,7 @@
 import question from "./question";
 import { mapActions, mapGetters, mapState } from 'vuex'
 export default {
+  name: "fight2",
   components: {
     question
   },
@@ -85,46 +85,34 @@ export default {
       preguntas: {
         questions: [
           {
-            text: "Cúal contraseña es más segura?",
-            type: "mc",
-            answers: ["peru", "perucampeon", "brasil"]
-            ,answer: "perucampeon"
-          },
-          {
-            text: "¿Cuál es una caracteristica segura para tu contraseña?",
-            type: "mc",
-            answers: ["usar mi nombre", "usar el nombre de mi perro", "Tiene como mínimo 8 caracteres (letras y números)"],
-            answer: "Tiene como mínimo 8 caracteres (letras y números)"
-          },
-          {
             text: "¿Cuál es la contraseña más segura?",
             type: "mc",
-            answers: ["PokemOn", "pokemon", "pikachu"],
-            answer: "PokemOn"
+            answers: ["roSas101", "g1r4s0l$", "G1r4s0l61$"]
+            ,answer: "G1r4s0l61$"
+          },
+          {
+            text: "Si me mejor amigo me pide mis credenciales (Usuario y contraseña) para descargar un documento importante ¿Qué hago?",
+            type: "mc",
+            answers: ["Es mi amigo, se las doy", "Se que es un riesgo, pero igual se la doy", "No se la doy y le digo que es una conducta inapropiada"],
+            answer: "No se la doy y le digo que es una conducta inapropiada"
+          },
+          {
+            text: "¿Cuál es la contraseña más segura",
+            type: "mc",
+            answers: ["PeruCampeOn2019%", "P3ruC4mP30n2019%", "p3ruc4mp30n2019%"],
+            answer: "P3ruC4mP30n2019%"
           },
            {
-            text: "¿Qué hago para recordar mi contraseña?",
+            text: "¿Deberia usar la misma contraseña para todas mis cuentas (correo, facebook, twitter)?",
             type: "mc",
-            answers: ["La escribo en papel y la pego al lado de mi monitor", "pongo mi nombre y mi fecha de nacimiento para que sea facil de recordar", "La repito hasta memorizarla"]
-            ,answer: "La repito hasta memorizarla"
+            answers: ["Si, porque solo debo acordarme de una ", "si, porque me parece lo más facil","no porque es un comportamiento inapropiado"]
+            ,answer: "no porque es un comportamiento inapropiado"
           },
           {
             text: "¿Cuál es la contraseña más segura?",
             type: "mc",
-            answers: ["Pokemon123", "pokemon123", "poke123"],
-            answer: "Pokemon123"
-          },
-          {
-            text: "Deberia cambiar mi contraseña?",
-            type: "mc",
-            answers: ["1 vez al mes", "Nunca", "1 vez al año"],
-            answer: "1 vez al mes"
-          },
-          {
-            text: "¿Cuál es la contraseña más segura?",
-            type: "mc",
-            answers: ["charizard25$", "Chariz4rd25$", "Char25$"],
-            answer: "Chariz4rd25$"
+            answers: ["C0nTr4$3ñ4$3gUr4", "C0nTr4$3", "Contr4señaSegura"],
+            answer: "C0nTr4$3ñ4$3gUr4"
           }
         ]
       },
@@ -141,13 +129,13 @@ export default {
       userHP: 100,
       startUserHP: 100,
       opponentHP: 100,
-      userLevel: 1,
-      opponentLevel: 1,
+      userLevel: 100,
+      opponentLevel: 100,
       battleText: "Que hara el pokemon ahora?",
       battleOptions: ["Pelear", "", "", "Escapar"],
       userAttackDamage: [20, 30, 20, 20,30,20,20,30,20],
       opponentAttacks: ["Tackle", "Iron Tail", "Rock Slide","Rock Slide","Tackle"],
-      opponentAttackDamage: [15, 15, 15,15,15],
+      opponentAttackDamage: [20, 20, 20,20,20],
       fightOptions: ["Arañazo", "Lanzallamas", "Gruñido","Látigo","Hidrobomba",
       "Cabezazo","Gruñido Growl","Bomba Germen","Polvo Veneno Poison Powder"],
       endOptions: ["Yes", "No"],
@@ -205,8 +193,8 @@ export default {
         case 4:
           //handle run
           setTimeout(() => {
-            this.battleText = "Que hara " + this.pokemonNames + "?";
-          }, 1000);
+            this.battleText = "Que haras " + this.userPokemon + " do?";
+          }, 2000);
           this.battleText = "No puedes.";
           break;
       }
@@ -222,7 +210,8 @@ export default {
           } else {
             this.opponentHpBar.width = this.opponentFill + "%";
           }
-      
+              console.log(this.opponentHP)
+               console.log(this.opponentFill)
           
            
         
@@ -235,18 +224,18 @@ export default {
           } else if (this.checkOpponentHp() === false) {
             setTimeout(() => {
               this.processOpponentAttack();
-            }, 1000);
+            }, 2000);
 
             this.battleText =
-              this.pokemonNames + " usa " + this.fightOptions[attack - 1] + "!";
+              this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
             //call opponent attack function
             setTimeout(() => {
               if (this.userAlive) {
                 setTimeout(() => {
-                  this.battleText = "What will " + this.pokemonNames + "?";
-                }, 1000);
+                  this.battleText = "What will " + this.userPokemon + " do?";
+                }, 2000);
               }
-            }, 1000);
+            }, 2000);
           }
           break;
         case 2:
@@ -267,18 +256,18 @@ export default {
           } else if (this.checkOpponentHp() === false) {
             setTimeout(() => {
               this.processOpponentAttack();
-            }, 1000);
+            }, 2000);
 
             this.battleText =
-              this.pokemonNames + " usa " + this.fightOptions[attack - 1] + "!";
+              this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
             //call opponent attack function
             setTimeout(() => {
               if (this.userAlive) {
                 setTimeout(() => {
-                  this.battleText = "Que hara " + this.pokemonNames + "?";
-                }, 1000);
+                  this.battleText = "What will " + this.userPokemon + " do?";
+                }, 2000);
               }
-            }, 1000);
+            }, 2000);
           }
           break;
         case 3:
@@ -296,18 +285,18 @@ export default {
           } else if (this.checkOpponentHp() === false) {
             setTimeout(() => {
               this.processOpponentAttack();
-            }, 1000);
+            }, 2000);
 
             this.battleText =
-              this.pokemonNames + " usa " + this.fightOptions[attack - 1] + "!";
+              this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
             //call opponent attack function
             setTimeout(() => {
               if (this.userAlive) {
                 setTimeout(() => {
                   this.battleText = "What will " + this.userPokemon + " do?";
-                }, 1000);
+                }, 2000);
               }
-            }, 1000);
+            }, 2000);
           }
           break;
         case 4:
@@ -326,18 +315,18 @@ export default {
           } else if (this.checkOpponentHp() === false) {
             setTimeout(() => {
               this.processOpponentAttack();
-            }, 1000);
+            }, 2000);
 
             this.battleText =
-              this.pokemonNames + " usa " + this.fightOptions[attack - 1] + "!";
+              this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
             //call opponent attack function
             setTimeout(() => {
               if (this.userAlive) {
                 setTimeout(() => {
                   this.battleText = "What will " + this.userPokemon + " do?";
-                }, 1000);
+                }, 2000);
               }
-            }, 1000);
+            }, 2000);
           }
           break;
           case 5:
@@ -363,7 +352,7 @@ export default {
           } else if (this.checkOpponentHp() === false) {
             setTimeout(() => {
               this.processOpponentAttack();
-            }, 1000);
+            }, 2000);
 
             this.battleText =
               this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
@@ -372,9 +361,9 @@ export default {
               if (this.userAlive) {
                 setTimeout(() => {
                   this.battleText = "What will " + this.userPokemon + " do?";
-                }, 1000);
+                }, 2000);
               }
-            }, 1000);
+            }, 2000);
           }
           break;
              case 6:
@@ -386,6 +375,9 @@ export default {
           } else {
             this.opponentHpBar.width = this.opponentFill + "%";
           }
+              console.log(this.opponentHP)
+               console.log(this.opponentFill)
+          
            
         
           //edit if HP !== 0
@@ -397,7 +389,7 @@ export default {
           } else if (this.checkOpponentHp() === false) {
             setTimeout(() => {
               this.processOpponentAttack();
-            }, 1000);
+            }, 2000);
 
             this.battleText =
               this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
@@ -406,9 +398,9 @@ export default {
               if (this.userAlive) {
                 setTimeout(() => {
                   this.battleText = "What will " + this.userPokemon + " do?";
-                }, 1000);
+                }, 2000);
               }
-            }, 1000);
+            }, 2000);
           }
           break;
              case 7:
@@ -434,7 +426,7 @@ export default {
           } else if (this.checkOpponentHp() === false) {
             setTimeout(() => {
               this.processOpponentAttack();
-            }, 1000);
+            }, 2000);
 
             this.battleText =
               this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
@@ -443,9 +435,9 @@ export default {
               if (this.userAlive) {
                 setTimeout(() => {
                   this.battleText = "What will " + this.userPokemon + " do?";
-                }, 1000);
+                }, 2000);
               }
-            }, 1000);
+            }, 2000);
           }
           break;
              case 8:
@@ -471,7 +463,7 @@ export default {
           } else if (this.checkOpponentHp() === false) {
             setTimeout(() => {
               this.processOpponentAttack();
-            }, 1000);
+            }, 2000);
 
             this.battleText =
               this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
@@ -480,9 +472,9 @@ export default {
               if (this.userAlive) {
                 setTimeout(() => {
                   this.battleText = "What will " + this.userPokemon + " do?";
-                }, 1000);
+                }, 2000);
               }
-            }, 1000);
+            }, 2000);
           }
           break;  
            case 9:
@@ -508,7 +500,7 @@ export default {
           } else if (this.checkOpponentHp() === false) {
             setTimeout(() => {
               this.processOpponentAttack();
-            }, 1000);
+            }, 2000);
 
             this.battleText =
               this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
@@ -517,9 +509,9 @@ export default {
               if (this.userAlive) {
                 setTimeout(() => {
                   this.battleText = "What will " + this.userPokemon + " do?";
-                }, 1000);
+                }, 2000);
               }
-            }, 1000);
+            }, 2000);
           }
           break;   
       }
@@ -540,8 +532,7 @@ export default {
       if (pokemon === 1) {
         this.opponentAlive = false;
         this.currentQuestion=0
-        alert("felicitaciones ahora estas en la batalla final")
-         this.$router.push({name: 'fight2'});  
+        this.$router.push({name: 'fight'}); 
       } else {
         this.userHP = 0;
         this.userAlive = false;
@@ -607,11 +598,9 @@ export default {
        this.answers[this.currentQuestion]=e.answer;
        this.responsedAnswer =e.answer
       
-        if(this.responsedAnswer =="perucampeon" ||this.responsedAnswer =="Tiene como mínimo 8 caracteres (letras y números)"
-        ||this.responsedAnswer =="PokemOn"||this.responsedAnswer =="La repito hasta memorizarla"
-        ||this.responsedAnswer =="Pokemon123"
-        ||this.responsedAnswer =="1 vez al mes"
-        ||this.responsedAnswer =="Chariz4rd25$"){
+        if(this.responsedAnswer =="G1r4s0l61$" ||this.responsedAnswer =="No se la doy y le digo que es una conducta inapropiada"
+        ||this.responsedAnswer =="P3ruC4mP30n2019%"||this.responsedAnswer =="no porque es un comportamiento inapropiado"
+        ||this.responsedAnswer =="C0nTr4$3ñ4$3gUr4"){
          if( this.pokemonNames=="Charmander"){
            this.processAttack(2)
          }else if (this.pokemonNames=="Squirtle"){
@@ -620,12 +609,11 @@ export default {
             this.processAttack(8)
          }
            
-        }else if(this.responsedAnswer =="peru" ||this.responsedAnswer =="usar mi nombre"
-       ||this.responsedAnswer =="pokemon"
-       ||this.responsedAnswer =="pokemon123"
-       ||this.responsedAnswer =="Nunca"
-       ||this.responsedAnswer =="pongo mi nombre y mi fecha de nacimiento para que sea facil de recordar"
-       ||this.responsedAnswer =="charizard25$"){
+        }else if(this.responsedAnswer =="g1r4s0l$" 
+       ||this.responsedAnswer =="Se que es un riesgo, pero igual se la doy"
+       ||this.responsedAnswer =="PeruCampeOn2019%"
+       ||this.responsedAnswer =="Si, porque solo debo acordarme de una"
+       ||this.responsedAnswer =="C0nTr4$3"){
             if( this.pokemonNames=="Charmander"){
            this.processAttack(1)
          }else if (this.pokemonNames=="Squirtle"){
@@ -633,12 +621,10 @@ export default {
          }else if (this.pokemonNames=="Bulbasur"){
             this.processAttack(6)
          }
-        }else if(this.responsedAnswer =="brasil" ||this.responsedAnswer =="usar el nombre de mi perro"
-        ||this.responsedAnswer =="pikachu"
-         ||this.responsedAnswer =="La escribo en papel y la pego al lado de mi monitor"
-          ||this.responsedAnswer =="poke123"
-           ||this.responsedAnswer =="1 vez al año"
-           ||this.responsedAnswer =="Char25$"){
+        }else if(this.responsedAnswer =="roSas101" ||this.responsedAnswer =="Es mi amigo, se las doy"
+        ||this.responsedAnswer =="p3ruc4mp30n2019%"
+         ||this.responsedAnswer =="si, porque me parece lo más facil"
+          ||this.responsedAnswer =="Contr4señaSegura"){
              if( this.pokemonNames=="Charmander"){
            this.processAttack(3)
          }else if (this.pokemonNames=="Squirtle"){

@@ -16,7 +16,7 @@
     </div>
   </div>
 
-  <button @click="submitAnswer">Answer</button>
+  <button @click="submitAnswer">Responder</button>
 </div>
 </template>
 

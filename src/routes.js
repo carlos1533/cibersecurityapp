@@ -6,6 +6,7 @@ import Register from './components/auth/Register'
 import Nivel1 from './components/Nivel01/Nivel1'
 import Tuto from './components/Nivel01/Tuto'
 import fight from './components/Nivel01/fight'
+import fight2 from './components/Nivel01/fight2'
 const routes = [
     {
         path: '/landinpage',
@@ -44,6 +45,12 @@ const routes = [
         path: '/fight',
         name: 'fight',
         component: fight
+
+    },
+    {
+        path: '/fight2',
+        name: 'fight2',
+        component: fight2
 
     }
 ]

@@ -135,7 +135,7 @@ export default {
       battleOptions: ["Pelear", "", "", "Escapar"],
       userAttackDamage: [20, 30, 20, 20,30,20,20,30,20],
       opponentAttacks: ["Tackle", "Iron Tail", "Rock Slide","Rock Slide","Tackle"],
-      opponentAttackDamage: [20, 20, 20,20,20],
+      opponentAttackDamage: [20, 20, 20,20,20,20],
       fightOptions: ["Arañazo", "Lanzallamas", "Gruñido","Látigo","Hidrobomba",
       "Cabezazo","Gruñido Growl","Bomba Germen","Polvo Veneno Poison Powder"],
       endOptions: ["Yes", "No"],
@@ -532,11 +532,12 @@ export default {
       if (pokemon === 1) {
         this.opponentAlive = false;
         this.currentQuestion=0
-        this.$router.push({name: 'fight'}); 
+        alert("ha ganado!")
       } else {
         this.userHP = 0;
         this.userAlive = false;
       }
+         
     },
     processOpponentAttack: function() {
       //generate random number
@@ -589,6 +590,7 @@ export default {
       this.userHpBar.width = "100%";
       this.opponentHpBar.width = "100%";
       this.currentQuestion=0
+       this.$router.push({name: 'tuto'});    
     },
     startQuiz() {
       this.introStage = false;

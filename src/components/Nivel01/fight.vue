@@ -145,7 +145,7 @@ export default {
       opponentLevel: 1,
       battleText: "Que hara el pokemon ahora?",
       battleOptions: ["Pelear", "", "", "Escapar"],
-      userAttackDamage: [20, 30, 20, 20,30,20,20,30,20],
+      userAttackDamage: [10, 20, 10, 10,20,10,10,20,10],
       opponentAttacks: ["Tackle", "Iron Tail", "Rock Slide","Rock Slide","Tackle"],
       opponentAttackDamage: [15, 15, 15,15,15],
       fightOptions: ["Arañazo", "Lanzallamas", "Gruñido","Látigo","Hidrobomba",

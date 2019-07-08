@@ -118,7 +118,7 @@ export default {
           //console.log(this.$store);
           this.loading = false;
           this.messageServer = response.data;
-          if(this.messageServer==''){
+          if(this.messageServer=='Muy bien, tu contraseña es segura.'){
             this.valid=true
           }
           // this.$router.push({ name: "reto1" });

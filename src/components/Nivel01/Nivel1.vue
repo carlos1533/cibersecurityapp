@@ -32,11 +32,11 @@
               alt="Smiley face"
               class="img-fluid"
             >
-         
+
           </div>
         
           <select
-           @click="onHandleSelectedPokemon()"
+           @change="onHandleSelectedPokemon()"
            v-model="imageSelected"  ref="imageSelected" prop="imageSelected" name="imageSelected">
             <option
               v-for="( element, index ) in elements"

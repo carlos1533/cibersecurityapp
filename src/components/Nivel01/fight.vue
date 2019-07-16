@@ -14,12 +14,12 @@
         <img v-if="opponentAlive" v-bind:src="opponentPokemonSrc" class="pokemon-top">
       </div>
       <div class="box-bottom-left">
-        <img v-if="userAlive" v-bind:src="pokemonSelected" class="pokemon-bottom">
+        <img v-if="userAlive" v-bind:src="this.pokemon" class="pokemon-bottom">
       </div>
       <div class="box-bottom-right">
-      <h2 v-if="this.pokemonSelected=='http://img3.wikia.nocookie.net/__cb20150330015216/pokemon/images/f/f5/004Charmander_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png'" class="pokemon">{{pokemonNames}}</h2>
-       <h2 v-if="this.pokemonSelected=='http://vignette3.wikia.nocookie.net/ssbb/images/7/79/Squirtle_Rojo_Fuego_y_Verde_Hoja.png/revision/latest?cb=20130907041944&path-prefix=es'" class="pokemon">{{pokemonNames}}</h2>
-       <h2 v-if="this.pokemonSelected=='http://vignette4.wikia.nocookie.net/pokemon/images/8/81/001Bulbasaur_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png/revision/latest?cb=20150105223818'" class="pokemon">{{pokemonNames}}</h2>  
+      <h2 v-if="this.pokemon=='http://vignette1.wikia.nocookie.net/pokemon/images/2/23/Charmander_Back_XY.gif/revision/latest?cb=20141009063457'" class="pokemon">{{pokemonNames}}</h2>
+       <h2 v-if="this.pokemon=='http://vignette3.wikia.nocookie.net/pokemon/images/d/d8/Squirtle_XY_Back_Sprite.gif/revision/latest?cb=20141031154426'" class="pokemon">{{pokemonNames}}</h2>
+       <h2 v-if="this.pokemon=='http://rs425.pbsrc.com/albums/pp335/Grasaldrea/ShinyBulbasauranimatedback.gif~c200'" class="pokemon">{{pokemonNames}}</h2>  
         <div class="hp-bar-bottom">
           <div v-bind:style="userHpBar" class="hp-bar-fill"></div>
         </div>
@@ -70,6 +70,7 @@
 import question from "./question";
 import { mapActions, mapGetters, mapState } from 'vuex'
 export default {
+ 
   components: {
     question
   },
@@ -80,8 +81,21 @@ export default {
   },
   props: {}
   ,
+  
+  mounted(){
+    if(this.pokemonSelected=='http://img3.wikia.nocookie.net/__cb20150330015216/pokemon/images/f/f5/004Charmander_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png'){
+         this.pokemon='http://vignette1.wikia.nocookie.net/pokemon/images/2/23/Charmander_Back_XY.gif/revision/latest?cb=20141009063457'
+      }else if(this.pokemonSelected=='http://vignette3.wikia.nocookie.net/ssbb/images/7/79/Squirtle_Rojo_Fuego_y_Verde_Hoja.png/revision/latest?cb=20130907041944&path-prefix=es'){
+           this.pokemon='http://vignette3.wikia.nocookie.net/pokemon/images/d/d8/Squirtle_XY_Back_Sprite.gif/revision/latest?cb=20141031154426'
+      } else if (this.pokemonSelected=='http://vignette4.wikia.nocookie.net/pokemon/images/8/81/001Bulbasaur_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png/revision/latest?cb=20150105223818'){
+        this.pokemon='http://rs425.pbsrc.com/albums/pp335/Grasaldrea/ShinyBulbasauranimatedback.gif~c200'
+      }
+
+  },
+
   data() {
     return {
+      pokemon:"",
       preguntas: {
         questions: [
           {

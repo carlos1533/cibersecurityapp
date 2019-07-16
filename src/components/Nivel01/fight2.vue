@@ -119,9 +119,9 @@ export default {
       userPokemonSrc:
         "http://guidesmedia.ign.com/guides/059687/images/blackwhite/pokemans_006.gif",
       opponentPokemonSrc:
-        "http://pre01.deviantart.net/959a/th/pre/f/2016/075/4/6/095_onix_by_rayo123000-d9vbjj3.png",
+        "https://graphics.tppcrpg.net/xy/normal/066F.gif",
       userPokemon: "",
-      opponentPokemon: "Onyx",
+      opponentPokemon: "Machop",
       userAlive: true,
       opponentAlive: true,
       opponentFill: 100,

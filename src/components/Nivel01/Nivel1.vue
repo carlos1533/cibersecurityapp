@@ -95,17 +95,17 @@ export default {
       elements: [
         {
           id: "1",
-          src: require("@/assets/nivel01/charmander.png"),
+          src: "http://img3.wikia.nocookie.net/__cb20150330015216/pokemon/images/f/f5/004Charmander_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png",
           alt: "Charmander"
         },
         {
           id: "2",
-          src: require("@/assets/nivel01/squirtle.png"),
+          src: "http://vignette3.wikia.nocookie.net/ssbb/images/7/79/Squirtle_Rojo_Fuego_y_Verde_Hoja.png/revision/latest?cb=20130907041944&path-prefix=es",
           alt: "Squirtle"
         },
         {
           id: "1",
-          src: require("@/assets/nivel01/bulbasur.png"),
+          src: "http://vignette4.wikia.nocookie.net/pokemon/images/8/81/001Bulbasaur_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png/revision/latest?cb=20150105223818",
           alt: "Bulbasur"
         }
       ]
@@ -205,5 +205,11 @@ export default {
   padding-bottom: 5px;
   margin-top: 10px;
   margin-bottom: 5px;
+}
+img{
+    max-height: 100px;
+    margin-bottom: 13px;
+    transition: transform 0.3s ease, margin 0.3s ease;
+  
 }
 </style>

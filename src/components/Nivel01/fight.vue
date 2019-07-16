@@ -17,9 +17,9 @@
         <img v-if="userAlive" v-bind:src="pokemonSelected" class="pokemon-bottom">
       </div>
       <div class="box-bottom-right">
-      <h2 v-if="this.pokemonSelected=='/img/charmander.bbe96afb.png'" class="pokemon">{{pokemonNames}}</h2>
-       <h2 v-if="this.pokemonSelected=='/img/squirtle.fc2bf73d.png'" class="pokemon">{{pokemonNames}}</h2>
-       <h2 v-if="this.pokemonSelected=='/img/bulbasur.25b5984c.png'" class="pokemon">{{pokemonNames}}</h2>  
+      <h2 v-if="this.pokemonSelected=='http://img3.wikia.nocookie.net/__cb20150330015216/pokemon/images/f/f5/004Charmander_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png'" class="pokemon">{{pokemonNames}}</h2>
+       <h2 v-if="this.pokemonSelected=='http://vignette3.wikia.nocookie.net/ssbb/images/7/79/Squirtle_Rojo_Fuego_y_Verde_Hoja.png/revision/latest?cb=20130907041944&path-prefix=es'" class="pokemon">{{pokemonNames}}</h2>
+       <h2 v-if="this.pokemonSelected=='http://vignette4.wikia.nocookie.net/pokemon/images/8/81/001Bulbasaur_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png/revision/latest?cb=20150105223818'" class="pokemon">{{pokemonNames}}</h2>  
         <div class="hp-bar-bottom">
           <div v-bind:style="userHpBar" class="hp-bar-fill"></div>
         </div>
@@ -131,9 +131,9 @@ export default {
       userPokemonSrc:
         "http://guidesmedia.ign.com/guides/059687/images/blackwhite/pokemans_006.gif",
       opponentPokemonSrc:
-        "http://pre01.deviantart.net/959a/th/pre/f/2016/075/4/6/095_onix_by_rayo123000-d9vbjj3.png",
+        "http://rs1263.pbsrc.com/albums/ii631/Pokemon-Vampire-Knight-lover/pikachu_.gif~c200",
       userPokemon: "",
-      opponentPokemon: "Onyx",
+      opponentPokemon: "Pikachu",
       userAlive: true,
       opponentAlive: true,
       opponentFill: 100,
@@ -176,11 +176,11 @@ export default {
   created() {
     this.questions = this.preguntas.questions;
     this.introStage = true;
-     if(this.pokemonSelected=='/img/charmander.bbe96afb.png'){
+     if(this.pokemonSelected=='http://img3.wikia.nocookie.net/__cb20150330015216/pokemon/images/f/f5/004Charmander_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png'){
           this.pokemonNames="Charmander"
-      }else if(this.pokemonSelected=='/img/squirtle.fc2bf73d.png'){
+      }else if(this.pokemonSelected=='http://vignette3.wikia.nocookie.net/ssbb/images/7/79/Squirtle_Rojo_Fuego_y_Verde_Hoja.png/revision/latest?cb=20130907041944&path-prefix=es'){
            this.pokemonNames="Squirtle"
-      } else if (this.pokemonSelected=='/img/bulbasur.25b5984c.png'){
+      } else if (this.pokemonSelected=='http://vignette4.wikia.nocookie.net/pokemon/images/8/81/001Bulbasaur_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png/revision/latest?cb=20150105223818'){
         this.pokemonNames="Bulbasur"
       }
 

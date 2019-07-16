@@ -135,7 +135,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .login-form {
   width: 500px;
   height: 12000px;

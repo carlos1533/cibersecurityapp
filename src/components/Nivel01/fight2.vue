@@ -146,7 +146,7 @@ export default {
       battleOptions: ["Pelear", "", "", "Escapar"],
       userAttackDamage: [20, 30, 20, 20,30,20,20,30,20],
       opponentAttacks: ["Tackle", "Iron Tail", "Rock Slide","Rock Slide","Tackle"],
-      opponentAttackDamage: [20, 20, 20,20,20,20],
+      opponentAttackDamage: [20, 10, 10,30,10,20],
       fightOptions: ["Arañazo", "Lanzallamas", "Gruñido","Látigo","Hidrobomba",
       "Cabezazo","Gruñido Growl","Bomba Germen","Polvo Veneno Poison Powder"],
       endOptions: ["Yes", "No"],

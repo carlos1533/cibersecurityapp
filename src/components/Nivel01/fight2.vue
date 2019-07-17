@@ -122,12 +122,6 @@ export default {
             answers: ["perucampeon2019%","P3ruC4mP30n2019%","p3ruc4mp30n2019%"],
             answer: "P3ruC4mP30n2019%"
           },
-          {
-            text: "¿Cuál es la contraseña más segura",
-            type: "mc",
-            answers: ["PeruCampeOn2019%", "P3ruC4mP30n2019%", "p3ruc4mp30n2019%"],
-            answer: "P3ruC4mP30n2019%"
-          },
            {
             text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",

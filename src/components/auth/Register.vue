@@ -190,7 +190,7 @@ export default {
 }
 .server-error {
   margin-bottom: 12px;
-  font-size: 16px;
+  font-size: 14px;
   padding: 10px 16px;
   color: #a94442;
   background: #f3dede;
@@ -200,7 +200,7 @@ export default {
   background-color: #dff0d8;
   color: #3c763d;
   margin-bottom: 12px;
-  font-size: 16px;
+  font-size: 14px;
   padding: 10px 16px;
   border-radius: 4px;
 }

@@ -38,12 +38,12 @@ export default {
 .nav {
   display: flex;
   list-style: none;
-  padding: 15px 0;
+  padding: 3px 0;
   margin: 0;
   justify-content: flex-end;
   background: #f5f8fa;
   border-bottom: 1px solid lightgrey;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 .nav a {
   color: #636b6f;

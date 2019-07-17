@@ -1,5 +1,16 @@
 <template>
   <div>
+    <ul class="nav">
+      <li v-if="!loggedIn">
+        <router-link :to="{ name: 'login' }">Login</router-link>
+      </li>
+      <li v-if="!loggedIn">
+        <router-link :to="{ name: 'register' }">Registro</router-link>
+      </li>
+      <li v-if="loggedIn">
+        <router-link :to="{ name: 'logout' }">Logout</router-link>
+      </li>
+    </ul>
     <h1 class="title">Batalla Pokemon Inicial</h1>
     <div class="battle-scene">
       <div class="box-top-left">
@@ -13,9 +24,13 @@
       <div class="box-top-right">
         <img v-if="opponentAlive" v-bind:src="opponentPokemonSrc" class="pokemon-top">
       </div>
+    
       <div class="box-bottom-left">
+       
         <img v-if="userAlive" v-bind:src="this.pokemon" class="pokemon-bottom">
+    
       </div>
+         
       <div class="box-bottom-right">
       <h2 v-if="this.pokemon=='http://vignette1.wikia.nocookie.net/pokemon/images/2/23/Charmander_Back_XY.gif/revision/latest?cb=20141009063457'" class="pokemon">{{pokemonNames}}</h2>
        <h2 v-if="this.pokemon=='http://vignette3.wikia.nocookie.net/pokemon/images/d/d8/Squirtle_XY_Back_Sprite.gif/revision/latest?cb=20141031154426'" class="pokemon">{{pokemonNames}}</h2>
@@ -68,6 +83,7 @@
 
 <script>
 import question from "./question";
+import swal from 'sweetalert';
 import { mapActions, mapGetters, mapState } from 'vuex'
 export default {
  
@@ -75,6 +91,9 @@ export default {
     question
   },
   computed:{
+     loggedIn() {
+      return this.$store.getters.loggedIn;
+    },
      ...mapState({
       pokemonSelected:state=>state.pokemonSelected
     })
@@ -99,43 +118,43 @@ export default {
       preguntas: {
         questions: [
           {
-            text: "Cúal contraseña es más segura?",
+            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",
             answers: ["peru", "perucampeon", "brasil"]
             ,answer: "perucampeon"
           },
           {
-            text: "¿Cuál es una caracteristica segura para tu contraseña?",
+            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",
-            answers: ["usar mi nombre", "usar el nombre de mi perro", "Tiene como mínimo 8 caracteres (letras y números)"],
-            answer: "Tiene como mínimo 8 caracteres (letras y números)"
-          },
-          {
-            text: "¿Cuál es la contraseña más segura?",
-            type: "mc",
-            answers: ["PokemOn", "pokemon", "pikachu"],
+            answers: ["PokemOn", "pokemon","pikachu"],
             answer: "PokemOn"
           },
+          {
+            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
+            type: "mc",
+            answers: ["pOkemOn154", "pokemon154", "p0ke154"],
+            answer: "pOkemOn154"
+          },
            {
-            text: "¿Qué hago para recordar mi contraseña?",
+            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",
-            answers: ["La escribo en papel y la pego al lado de mi monitor", "pongo mi nombre y mi fecha de nacimiento para que sea facil de recordar", "La repito hasta memorizarla"]
-            ,answer: "La repito hasta memorizarla"
+            answers: ["m4st3r#$","master#","M4st3r#$"]
+            ,answer: "M4st3r#$"
           },
           {
-            text: "¿Cuál es la contraseña más segura?",
+            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",
-            answers: ["Pokemon123", "pokemon123", "poke123"],
-            answer: "Pokemon123"
+            answers: ["1ng3N13r1a$istemaS", "1ng3n13r1a$istemas", "ingenieria$istemas"],
+            answer: "1ng3N13r1a$istemaS"
           },
           {
-            text: "Deberia cambiar mi contraseña?",
+            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",
-            answers: ["1 vez al mes", "Nunca", "1 vez al año"],
-            answer: "1 vez al mes"
+            answers: ["15p0k3m0n36","15pokemon36","15P0k3M0n36"],
+            answer: "15P0k3M0n36"
           },
           {
-            text: "¿Cuál es la contraseña más segura?",
+            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",
             answers: ["charizard25$", "Chariz4rd25$", "Char25$"],
             answer: "Chariz4rd25$"
@@ -229,6 +248,7 @@ export default {
       switch (attack) {
         case 1:
           //handle scratch
+
               this.opponentHP -= this.userAttackDamage[attack - 1];
               this.opponentFill -= this.userAttackDamage[attack - 1];
               if (this.opponentFill <= 0) {
@@ -554,7 +574,7 @@ export default {
       if (pokemon === 1) {
         this.opponentAlive = false;
         this.currentQuestion=0
-        alert("felicitaciones ahora estas en la batalla final")
+        swal("Felicitaciones ahora pasas a la batalla final")
          this.$router.push({name: 'fight2'});  
       } else {
         this.userHP = 0;
@@ -621,10 +641,10 @@ export default {
        this.answers[this.currentQuestion]=e.answer;
        this.responsedAnswer =e.answer
       
-        if(this.responsedAnswer =="perucampeon" ||this.responsedAnswer =="Tiene como mínimo 8 caracteres (letras y números)"
-        ||this.responsedAnswer =="PokemOn"||this.responsedAnswer =="La repito hasta memorizarla"
-        ||this.responsedAnswer =="Pokemon123"
-        ||this.responsedAnswer =="1 vez al mes"
+        if(this.responsedAnswer =="perucampeon" ||this.responsedAnswer =="PokemOn"
+        ||this.responsedAnswer =="pOkemOn154"||this.responsedAnswer =="M4st3r#$"
+        ||this.responsedAnswer =="1ng3N13r1a$istemaS"
+        ||this.responsedAnswer =="15P0k3M0n36"
         ||this.responsedAnswer =="Chariz4rd25$"){
          if( this.pokemonNames=="Charmander"){
            this.processAttack(2)
@@ -634,11 +654,11 @@ export default {
             this.processAttack(8)
          }
            
-        }else if(this.responsedAnswer =="peru" ||this.responsedAnswer =="usar mi nombre"
-       ||this.responsedAnswer =="pokemon"
-       ||this.responsedAnswer =="pokemon123"
-       ||this.responsedAnswer =="Nunca"
-       ||this.responsedAnswer =="pongo mi nombre y mi fecha de nacimiento para que sea facil de recordar"
+        }else if(this.responsedAnswer =="peru" ||this.responsedAnswer =="pokemon"
+       ||this.responsedAnswer =="pokemon154"
+       ||this.responsedAnswer =="m4st3r#$"
+       ||this.responsedAnswer =="1ng3n13r1a$istemas"
+       ||this.responsedAnswer =="15p0k3m0n36"
        ||this.responsedAnswer =="charizard25$"){
             if( this.pokemonNames=="Charmander"){
            this.processAttack(1)
@@ -647,11 +667,11 @@ export default {
          }else if (this.pokemonNames=="Bulbasur"){
             this.processAttack(6)
          }
-        }else if(this.responsedAnswer =="brasil" ||this.responsedAnswer =="usar el nombre de mi perro"
-        ||this.responsedAnswer =="pikachu"
-         ||this.responsedAnswer =="La escribo en papel y la pego al lado de mi monitor"
-          ||this.responsedAnswer =="poke123"
-           ||this.responsedAnswer =="1 vez al año"
+        }else if(this.responsedAnswer =="brasil" ||this.responsedAnswer =="pikachu"
+        ||this.responsedAnswer =="p0ke154"
+         ||this.responsedAnswer =="master#"
+          ||this.responsedAnswer =="ingenieria$istemas"
+           ||this.responsedAnswer =="15pokemon36"
            ||this.responsedAnswer =="Char25$"){
              if( this.pokemonNames=="Charmander"){
            this.processAttack(3)
@@ -661,7 +681,6 @@ export default {
             this.processAttack(9)
          }
         }
-        console.log(this.currentQuestion)
         this.currentQuestion++;
       
       },
@@ -700,6 +719,7 @@ body {
   , url("http://wallpapercave.com/wp/ZqCwNUM.jpg");
 }
 */
+
 body {
   //display: flex;
   justify-content: center;
@@ -711,7 +731,7 @@ body {
   margin-top: 10px;
   color: black;
   text-align: center;
-  font-size: 28px;
+  font-size: 24px;
   text-transform: uppercase;
   font-family: "Roboto Condensed";
 }
@@ -820,7 +840,7 @@ body {
   margin-left: 10%;
   margin-top: 5%;
   opacity: 0.7;
-  font-size: 18px;
+  font-size: 16px;
   font-family: "Roboto Condensed";
 }
 
@@ -829,7 +849,7 @@ body {
   right: 8%;
   top: -11%;
   opacity: 0.7;
-  font-size: 16px;
+  font-size: 14px;
   font-family: "Roboto Condensed";
 }
 
@@ -838,7 +858,7 @@ body {
   right: 8%;
   bottom: -20%;
   opacity: 0.7;
-  font-size: 16px;
+  font-size: 14px;
   font-family: "Roboto Condensed";
 }
 
@@ -873,7 +893,7 @@ body {
   margin-top: 3%;
   margin-left: 5%;
   opacity: 0.95;
-  font-size: 18px;
+  font-size: 16px;
   color: white;
   text-align: left;
   font-family: "PT Sans Narrow";
@@ -882,7 +902,7 @@ body {
 .battle-text-top-left {
   opacity: 0.95;
   position: absolute;
-  font-size: 22px;
+  font-size: 20px;
   color: #333333;
   top: -30%;
   left: 10%;
@@ -932,7 +952,6 @@ body {
     position: relative;
     margin: auto;
     display: block;
-    margin-top: 3%;
     width: 400px;
     height: 280px;
     background: #f8f8f8;

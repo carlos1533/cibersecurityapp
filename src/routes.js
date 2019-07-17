@@ -9,10 +9,12 @@ import fight from './components/Nivel01/fight'
 import fight2 from './components/Nivel01/fight2'
 const routes = [
     {
-        path: '/landinpage',
-        name: 'home',
+        path: '/pretuto',
+        name: 'pretuto',
         component: LandingPage
-    }, {
+
+    },
+    {
         path: '/landinpage0',
         name: 'home0',
         component: LandingPage0

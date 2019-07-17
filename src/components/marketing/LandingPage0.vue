@@ -14,11 +14,11 @@
     <div class="row">
       <div class="col-sm-8 offset-md-2">
         <div class="col-md-12">
-          <img src="../../assets/Proposito.jpeg" class="img-fluid">
+          <img src="../../assets/batalla.jpeg" class="img-fluid">
         </div>
 
         <div class="col-md-4 ml-auto">
-          <router-link :to="{ name: 'home' }">
+          <router-link :to="{ name: 'nivel1' }">
             <button class="boton-login rounded">
               <img src="../../assets/Continuar.png" class="img-fluid">
             </button>

@@ -1,5 +1,16 @@
 <template>
   <div>
+    <ul class="nav">
+      <li v-if="!loggedIn">
+        <router-link :to="{ name: 'login' }">Login</router-link>
+      </li>
+      <li v-if="!loggedIn">
+        <router-link :to="{ name: 'register' }">Registro</router-link>
+      </li>
+      <li v-if="loggedIn">
+        <router-link :to="{ name: 'logout' }">Logout</router-link>
+      </li>
+    </ul>
     <h1 class="title">Batalla Pokemon Final</h1>
     <div class="battle-scene">
       <div class="box-top-left">
@@ -67,6 +78,7 @@
 
 <script>
 import question from "./question";
+import swal from 'sweetalert';
 import { mapActions, mapGetters, mapState } from 'vuex'
 export default {
   name: "fight2",
@@ -74,6 +86,9 @@ export default {
     question
   },
   computed:{
+     loggedIn() {
+      return this.$store.getters.loggedIn;
+    },
      ...mapState({
       pokemonSelected:state=>state.pokemonSelected
     })
@@ -96,16 +111,16 @@ export default {
       preguntas: {
         questions: [
           {
-            text: "¿Cuál es la contraseña más segura?",
+            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",
             answers: ["roSas101", "g1r4s0l$", "G1r4s0l61$"]
             ,answer: "G1r4s0l61$"
           },
           {
-            text: "Si me mejor amigo me pide mis credenciales (Usuario y contraseña) para descargar un documento importante ¿Qué hago?",
+            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",
-            answers: ["Es mi amigo, se las doy", "Se que es un riesgo, pero igual se la doy", "No se la doy y le digo que es una conducta inapropiada"],
-            answer: "No se la doy y le digo que es una conducta inapropiada"
+            answers: ["perucampeon2019%","P3ruC4mP30n2019%","p3ruc4mp30n2019%"],
+            answer: "P3ruC4mP30n2019%"
           },
           {
             text: "¿Cuál es la contraseña más segura",
@@ -114,16 +129,22 @@ export default {
             answer: "P3ruC4mP30n2019%"
           },
            {
-            text: "¿Deberia usar la misma contraseña para todas mis cuentas (correo, facebook, twitter)?",
+            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",
-            answers: ["Si, porque solo debo acordarme de una ", "si, porque me parece lo más facil","no porque es un comportamiento inapropiado"]
-            ,answer: "no porque es un comportamiento inapropiado"
+            answers: ["SuP3rEvoluci0n","sup3revoluci0n","$uP3r#v0luci0n"]
+            ,answer: "$uP3r#v0luci0n"
           },
           {
-            text: "¿Cuál es la contraseña más segura?",
+            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",
-            answers: ["C0nTr4$3ñ4$3gUr4", "C0nTr4$3", "Contr4señaSegura"],
-            answer: "C0nTr4$3ñ4$3gUr4"
+            answers: ["Un1Ver$id4dd3L1m4", "univerSidaddeLima", "un1ver$id4dd3l1m4"],
+            answer:"Un1Ver$id4dd3L1m4"
+          },
+          {
+            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
+            type: "mc",
+            answers: ["C0nTr4$3ñ4$3gUr4", "contraseñasegura", "Contr4señaSegura"],
+            answer:"C0nTr4$3ñ4$3gUr4"
           }
         ]
       },
@@ -543,7 +564,7 @@ export default {
       if (pokemon === 1) {
         this.opponentAlive = false;
         this.currentQuestion=0
-        alert("ha ganado!")
+        swal("Has ganado!")
       } else {
         this.userHP = 0;
         this.userAlive = false;
@@ -611,8 +632,8 @@ export default {
        this.answers[this.currentQuestion]=e.answer;
        this.responsedAnswer =e.answer
       
-        if(this.responsedAnswer =="G1r4s0l61$" ||this.responsedAnswer =="No se la doy y le digo que es una conducta inapropiada"
-        ||this.responsedAnswer =="P3ruC4mP30n2019%"||this.responsedAnswer =="no porque es un comportamiento inapropiado"
+        if(this.responsedAnswer =="G1r4s0l61$" ||this.responsedAnswer =="P3ruC4mP30n2019%"
+        ||this.responsedAnswer =="$uP3r#v0luci0n"||this.responsedAnswer =="Un1Ver$id4dd3L1m4"
         ||this.responsedAnswer =="C0nTr4$3ñ4$3gUr4"){
          if( this.pokemonNames=="Charmander"){
            this.processAttack(2)
@@ -622,11 +643,11 @@ export default {
             this.processAttack(8)
          }
            
-        }else if(this.responsedAnswer =="g1r4s0l$" 
-       ||this.responsedAnswer =="Se que es un riesgo, pero igual se la doy"
-       ||this.responsedAnswer =="PeruCampeOn2019%"
-       ||this.responsedAnswer =="Si, porque solo debo acordarme de una"
-       ||this.responsedAnswer =="C0nTr4$3"){
+        }else if(this.responsedAnswer =="roSas101" 
+       ||this.responsedAnswer =="perucampeon2019%"
+       ||this.responsedAnswer =="SuP3rEvoluci0n"
+       ||this.responsedAnswer =="univerSidaddeLima"
+       ||this.responsedAnswer =="contraseñasegura"){
             if( this.pokemonNames=="Charmander"){
            this.processAttack(1)
          }else if (this.pokemonNames=="Squirtle"){
@@ -634,9 +655,9 @@ export default {
          }else if (this.pokemonNames=="Bulbasur"){
             this.processAttack(6)
          }
-        }else if(this.responsedAnswer =="roSas101" ||this.responsedAnswer =="Es mi amigo, se las doy"
-        ||this.responsedAnswer =="p3ruc4mp30n2019%"
-         ||this.responsedAnswer =="si, porque me parece lo más facil"
+        }else if(this.responsedAnswer =="g1r4s0l$" ||this.responsedAnswer =="p3ruc4mp30n2019%"
+        ||this.responsedAnswer =="sup3revoluci0n"
+         ||this.responsedAnswer =="un1ver$id4dd3l1m4"
           ||this.responsedAnswer =="Contr4señaSegura"){
              if( this.pokemonNames=="Charmander"){
            this.processAttack(3)
@@ -646,7 +667,6 @@ export default {
             this.processAttack(9)
          }
         }
-        console.log(this.currentQuestion)
         this.currentQuestion++;
       
       },

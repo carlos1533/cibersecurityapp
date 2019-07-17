@@ -222,10 +222,9 @@ export default {
 
 
 .container {
-  width: 320px;
-  height: 460px;
+  width: 300px;
+  height: 400px;
   position: relative;
-  margin: 10vh auto;
   background-image: linear-gradient(to bottom, #f40711 20%, #333333 60%, #fcfff4 30%);
   border-radius: 50%;
 }

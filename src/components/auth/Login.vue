@@ -101,7 +101,7 @@ export default {
           const user_id = response.data.user._id;
           localStorage.setItem("auth", response.data.user._id);
           this.loading = false;
-          this.$router.push({ name: "tuto" });
+          this.$router.push({ name: "pretuto" });
         })
 
         .catch(error => {
@@ -125,7 +125,7 @@ export default {
 
 .login-input {
   width: 100%;
-  font-size: 16px;
+  font-size: 12px;
   padding: 12px 16px;
   outline: 0;
   border-radius: 3px;
@@ -134,7 +134,7 @@ export default {
 .btn-submit {
   width: 100%;
   padding: 14px 12px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   background: #60bd4f;
   color: white;
@@ -152,7 +152,7 @@ export default {
 }
 .server-error {
   margin-bottom: 12px;
-  font-size: 16px;
+  font-size: 14px;
   padding: 10px 16px;
   color: #a94442;
   background: #f3dede;

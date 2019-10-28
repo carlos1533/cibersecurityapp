@@ -8,7 +8,7 @@
         <router-link :to="{ name: 'register' }">Registro</router-link>
       </li>
       <li v-if="loggedIn">
-        <router-link :to="{ name: 'logout' }">Logout</router-link>
+        <router-link :to="{ name: 'logout' }">Salir</router-link>
       </li>
     </ul>
     <div class="row ">
@@ -92,13 +92,17 @@ export default {
       return this.$store.getters.loggedIn;
     }
   },
+  created(){
+    if(this.$store.getters.hasPlayedPokemom){
+      this.$router.push({name:'menu'})
+    }
+  },
   props: {
     dataSuccessMessage: {
       type: String
     }
   },
   data() {
-    
     return {
       valid:false,
       password: "",

@@ -4,26 +4,53 @@ import axios from "axios";
 Vue.use(Vuex);
 axios.defaults.baseURL = 'https://cibersecurityapi.herokuapp.com/users'
 //axios.defaults.baseURL = "http://localhost:3001/users";
-
 export default new Vuex.Store({
   state: {
     token: localStorage.getItem("token") || null,
     respuestareto1: "",
     pokemonSelected: "",
-    namePokemonSelected:""
+    namePokemonSelected:"",
+    customer:{
+      scoreMemory: 0,
+      scorePokemon: 0,
+      totalScore: 0,
+      memorygame:false,
+      pokemongame:false
+    }
   },
   getters: {
     loggedIn(state) {
       return state.token !== null;
+    },
+    hasPlayedMemory(state) {
+      return state.customer.memorygame;
+    },
+    hasPlayedPokemom(state) {
+      return state.customer.pokemongame;
+    },
+    customerTotalScore(state) {
+      return state.customer.scoreMemory + state.customer.scorePokemon;
     }
   },
   mutations: {
+    setCustomerScore(state, data){
+      state.customer.scoreMemory= data
+    },
+    setCustomerScorePokemon(state, data){
+      state.customer.scorePokemon= data
+    },
     retrieveToken(state, token) {
       state.token = token;
     },
 
     destroyToken(state) {
       state.token = null;
+    },
+    setHasPlayedMemory(state,data){
+      state.customer.memorygame = data
+    },
+    setHasPlayedPokemon(state,data){
+      state.customer.pokemongame = data
     },
     validatePassword(state, respuestareto1) {
       state.respuestareto1 = respuestareto1;
@@ -34,6 +61,18 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    setCustomerScore({commit}, data){
+      commit('setCustomerScore', data)
+    },
+    setCustomerScorePokemon({commit}, data){
+      commit('setCustomerScorePokemon', data)
+    },
+    setHasPlayedMemory({commit},data){
+      commit('setHasPlayedMemory', data)
+    },
+    setHasPlayedPokemon({commit},data){
+      commit('setHasPlayedPokemon', data)
+    },
     setPokemonSelected({ commit }, pokemon,namePokemonSelected) {
       commit("setPokemonSelected", pokemon,namePokemonSelected);
     },

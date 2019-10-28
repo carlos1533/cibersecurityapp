@@ -8,7 +8,7 @@
         <router-link :to="{ name: 'register' }">Registro</router-link>
       </li>
       <li v-if="loggedIn">
-        <router-link :to="{ name: 'logout' }">Logout</router-link>
+        <router-link :to="{ name: 'logout' }">Salir</router-link>
       </li>
     </ul>
     <div class="row">

@@ -8,7 +8,7 @@
         <router-link :to="{ name: 'register' }">Registro</router-link>
       </li>
       <li v-if="loggedIn">
-        <router-link :to="{ name: 'logout' }">Logout</router-link>
+        <router-link :to="{ name: 'logout' }">Salir</router-link>
       </li>
     </ul>
     <h1 class="title">Batalla Pokemon Final</h1>
@@ -208,7 +208,9 @@ export default {
   },
   
   methods: {
-    
+    ...mapActions([
+       'setCustomerScorePokemon'
+     ]),
     processOption: function(option) {
       switch (option) {
         case 1:
@@ -558,6 +560,7 @@ export default {
       if (pokemon === 1) {
         this.opponentAlive = false;
         this.currentQuestion=0
+        this.setCustomerScorePokemon(100)
         swal("Has ganado!")
       } else {
         this.userHP = 0;

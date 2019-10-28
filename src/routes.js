@@ -1,37 +1,54 @@
-import LandingPage from './components/marketing/LandingPage'
-import LandingPage0 from './components/marketing/LandingPage0'
-import Login from './components/auth/Login'
-import Logout from './components/auth/Logout'
-import Register from './components/auth/Register'
 import Nivel1 from './components/Nivel01/Nivel1'
 import Tuto from './components/Nivel01/Tuto'
 import fight from './components/Nivel01/fight'
 import fight2 from './components/Nivel01/fight2'
 const routes = [
     {
+        path: '/',
+        name: 'login',
+        component: () => import('./pages/auth/Login')
+
+    },
+    {
         path: '/pretuto',
         name: 'pretuto',
-        component: LandingPage
+        component: () => import('./pages/marketing/LandingPage')
 
+    },
+    {
+        path: '/menu',
+        name: 'menu',
+        component: () => import('./pages/game/Menu')  
+    },
+    {
+        path: '/memoria',
+        name: 'memoria',
+        component: () => import('./pages/game/MemoriaFacil')  
+    },
+    {
+        path: '/memoriaintermedio',
+        name: 'memoriaintermedio',
+        component: () => import('./pages/game/MemoriaIntermedio')  
+    },
+    {
+        path: '/memoriadificil',
+        name: 'memoriadificil',
+        component: () => import('./pages/game/MemoriaDificil')  
     },
     {
         path: '/landinpage0',
         name: 'home0',
-        component: LandingPage0
+        component: () => import('./pages/marketing/LandingPage0')
 
-    }, {
-        path: '/',
-        name: 'login',
-        component: Login
-
-    }, {
+    }, 
+    {
         path: '/register',
         name: 'register',
-        component: Register
+        component: () => import('./pages/auth/Register')
     }, {
         path: '/logout',
         name: 'logout',
-        component: Logout
+        component: () => import('./pages/auth/Logout')
     }, {
         path: '/nivel1',
         name: 'nivel1',

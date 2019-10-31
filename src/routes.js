@@ -36,6 +36,16 @@ const routes = [
         component: () => import('./pages/game/MemoriaDificil')  
     },
     {
+        path: '/videoGame',
+        name: 'videoGame',
+        component: () => import('./pages/game/videoGame')  
+    },
+    {
+        path: '/videoGamePlay',
+        name: 'videoGamePlay',
+        component: () => import('./pages/game/videoGamePlay')  
+    },
+    {
         path: '/landinpage0',
         name: 'home0',
         component: () => import('./pages/marketing/LandingPage0')

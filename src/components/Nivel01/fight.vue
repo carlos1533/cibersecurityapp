@@ -632,10 +632,6 @@ export default {
       this.opponentHpBar.width = "100%";
       this.currentQuestion=0
     },
-    startQuiz() {
-      this.introStage = false;
-      this.questionStage = true;
-    },
     handleAnswer(e) {
        this.answers[this.currentQuestion]=e.answer;
        this.responsedAnswer =e.answer

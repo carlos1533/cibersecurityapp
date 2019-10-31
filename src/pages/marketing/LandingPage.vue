@@ -13,7 +13,7 @@
     </ul>
     <div class="row">
       <div class="col-md-8 offset-md-2 ">
-           <h1>¿Cómo funciona Securitygame?</h1>
+           <h1>Securitygame</h1>
               <div class="play-figure" v-if="!played" @click="played = true">
                 <img src="./../../assets/icons/elipses.svg" alt="elipse">
                 <img class="playing" src="./../../assets/icons/rectangle-playing.svg" alt="playing">
@@ -24,7 +24,7 @@
           <img src="../../assets/tuto.jpeg" class="img-fluid">
         </div> -->
       </div>
-      <div class="col-md-4 m-auto">
+      <div  v-if="played" class="col-md-4 m-auto">
           <router-link :to="{ name: 'menu' }">
             <button class="boton-login rounded">
               <img src="../../assets/Continuar.png" class="img-fluid">
@@ -39,7 +39,7 @@ export default {
   data () {
     return {
       played : false,
-      src:'https://www.youtube.com/embed/BNdPQU32p2Y'
+      src:'https://drive.google.com/file/d/1pS1zkpGjAdhN0AURgzqzp122WvMH-eJj/preview'
     }
   },
   computed: {

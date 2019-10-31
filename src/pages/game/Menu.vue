@@ -33,17 +33,19 @@
              <br>
             <div class="row">
                 <div class="col-md-6 ">
+                  <router-link :to="{ name: 'videoGame' }">
                     <button type="button" class="btn btn-primary">Mira y Responde 1</button>
+                  </router-link>  
                 </div>
                  <div class="col-md-6">Video 01</div>
             </div>
-             <br>
+             <!-- <br>
                    <div class="row">
                 <div class="col-md-6 ">
                     <button type="button" class="btn btn-primary">Mira y Responde 2</button>
                 </div>
                  <div class="col-md-6">Video 02</div>
-            </div>
+            </div> -->
              <br>
                  <div class="row">
                 <div class="col-md-6 ">

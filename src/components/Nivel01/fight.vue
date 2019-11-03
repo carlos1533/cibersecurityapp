@@ -32,9 +32,9 @@
       </div>
          
       <div class="box-bottom-right">
-      <h2 v-if="this.pokemon=='http://vignette1.wikia.nocookie.net/pokemon/images/2/23/Charmander_Back_XY.gif/revision/latest?cb=20141009063457'" class="pokemon">{{pokemonNames}}</h2>
-       <h2 v-if="this.pokemon=='http://vignette3.wikia.nocookie.net/pokemon/images/d/d8/Squirtle_XY_Back_Sprite.gif/revision/latest?cb=20141031154426'" class="pokemon">{{pokemonNames}}</h2>
-       <h2 v-if="this.pokemon=='http://rs425.pbsrc.com/albums/pp335/Grasaldrea/ShinyBulbasauranimatedback.gif~c200'" class="pokemon">{{pokemonNames}}</h2>  
+      <h2 v-if="this.pokemon=='https://drive.google.com/uc?id=1He2-AuSj_C4n1WkzkQSw0WFS7FkViwSL'" class="pokemon">{{pokemonNames}}</h2>
+       <h2 v-if="this.pokemon=='https://drive.google.com/uc?id=1_fvt0YLkCW5iGY94Vivcoyo86IurqiXb'" class="pokemon">{{pokemonNames}}</h2>
+       <h2 v-if="this.pokemon=='https://drive.google.com/uc?id=1U_frs8J4TQ9nzSR-msnrqj5mMrffn2lv'" class="pokemon">{{pokemonNames}}</h2>  
         <div class="hp-bar-bottom">
           <div v-bind:style="userHpBar" class="hp-bar-fill"></div>
         </div>
@@ -84,7 +84,7 @@
 <script>
 import question from "./question";
 import swal from 'sweetalert';
-import { mapActions, mapGetters, mapState } from 'vuex'
+import { mapState } from 'vuex'
 export default {
  
   components: {
@@ -102,12 +102,12 @@ export default {
   ,
   
   mounted(){
-    if(this.pokemonSelected=='http://img3.wikia.nocookie.net/__cb20150330015216/pokemon/images/f/f5/004Charmander_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png'){
-         this.pokemon='http://vignette1.wikia.nocookie.net/pokemon/images/2/23/Charmander_Back_XY.gif/revision/latest?cb=20141009063457'
-      }else if(this.pokemonSelected=='http://vignette3.wikia.nocookie.net/ssbb/images/7/79/Squirtle_Rojo_Fuego_y_Verde_Hoja.png/revision/latest?cb=20130907041944&path-prefix=es'){
-           this.pokemon='http://vignette3.wikia.nocookie.net/pokemon/images/d/d8/Squirtle_XY_Back_Sprite.gif/revision/latest?cb=20141031154426'
-      } else if (this.pokemonSelected=='http://vignette4.wikia.nocookie.net/pokemon/images/8/81/001Bulbasaur_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png/revision/latest?cb=20150105223818'){
-        this.pokemon='http://rs425.pbsrc.com/albums/pp335/Grasaldrea/ShinyBulbasauranimatedback.gif~c200'
+    if(this.pokemonSelected=='https://drive.google.com/uc?id=1JT2xCSd5RRiScGUnlIuNUvN5gxX9zJSp'){
+         this.pokemon='https://drive.google.com/uc?id=1He2-AuSj_C4n1WkzkQSw0WFS7FkViwSL'
+      }else if(this.pokemonSelected=='https://drive.google.com/uc?id=1CU1t2sTE8wodJoqAUH2AZbryEv1KC1Fm'){
+           this.pokemon='https://drive.google.com/uc?id=1_fvt0YLkCW5iGY94Vivcoyo86IurqiXb'
+      } else if (this.pokemonSelected=='https://drive.google.com/uc?id=1-zseG8uhlsuaQh7orGIuT5Y1MhkV4EVR'){
+        this.pokemon='https://drive.google.com/uc?id=1U_frs8J4TQ9nzSR-msnrqj5mMrffn2lv'
       }
 
   },
@@ -166,7 +166,7 @@ export default {
       opponentPokemonSrc:
         "http://rs1263.pbsrc.com/albums/ii631/Pokemon-Vampire-Knight-lover/pikachu_.gif~c200",
       userPokemon: "",
-      opponentPokemon: "Pikachu",
+      opponentPokemon: "Lugia",
       userAlive: true,
       opponentAlive: true,
       opponentFill: 100,
@@ -179,7 +179,7 @@ export default {
       battleText: "Que hara el pokemon ahora?",
       battleOptions: ["Pelear", "", "", "Escapar"],
       userAttackDamage: [10, 20, 10, 10,20,10,10,20,10],
-      opponentAttacks: ["Tackle", "Iron Tail", "Rock Slide","Rock Slide","Tackle"],
+      opponentAttacks: ["Paranormal", "Cola Dragon", "Paranormal","Premonicion","Hidrobomba"],
       opponentAttackDamage: [15, 15, 15,15,15],
       fightOptions: ["Arañazo", "Lanzallamas", "Gruñido","Látigo","Hidrobomba",
       "Cabezazo","Gruñido Growl","Bomba Germen","Polvo Veneno Poison Powder"],
@@ -209,12 +209,12 @@ export default {
   created() {
     this.questions = this.preguntas.questions;
     this.introStage = true;
-     if(this.pokemonSelected=='http://img3.wikia.nocookie.net/__cb20150330015216/pokemon/images/f/f5/004Charmander_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png'){
-          this.pokemonNames="Charmander"
-      }else if(this.pokemonSelected=='http://vignette3.wikia.nocookie.net/ssbb/images/7/79/Squirtle_Rojo_Fuego_y_Verde_Hoja.png/revision/latest?cb=20130907041944&path-prefix=es'){
-           this.pokemonNames="Squirtle"
-      } else if (this.pokemonSelected=='http://vignette4.wikia.nocookie.net/pokemon/images/8/81/001Bulbasaur_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png/revision/latest?cb=20150105223818'){
-        this.pokemonNames="Bulbasur"
+     if(this.pokemonSelected=='https://drive.google.com/uc?id=1JT2xCSd5RRiScGUnlIuNUvN5gxX9zJSp'){
+          this.pokemonNames="Charizard"
+      }else if(this.pokemonSelected=='https://drive.google.com/uc?id=1CU1t2sTE8wodJoqAUH2AZbryEv1KC1Fm'){
+           this.pokemonNames="Blastoise"
+      } else if (this.pokemonSelected=='https://drive.google.com/uc?id=1-zseG8uhlsuaQh7orGIuT5Y1MhkV4EVR'){
+        this.pokemonNames="Venasaur"
       }
 
     /* fetch('https://api.myjson.com/bins/ahn1p')
@@ -641,11 +641,11 @@ export default {
         ||this.responsedAnswer =="1ng3N13r1a$istemaS"
         ||this.responsedAnswer =="15P0k3M0n36"
         ||this.responsedAnswer =="Chariz4rd25$"){
-         if( this.pokemonNames=="Charmander"){
+         if( this.pokemonNames=="Charizard"){
            this.processAttack(2)
-         }else if (this.pokemonNames=="Squirtle"){
+         }else if (this.pokemonNames=="Blastoise"){
             this.processAttack(5)
-         }else if (this.pokemonNames=="Bulbasur"){
+         }else if (this.pokemonNames=="Venasaur"){
             this.processAttack(8)
          }
            
@@ -655,11 +655,11 @@ export default {
        ||this.responsedAnswer =="1ng3n13r1a$istemas"
        ||this.responsedAnswer =="15p0k3m0n36"
        ||this.responsedAnswer =="charizard25$"){
-            if( this.pokemonNames=="Charmander"){
+            if( this.pokemonNames=="Charizard"){
            this.processAttack(1)
-         }else if (this.pokemonNames=="Squirtle"){
+         }else if (this.pokemonNames=="Blastoise"){
             this.processAttack(4)
-         }else if (this.pokemonNames=="Bulbasur"){
+         }else if (this.pokemonNames=="Venasaur"){
             this.processAttack(6)
          }
         }else if(this.responsedAnswer =="brasil" ||this.responsedAnswer =="pikachu"
@@ -668,11 +668,11 @@ export default {
           ||this.responsedAnswer =="ingenieria$istemas"
            ||this.responsedAnswer =="15pokemon36"
            ||this.responsedAnswer =="Char25$"){
-             if( this.pokemonNames=="Charmander"){
+             if( this.pokemonNames=="Charizard"){
            this.processAttack(3)
-         }else if (this.pokemonNames=="Squirtle"){
+         }else if (this.pokemonNames=="Blastoise"){
             this.processAttack(6)
-         }else if (this.pokemonNames=="Bulbasur"){
+         }else if (this.pokemonNames=="Venasaur"){
             this.processAttack(9)
          }
         }
@@ -698,7 +698,7 @@ export default {
 };
 </script>
 
-<style scoped with <style lang="scss">
+<style scoped with lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Roboto+Condensed");
 
 @import url("https://fonts.googleapis.com/css?family=PT+Sans+Narrow");

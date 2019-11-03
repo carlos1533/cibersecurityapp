@@ -66,7 +66,7 @@
 </template>
 <script>
 
-import { mapActions, mapGetters, mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 export default {
   name: "Nivel1",
   computed: {
@@ -95,24 +95,24 @@ export default {
       elements: [
         {
           id: "1",
-          src: "http://img3.wikia.nocookie.net/__cb20150330015216/pokemon/images/f/f5/004Charmander_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png",
-          alt: "Charmander"
+          src: "https://drive.google.com/uc?id=1JT2xCSd5RRiScGUnlIuNUvN5gxX9zJSp",
+          alt: "Charizard"
         },
         {
           id: "2",
-          src: "http://vignette3.wikia.nocookie.net/ssbb/images/7/79/Squirtle_Rojo_Fuego_y_Verde_Hoja.png/revision/latest?cb=20130907041944&path-prefix=es",
-          alt: "Squirtle"
+          src: "https://drive.google.com/uc?id=1CU1t2sTE8wodJoqAUH2AZbryEv1KC1Fm",
+          alt: "Blastoise"
         },
         {
-          id: "1",
-          src: "http://vignette4.wikia.nocookie.net/pokemon/images/8/81/001Bulbasaur_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png/revision/latest?cb=20150105223818",
-          alt: "Bulbasur"
+          id: "3",
+          src: "https://drive.google.com/uc?id=1-zseG8uhlsuaQh7orGIuT5Y1MhkV4EVR",
+          alt: "Venasaur"
         }
       ]
     };
   },
   created() {
-    const id = localStorage.getItem("auth")
+    // const id = localStorage.getItem("auth")
   },
   
   methods: {
@@ -123,7 +123,7 @@ export default {
 
     onHandleSelectedPokemon (){
       this.setPokemonSelected(this.imageSelected)
-      const id = localStorage.getItem("auth");
+      // const id = localStorage.getItem("auth");
     },
     onSelectImage: function(data) {
       console.log("fire event onSelectImage: ", data);

@@ -79,7 +79,7 @@
 <script>
 import question from "./question";
 import swal from 'sweetalert';
-import { mapActions, mapGetters, mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 export default {
   name: "fight2",
   components: {
@@ -94,12 +94,12 @@ export default {
     })
   },
   mounted(){
-    if(this.pokemonSelected=='http://img3.wikia.nocookie.net/__cb20150330015216/pokemon/images/f/f5/004Charmander_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png'){
-         this.pokemon='http://vignette1.wikia.nocookie.net/pokemon/images/2/23/Charmander_Back_XY.gif/revision/latest?cb=20141009063457'
-      }else if(this.pokemonSelected=='http://vignette3.wikia.nocookie.net/ssbb/images/7/79/Squirtle_Rojo_Fuego_y_Verde_Hoja.png/revision/latest?cb=20130907041944&path-prefix=es'){
-           this.pokemon='http://vignette3.wikia.nocookie.net/pokemon/images/d/d8/Squirtle_XY_Back_Sprite.gif/revision/latest?cb=20141031154426'
-      } else if (this.pokemonSelected=='http://vignette4.wikia.nocookie.net/pokemon/images/8/81/001Bulbasaur_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png/revision/latest?cb=20150105223818'){
-        this.pokemon='http://rs425.pbsrc.com/albums/pp335/Grasaldrea/ShinyBulbasauranimatedback.gif~c200'
+      if(this.pokemonSelected=='https://drive.google.com/uc?id=1JT2xCSd5RRiScGUnlIuNUvN5gxX9zJSp'){
+         this.pokemon='https://drive.google.com/uc?id=1He2-AuSj_C4n1WkzkQSw0WFS7FkViwSL'
+      }else if(this.pokemonSelected=='https://drive.google.com/uc?id=1CU1t2sTE8wodJoqAUH2AZbryEv1KC1Fm'){
+           this.pokemon='https://drive.google.com/uc?id=1_fvt0YLkCW5iGY94Vivcoyo86IurqiXb'
+      } else if (this.pokemonSelected=='https://drive.google.com/uc?id=1-zseG8uhlsuaQh7orGIuT5Y1MhkV4EVR'){
+        this.pokemon='https://drive.google.com/uc?id=1U_frs8J4TQ9nzSR-msnrqj5mMrffn2lv'
       }
 
   },
@@ -111,16 +111,16 @@ export default {
       preguntas: {
         questions: [
           {
-            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
+            text: "Disponer de una contraseña dificil de averiguar es muy importante para proteger nuestra información. selecciona la mas segura de las 3",
             type: "mc",
-            answers: ["roSas101", "g1r4s0l$", "G1r4s0l61$"]
-            ,answer: "G1r4s0l61$"
+            answers: ["123abc123", "davi1979", "Luc4s2@poOY$"]
+            ,answer: "Luc4s2@poOY$"
           },
           {
-            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
+            text: "Tengo diferentes contraseñas para acceder al correo, a la red social, al foro del cole, etc. me cuesta mucho recodarlas asi que...",
             type: "mc",
-            answers: ["perucampeon2019%","P3ruC4mP30n2019%","p3ruc4mp30n2019%"],
-            answer: "P3ruC4mP30n2019%"
+            answers: ["Las apunto en un papel cerca del ordenador, es donde las necesito","Itento memorizarla o uso un programa para la gestion de contraseñas, Son muy sencillos","Las comparto con mis amigos asi si un dia la necesito solo tengo que preguntar"],
+            answer: "Intento memorizarla o uso un programa para la gestion de contraseñas, Son muy sencillos"
           },
            {
             text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
@@ -135,19 +135,37 @@ export default {
             answer:"Un1Ver$id4dd3L1m4"
           },
           {
-            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
+            text: "Al entrar en una pagina web te pide datos como nombre,direccion,edad,eetc, para ver un video¿ rellenarias el formulario?",
             type: "mc",
-            answers: ["C0nTr4$3ñ4$3gUr4", "contraseñasegura", "Contr4señaSegura"],
-            answer:"C0nTr4$3ñ4$3gUr4"
+            answers: ["Claro tengo que ver el video", "No doy mi informacion personal, a de saber para que la usaran", "Solo doy mi nombre y direccion, si doy mi edad igual no puedo ver el video"],
+            answer:"Solo doy mi nombre y direccion, si doy mi edad igual no puedo ver el video"
+          },
+           {
+            text: "tengo varias cuentas (facebook, pokemon go, instagram, gmail, cuenta bancaria, etc) cual es la mejor opción?",
+            type: "mc",
+            answers: ["Usar la misma contraseña para todas las cuentas", "Utilizar contraseñas diferentes", "No usar contraseñas"],
+            answer:"Utilizar contraseñas diferentes"
+          },
+           {
+            text: "Tu amigo está estudiando y te pide que inicies sesión en su cuenta de correo para que le pases algunos documentos ¿Qué haces?",
+            type: "mc",
+            answers: ["Es mi amigo, así que lo haré", "Sé que existe un riesgo, pero lo haré de todos modos", "Rechazo la solicitud y le recuerdo que las contraseñas no se deben compartir"],
+            answer:"Rechazo la solicitud y le recuerdo que las contraseñas no se deben compartir"
+          },
+          {
+            text: "Disponer de una contraseña dificil de averiguar es muy importante para proteger nuestra información. selecciona la mas segura de las 3",
+            type: "mc",
+            answers: ["1ng3N13r1a$istemaS", "1ng3n13r1a$istemas", "ingenieria$istemas"],
+            answer:"1ng3N13r1a$istemaS"
           }
         ]
       },
       userPokemonSrc:
         "http://guidesmedia.ign.com/guides/059687/images/blackwhite/pokemans_006.gif",
       opponentPokemonSrc:
-        "https://graphics.tppcrpg.net/xy/normal/066F.gif",
+        "https://drive.google.com/uc?id=1TDQOx9xvW2w5JQ_w_-UcVqfB3JCVAo6V",
       userPokemon: "",
-      opponentPokemon: "Machop",
+      opponentPokemon: "Mewtwo",
       userAlive: true,
       opponentAlive: true,
       opponentFill: 100,
@@ -686,7 +704,7 @@ export default {
 };
 </script>
 
-<style scoped with <style lang="scss">
+<style scoped with lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Roboto+Condensed");
 
 @import url("https://fonts.googleapis.com/css?family=PT+Sans+Narrow");

@@ -75,8 +75,6 @@
       :question-number="currentQuestion+1"
     ></question>
     </div>
-    
-
     <!-- end battle scene -->
   </div>
 </template>
@@ -164,7 +162,7 @@ export default {
       userPokemonSrc:
         "http://guidesmedia.ign.com/guides/059687/images/blackwhite/pokemans_006.gif",
       opponentPokemonSrc:
-        "http://rs1263.pbsrc.com/albums/ii631/Pokemon-Vampire-Knight-lover/pikachu_.gif~c200",
+        "https://drive.google.com/uc?id=16Poo9wg7D-Cz35e3t4N2CvQjFTpeef6f",
       userPokemon: "",
       opponentPokemon: "Lugia",
       userAlive: true,

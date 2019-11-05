@@ -28,10 +28,10 @@
         <img v-if="userAlive" v-bind:src="this.pokemon" class="pokemon-bottom">
       </div>
       <div class="box-bottom-right">
-      <h2 v-if="this.pokemon=='http://vignette1.wikia.nocookie.net/pokemon/images/2/23/Charmander_Back_XY.gif/revision/latest?cb=20141009063457'" class="pokemon">{{pokemonNames}}</h2>
-       <h2 v-if="this.pokemon=='http://vignette3.wikia.nocookie.net/pokemon/images/d/d8/Squirtle_XY_Back_Sprite.gif/revision/latest?cb=20141031154426'" class="pokemon">{{pokemonNames}}</h2>
-       <h2 v-if="this.pokemon=='http://rs425.pbsrc.com/albums/pp335/Grasaldrea/ShinyBulbasauranimatedback.gif~c200'" class="pokemon">{{pokemonNames}}</h2>  
-         <div class="hp-bar-bottom">
+        <h2 v-if="this.pokemon=='https://drive.google.com/uc?id=1He2-AuSj_C4n1WkzkQSw0WFS7FkViwSL'" class="pokemon">{{pokemonNames}}</h2>
+       <h2 v-if="this.pokemon=='https://drive.google.com/uc?id=1_fvt0YLkCW5iGY94Vivcoyo86IurqiXb'" class="pokemon">{{pokemonNames}}</h2>
+       <h2 v-if="this.pokemon=='https://drive.google.com/uc?id=1U_frs8J4TQ9nzSR-msnrqj5mMrffn2lv'" class="pokemon">{{pokemonNames}}</h2>  
+        <div class="hp-bar-bottom">
           <div v-bind:style="userHpBar" class="hp-bar-fill"></div>
         </div>
         <h4 class="level">Level {{userLevel}}</h4>
@@ -94,7 +94,7 @@ export default {
     })
   },
   mounted(){
-      if(this.pokemonSelected=='https://drive.google.com/uc?id=1JT2xCSd5RRiScGUnlIuNUvN5gxX9zJSp'){
+     if(this.pokemonSelected=='https://drive.google.com/uc?id=1JT2xCSd5RRiScGUnlIuNUvN5gxX9zJSp'){
          this.pokemon='https://drive.google.com/uc?id=1He2-AuSj_C4n1WkzkQSw0WFS7FkViwSL'
       }else if(this.pokemonSelected=='https://drive.google.com/uc?id=1CU1t2sTE8wodJoqAUH2AZbryEv1KC1Fm'){
            this.pokemon='https://drive.google.com/uc?id=1_fvt0YLkCW5iGY94Vivcoyo86IurqiXb'
@@ -114,49 +114,50 @@ export default {
             text: "Disponer de una contraseña dificil de averiguar es muy importante para proteger nuestra información. selecciona la mas segura de las 3",
             type: "mc",
             answers: ["123abc123", "davi1979", "Luc4s2@poOY$"]
-            ,answer: "Luc4s2@poOY$"
+            ,answer: "Luc4s2@poOY$",
+            recomendation: "LAS CONTRASEÑAS DEBEN SER DIFICIL DE AVERIGUAR, SECRETAS Y SE HAN DE CAMBIAR DE VEZ EN CUANDO."
           },
           {
             text: "Tengo diferentes contraseñas para acceder al correo, a la red social, al foro del cole, etc. me cuesta mucho recodarlas asi que...",
             type: "mc",
             answers: ["Las apunto en un papel cerca del ordenador, es donde las necesito","Itento memorizarla o uso un programa para la gestion de contraseñas, Son muy sencillos","Las comparto con mis amigos asi si un dia la necesito solo tengo que preguntar"],
-            answer: "Intento memorizarla o uso un programa para la gestion de contraseñas, Son muy sencillos"
+            answer: "Intento memorizarla o uso un programa para la gestion de contraseñas, Son muy sencillos",
+            recomendation: "EN INTERNET EXISTEN UNA MULTITUD DE HERRAMIENTAS QUE NOS PERMITEN GESTIONAR LAS CONTRASEÑAS ADECUADAMENTE. USALAS Y PROTEGE TUS SERVICIOS."
           },
            {
-            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
+            text: "al entrar en una pagina web te pide datos como nombre,direccion,edad,eetc, para ver un video¿ rellenarias el formulario?",
             type: "mc",
-            answers: ["SuP3rEvoluci0n","sup3revoluci0n","$uP3r#v0luci0n"]
-            ,answer: "$uP3r#v0luci0n"
+            answers: ["claro tengo que ver el video","no doy mi informacion personal, a de saber para que la usaran","solo doy mi nombre y direccion, si doy mi edad igual no puedo ver el video"]
+            ,answer: "solo doy mi nombre y direccion, si doy mi edad igual no puedo ver el video",
+            recomendation: "EN INTERNET EXISTEN UNA MULTITUD DE HERRAMIENTAS QUE NOS PERMITEN GESTIONAR LAS CONTRASEÑAS ADECUADAMENTE. USALAS Y PROTEGE TUS SERVICIOS."
           },
           {
             text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",
-            answers: ["Un1Ver$id4dd3L1m4", "univerSidaddeLima", "un1ver$id4dd3l1m4"],
-            answer:"Un1Ver$id4dd3L1m4"
+            answers: ["m4st3r#$", "M4st3r#$", "Master#"],
+            answer:"M4st3r#$",
+            recomendation: "LAS CONTRASEÑAS DEBEN SER DIFICIL DE AVERIGUAR, SECRETAS Y SE HAN DE CAMBIAR DE VEZ EN CUANDO."
           },
           {
-            text: "Al entrar en una pagina web te pide datos como nombre,direccion,edad,eetc, para ver un video¿ rellenarias el formulario?",
-            type: "mc",
-            answers: ["Claro tengo que ver el video", "No doy mi informacion personal, a de saber para que la usaran", "Solo doy mi nombre y direccion, si doy mi edad igual no puedo ver el video"],
-            answer:"Solo doy mi nombre y direccion, si doy mi edad igual no puedo ver el video"
-          },
-           {
             text: "tengo varias cuentas (facebook, pokemon go, instagram, gmail, cuenta bancaria, etc) cual es la mejor opción?",
             type: "mc",
-            answers: ["Usar la misma contraseña para todas las cuentas", "Utilizar contraseñas diferentes", "No usar contraseñas"],
-            answer:"Utilizar contraseñas diferentes"
+            answers: ["Usar la misma contraseña para todas las cuentas", "Utilizar contraseñas diferentes", "Solo doy mi nombre y direccion, si doy mi edad igual no puedo ver el video"],
+            answer:"No usar contraseñas",
+            recomendation: "NUESTRA INFORMACION PERSONAL ES MUY IMPORTANTE !NUESTRO NOMBRE DIRECCION Y DEMAS DATOS NO SE LOS PODEMOS DAR ACUALQUIERA."
           },
            {
             text: "Tu amigo está estudiando y te pide que inicies sesión en su cuenta de correo para que le pases algunos documentos ¿Qué haces?",
             type: "mc",
             answers: ["Es mi amigo, así que lo haré", "Sé que existe un riesgo, pero lo haré de todos modos", "Rechazo la solicitud y le recuerdo que las contraseñas no se deben compartir"],
-            answer:"Rechazo la solicitud y le recuerdo que las contraseñas no se deben compartir"
+            answer:"Rechazo la solicitud y le recuerdo que las contraseñas no se deben compartir",
+            recomendation: "NO DEBES USAR LA MISMA CONTRASEÑA EN TODAS TUS CUENTAS, YA QUE SI ALGUIEN SABE ALGUNA DE ELLAS, NO PODRÁ ACCEDER A TODAS TUS CUENTAS."
           },
           {
             text: "Disponer de una contraseña dificil de averiguar es muy importante para proteger nuestra información. selecciona la mas segura de las 3",
             type: "mc",
             answers: ["1ng3N13r1a$istemaS", "1ng3n13r1a$istemas", "ingenieria$istemas"],
-            answer:"1ng3N13r1a$istemaS"
+            answer:"1ng3N13r1a$istemaS",
+            recomendation: "LAS CONTRASEÑAS DEBEN SER DIFICIL DE AVERIGUAR, SECRETAS Y SE HAN DE CAMBIAR DE VEZ EN CUANDO."
           }
         ]
       },
@@ -184,6 +185,7 @@ export default {
       "Cabezazo","Gruñido Growl","Bomba Germen","Polvo Veneno Poison Powder"],
       endOptions: ["Yes", "No"],
       fightOn: false,
+      recomendation:"",
       optionsOn: true,
       endOn: false,
       introStage: false,
@@ -206,14 +208,14 @@ export default {
     };
   },
   created() {
-    this.questions = this.preguntas.questions;
+     this.questions = this.preguntas.questions;
     this.introStage = true;
-     if(this.pokemonSelected=='http://img3.wikia.nocookie.net/__cb20150330015216/pokemon/images/f/f5/004Charmander_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png'){
-          this.pokemonNames="Charmander"
-      }else if(this.pokemonSelected=='http://vignette3.wikia.nocookie.net/ssbb/images/7/79/Squirtle_Rojo_Fuego_y_Verde_Hoja.png/revision/latest?cb=20130907041944&path-prefix=es'){
-           this.pokemonNames="Squirtle"
-      } else if (this.pokemonSelected=='http://vignette4.wikia.nocookie.net/pokemon/images/8/81/001Bulbasaur_Pokemon_Mystery_Dungeon_Explorers_of_Sky.png/revision/latest?cb=20150105223818'){
-        this.pokemonNames="Bulbasur"
+     if(this.pokemonSelected=='https://drive.google.com/uc?id=1JT2xCSd5RRiScGUnlIuNUvN5gxX9zJSp'){
+          this.pokemonNames="Charizard"
+      }else if(this.pokemonSelected=='https://drive.google.com/uc?id=1CU1t2sTE8wodJoqAUH2AZbryEv1KC1Fm'){
+           this.pokemonNames="Blastoise"
+      } else if (this.pokemonSelected=='https://drive.google.com/uc?id=1-zseG8uhlsuaQh7orGIuT5Y1MhkV4EVR'){
+        this.pokemonNames="Venasaur"
       }
 
     /* fetch('https://api.myjson.com/bins/ahn1p')
@@ -306,6 +308,8 @@ export default {
 
             this.battleText =
               this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
+               this.recomendation = "LAS CONTRASEÑAS DEBEN SER DIFICIL DE AVERIGUAR, SECRETAS Y SE HAN DE CAMBIAR DE VEZ EN CUANDO."
+            swal(this.recomendation)
             //call opponent attack function
             setTimeout(() => {
               if (this.userAlive) {
@@ -646,34 +650,42 @@ export default {
     handleAnswer(e) {
        this.answers[this.currentQuestion]=e.answer;
        this.responsedAnswer =e.answer
+       this.recomendation =e.recomendation
       
-        if(this.responsedAnswer =="G1r4s0l61$" ||this.responsedAnswer =="P3ruC4mP30n2019%"
-        ||this.responsedAnswer =="$uP3r#v0luci0n"||this.responsedAnswer =="Un1Ver$id4dd3L1m4"
-        ||this.responsedAnswer =="C0nTr4$3ñ4$3gUr4"){
-         if( this.pokemonNames=="Charmander"){
+        if(this.responsedAnswer =="Luc4s2@poOY$" ||this.responsedAnswer =="Intento memorizarla o uso un programa para la gestion de contraseñas, Son muy sencillos"
+        ||this.responsedAnswer =="solo doy mi nombre y direccion, si doy mi edad igual no puedo ver el video"||this.responsedAnswer =="M4st3r#$"
+        ||this.responsedAnswer =="Utilizar contraseñas diferentes"
+        || this.responsedAnswer == "Rechazo la solicitud y le recuerdo que las contraseñas no se deben compartir"
+        ||this.responsedAnswer == "1ng3N13r1a$istemaS"){
+         if( this.pokemonNames=="Charizard"){
            this.processAttack(2)
-         }else if (this.pokemonNames=="Squirtle"){
+         }else if (this.pokemonNames=="Blastoise"){
             this.processAttack(5)
-         }else if (this.pokemonNames=="Bulbasur"){
+         }else if (this.pokemonNames=="Venasaur"){
             this.processAttack(8)
          }
            
-        }else if(this.responsedAnswer =="roSas101" 
-       ||this.responsedAnswer =="perucampeon2019%"
-       ||this.responsedAnswer =="SuP3rEvoluci0n"
-       ||this.responsedAnswer =="univerSidaddeLima"
-       ||this.responsedAnswer =="contraseñasegura"){
-            if( this.pokemonNames=="Charmander"){
+        }else if(this.responsedAnswer =="123abc123" 
+       ||this.responsedAnswer =="Las apunto en un papel cerca del ordenador, es donde las necesito"
+       ||this.responsedAnswer =="claro tengo que ver el video"
+       ||this.responsedAnswer =="m4st3r#$"
+       ||this.responsedAnswer =="Usar la misma contraseña para todas las cuentas"
+        ||this.responsedAnswer =="Es mi amigo, así que lo haré"
+       ||this.responsedAnswer =="1ng3n13r1a$istemas"){
+            if( this.pokemonNames=="Charizard"){
            this.processAttack(1)
-         }else if (this.pokemonNames=="Squirtle"){
+         }else if (this.pokemonNames=="Blastoise"){
             this.processAttack(4)
-         }else if (this.pokemonNames=="Bulbasur"){
+         }else if (this.pokemonNames=="Venasaur"){
             this.processAttack(6)
          }
-        }else if(this.responsedAnswer =="g1r4s0l$" ||this.responsedAnswer =="p3ruc4mp30n2019%"
-        ||this.responsedAnswer =="sup3revoluci0n"
-         ||this.responsedAnswer =="un1ver$id4dd3l1m4"
-          ||this.responsedAnswer =="Contr4señaSegura"){
+        }else if(this.responsedAnswer =="davi1979" ||this.responsedAnswer =="Las comparto con mis amigos asi si un dia la necesito solo tengo que preguntar"
+        ||this.responsedAnswer =="no doy mi informacion personal, a de saber para que la usaran"
+         ||this.responsedAnswer =="Master#"
+          ||this.responsedAnswer =="No usar contraseñas"
+          ||this.responsedAnswer =="Master#"
+          ||this.responsedAnswer =="Sé que existe un riesgo, pero lo haré de todos modos"
+          ||this.responsedAnswer == "ingenieria$istemas"){
              if( this.pokemonNames=="Charmander"){
            this.processAttack(3)
          }else if (this.pokemonNames=="Squirtle"){
@@ -682,6 +694,7 @@ export default {
             this.processAttack(9)
          }
         }
+        swal(this.recomendation)
         this.currentQuestion++;
       
       },

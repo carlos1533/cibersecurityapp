@@ -55,42 +55,42 @@ import $ from 'jquery'
 let CardTypes = [
   {
     name: "password01",
-    image: "https://drive.google.com/uc?id=1biCvLfihjcX0nOR-dc-l9T9O-h9WA7Ok",
+    image: "https://drive.google.com/uc?id=1BavdWTGhfV3m2eMJ97amtCy4YPigWORz",
     info: "Vue.js features an incrementally adoptable architecture that focuses on declarative rendering and component composition. Advanced features required for complex applications such as routing, state management and build tooling are offered via officially maintained supporting libraries and packages."
   },
   {
     name: "express",
-    image: "https://drive.google.com/uc?id=1HvX3In2N66RaYouE80a_4Z8TM8RU_cMI",
+    image: "https://drive.google.com/uc?id=1GAkTDTh8Ug60Ygd9tQsW3oaiMliZNCDw",
     info: "Express.js, or simply Express, is a web application framework for Node.js, released as free and open-source software under the MIT License. It is designed for building web applications and APIs.[3] It has been called the de facto standard server framework for Node.js"
   },
   {
     name: "mongo",
-    image: "https://drive.google.com/uc?id=14ehMU1yzV0qyLi6ix4MsPzL6x07ND99T",
+    image: "https://drive.google.com/uc?id=1UX0TOaZ-EkPR0XFLl-KzHvZ4Iuz0fhSh",
     info: "MongoDB is a cross-platform document-oriented database program. It is issued under the Server Side Public License, which is currently being evaluated for OSI certification. Classified as a NoSQL database program, MongoDB uses JSON-like documents with schemata. MongoDB is developed by MongoDB Inc."
   },
   {
     name: "nodejs",
-    image: "https://drive.google.com/uc?id=1T3NS3Tp_yzvzv8ZqQEGHUdecqOMJQMnL",
+    image: "https://drive.google.com/uc?id=1cn5uQ6sC9Oo7k3WWzH4A4rHEAZM0rczb",
     info: "Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser. Typically, JavaScript is used primarily for client-side scripting, in which scripts written in JavaScript are embedded in a webpage's HTML and run client-side by a JavaScript engine in the user's web browser. Node.js lets developers use JavaScript to write Command Line tools and for server-side scripting—running scripts server-side to produce dynamic web page content before the page is sent to the user's web browser."
   },
   {
     name: "webpack",
-    image: "https://drive.google.com/uc?id=1VZ9byVCppEIfVuALdUMpoGyZIoWl-HO0",
+    image: "https://drive.google.com/uc?id=1jcc5t3Zu6HBRI_V64zXHSP6WEDaJIHJS",
     info: "Webpack is an open-source JavaScript module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset. Webpack takes modules with dependencies and generates static assets representing those modules. It is a module bundler primarily for JavaScript, but it can transform front-end assets like HTML, CSS, even images if the corresponding plugins are included."
   },
    {
     name: "mongo1",
-    image: "https://drive.google.com/uc?id=1pBXtDpf63L1H2aAc8YHUx5W_37zTk_VO",
+    image: "https://drive.google.com/uc?id=1x5s7TyVQg6im-rx_TNGC7ElsW3wg37nP",
     info: "MongoDB is a cross-platform document-oriented database program. It is issued under the Server Side Public License, which is currently being evaluated for OSI certification. Classified as a NoSQL database program, MongoDB uses JSON-like documents with schemata. MongoDB is developed by MongoDB Inc."
   },
   {
     name: "nodejs2",
-    image: "https://drive.google.com/uc?id=1rXtY5kYyEs2NV-otTi05yh1u_9hFMCOF",
+    image: "https://drive.google.com/uc?id=1zRQFY_M-2xw-bNIExBfANyE519n7AF_U",
     info: "Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser. Typically, JavaScript is used primarily for client-side scripting, in which scripts written in JavaScript are embedded in a webpage's HTML and run client-side by a JavaScript engine in the user's web browser. Node.js lets developers use JavaScript to write Command Line tools and for server-side scripting—running scripts server-side to produce dynamic web page content before the page is sent to the user's web browser."
   },
   {
     name: "webpack3",
-    image: "https://drive.google.com/uc?id=199Ao3nIQLKO6mh1WYyyYbzZ7BCe-4LuV",
+    image: "https://drive.google.com/uc?id=1dsX9fI60xMR4kJ3WAs6HUnZrXd0qIVME",
     info: "Webpack is an open-source JavaScript module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset. Webpack takes modules with dependencies and generates static assets representing those modules. It is a module bundler primarily for JavaScript, but it can transform front-end assets like HTML, CSS, even images if the corresponding plugins are included."
   }
 ]

@@ -41,9 +41,34 @@ const routes = [
         component: () => import('./pages/game/videoGame')  
     },
     {
-        path: '/videoGamePlay',
-        name: 'videoGamePlay',
-        component: () => import('./pages/game/videoGamePlay')  
+        path: '/videoGamePlay1',
+        name: 'videoGamePlay1',
+        component: () => import('./pages/game/videoGamePlay1')  
+    },
+    {
+        path: '/videoGamePlay2',
+        name: 'videoGamePlay2',
+        component: () => import('./pages/game/videoGamePlay2')  
+    },
+    {
+        path: '/videoGamePlay3',
+        name: 'videoGamePlay3',
+        component: () => import('./pages/game/videoGamePlay3')  
+    },
+    {
+        path: '/videoGamePlay4',
+        name: 'videoGamePlay4',
+        component: () => import('./pages/game/videoGamePlay4')  
+    },
+    {
+        path: '/videoGamePlay5',
+        name: 'videoGamePlay5',
+        component: () => import('./pages/game/videoGamePlay5')  
+    },
+    {
+        path: '/videoGamePlay6',
+        name: 'videoGamePlay6',
+        component: () => import('./pages/game/videoGamePlay6')  
     },
     {
         path: '/landinpage0',
@@ -81,6 +106,17 @@ const routes = [
         name: 'fight2',
         component: fight2
 
+    },
+    {
+        path: 'errorFacil',
+        name: 'errorFacil',
+        component: () => import('./pages/game/errorFacil')
+    },
+    {
+        path: 'iframe',
+        name: 'iframe',
+        component: () => import('./pages/game/iframe'),
+        props: true
     }
 ]
 

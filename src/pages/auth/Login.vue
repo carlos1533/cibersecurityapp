@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <ul class="nav">
+    <!-- <ul class="nav">
       <li v-if="!loggedIn">
         <router-link :to="{ name: 'login' }">Login</router-link>
       </li>
@@ -10,7 +10,7 @@
       <li v-if="loggedIn">
         <router-link :to="{ name: 'logout' }">Salir</router-link>
       </li>
-    </ul>
+    </ul> -->
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <img src="../../assets/login/TITULO.png" alt="Smiley face" class="img-fluid">
@@ -60,7 +60,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-3">
+      <div class="col-sm-3 pikachu">
         <img src="../../assets/login/Pikachu pantalla login.png" class="img-fluid">
       </div>
     </div>
@@ -156,5 +156,8 @@ export default {
   color: #a94442;
   background: #f3dede;
   border-radius: 4px;
+}
+.pikachu{
+  max-width: 16%;
 }
 </style>

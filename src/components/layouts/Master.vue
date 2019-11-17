@@ -1,5 +1,16 @@
 <template>
   <div id="app">
+     <ul class="nav">
+      <li v-if="!loggedIn">
+        <router-link :to="{ name: 'login' }">Login</router-link>
+      </li>
+      <li v-if="!loggedIn">
+        <router-link :to="{ name: 'register' }">Registro</router-link>
+      </li>
+      <li v-if="loggedIn">
+        <router-link :to="{ name: 'logout' }">Salir</router-link>
+      </li>
+    </ul>
     <transition
       name="router-animation"
       enter-active-class="animated fadeIn"
@@ -28,7 +39,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  font-size: 24px;
+  font-size: 18px;
   height: 100vh;
 }
 .flex-center {

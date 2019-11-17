@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="nav">
+    <!-- <ul class="nav">
       <li v-if="!loggedIn">
         <router-link :to="{ name: 'login' }">Login</router-link>
       </li>
@@ -10,7 +10,7 @@
       <li v-if="loggedIn">
         <router-link :to="{ name: 'logout' }">Salir</router-link>
       </li>
-    </ul>
+    </ul> -->
     <h1 class="title">Batalla Pokemon Final</h1>
     <div class="battle-scene">
       <div class="box-top-left">

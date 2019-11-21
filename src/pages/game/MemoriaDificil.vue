@@ -117,7 +117,7 @@ export default {
     },
     watch:{
       time: function (val) {
-      if (val ==='03:01') {
+      if (val ==='01:31') {
           this.finishGame()
       }
     }
@@ -340,7 +340,7 @@ html {
 }
 
 .cards .card .back {
-  background-image: url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/game-arcade-pattern-mps.jpg");
+  background-image: url("https://drive.google.com/uc?id=1ZYRgZbYq7VIUviSpYeUxQvKPOIkLHOpF");
   background-size: 90%;
   background-position: center;
   background-repeat: no-repeat;

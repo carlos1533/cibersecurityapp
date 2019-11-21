@@ -15,6 +15,7 @@
 <script>
 import question from "../../components/Nivel01/question";
 import { mapActions, mapGetters, mapState } from 'vuex'
+import swal from 'sweetalert';
 export default {
     data(){
         return{
@@ -47,7 +48,8 @@ export default {
     },
     methods:{
       ...mapActions([
-       'setCustomerScoreVideo01'
+       'setCustomerScoreVideo01',
+       'setCustomerHasPlayesVideo01'
     ]),
           handleAnswer(e) {
            this.answers[this.currentQuestion]=e.answer;
@@ -57,7 +59,9 @@ export default {
         this.resultsStage = true;
         const score= 10
         this.setCustomerScoreVideo01(10)
-        this.$router.push({name: 'menu'});
+        swal('Nunca compartas tus contraseñas con nadie, recuerda que las contraseñas son privadas y personales.')
+        this.setCustomerHasPlayesVideo01(true)
+        this.$router.push({name: 'videoGame'});
       } else {
         this.currentQuestion++;
       }

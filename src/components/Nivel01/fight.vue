@@ -81,8 +81,8 @@
 
 <script>
 import question from "./question";
+import { mapActions, mapState } from 'vuex'
 import swal from 'sweetalert';
-import { mapState } from 'vuex'
 export default {
  
   components: {
@@ -205,6 +205,9 @@ export default {
     };
   },
   created() {
+    if(this.$store.getters.hasPlayedPokemom){
+      this.$router.push({name:'menu'})
+    }
     this.questions = this.preguntas.questions;
     this.introStage = true;
      if(this.pokemonSelected=='https://drive.google.com/uc?id=1JT2xCSd5RRiScGUnlIuNUvN5gxX9zJSp'){
@@ -225,6 +228,9 @@ export default {
   },
   
   methods: {
+     ...mapActions([
+       'setCustomerScorePokemon1'
+     ]),
     processOption: function(option) {
       switch (option) {
         case 1:
@@ -559,6 +565,7 @@ export default {
       if (this.opponentHP <= 0) {
         //fainted
         this.currentQuestion=0
+        
         return true;
       } else {
         //battle continues
@@ -571,6 +578,8 @@ export default {
       if (pokemon === 1) {
         this.opponentAlive = false;
         this.currentQuestion=0
+        const score = this.handleResults()
+        this.setCustomerScorePokemon1(score)
         swal("Felicitaciones ahora pasas a la batalla final")
          this.$router.push({name: 'fight2'});  
       } else {
@@ -679,18 +688,29 @@ export default {
       },
     handleResults() {
       //console.log("handle results");
+      // this.questions.forEach((a, index) => {
+      //   if (this.answers[index] === a.answer){
+      //     this.correct++;
+      //   }else{
+      //       this.perc = ((this.correct / this.questions.length)*100).toFixed(2);
+      // console.log(this.correct+' '+this.perc);
+      //   }
+        
+       
+      // });
+      // this.perc = ((this.correct / this.questions.length) * 100).toFixed(2);
+      // console.log(this.correct + " " + this.perc);
+            let score = 0;
       this.questions.forEach((a, index) => {
         if (this.answers[index] === a.answer){
           this.correct++;
+          score = score + 10;
         }else{
-            this.perc = ((this.correct / this.questions.length)*100).toFixed(2);
-      console.log(this.correct+' '+this.perc);
+        // this.perc = ((this.correct / this.questions.length)*100).toFixed(2);
+        // console.log(this.correct+' '+this.perc);
         }
-        
-       
       });
-      this.perc = ((this.correct / this.questions.length) * 100).toFixed(2);
-      console.log(this.correct + " " + this.perc);
+      return score;
     }
   }
 };
@@ -733,9 +753,9 @@ body {
   position: relative;
   margin: auto;
   display: block;
-  margin-top: 3%;
-  width: 600px;
-  height: 420px;
+  // margin-top: 3%;
+  width: 450px;
+  height: 320px;
   background: #f8f8f8;
   z-index: 1;
 }
@@ -907,9 +927,9 @@ body {
 .battle-text-bottom-left {
   opacity: 0.95;
   position: absolute;
-  font-size: 22px;
+  font-size: 18px;
   color: #333333;
-  bottom: -30%;
+  bottom: -10%;
   left: 10%;
   text-align: left;
   font-family: "PT Sans Narrow";
@@ -919,7 +939,7 @@ body {
 .battle-text-top-right {
   opacity: 0.95;
   position: absolute;
-  font-size: 22px;
+  font-size: 18px;
   color: #333333;
   top: -30%;
   right: 21%;
@@ -931,10 +951,10 @@ body {
 .battle-text-bottom-right {
   opacity: 0.95;
   position: absolute;
-  font-size: 22px;
+  font-size: 18px;
   color: #333333;
-  bottom: -30%;
-  right: 20%;
+  bottom: -10%;
+  right: 10%;
   text-align: left;
   font-family: "PT Sans Narrow";
   cursor: pointer;

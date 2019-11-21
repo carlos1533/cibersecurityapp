@@ -69,6 +69,7 @@
       :question="questions[currentQuestion]"
       v-on:answer="handleAnswer"
       :question-number="currentQuestion+1"
+      :recommendation="questions[currentQuestion].recommendation"
     ></question>
     </div>
 
@@ -78,7 +79,7 @@
 
 <script>
 import question from "./question";
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import { mapActions, mapState } from 'vuex'
 export default {
   name: "fight2",
@@ -115,49 +116,49 @@ export default {
             type: "mc",
             answers: ["123abc123", "davi1979", "Luc4s2@poOY$"]
             ,answer: "Luc4s2@poOY$",
-            recomendation: "LAS CONTRASEÑAS DEBEN SER DIFICIL DE AVERIGUAR, SECRETAS Y SE HAN DE CAMBIAR DE VEZ EN CUANDO."
+            recommendation: "LAS CONTRASEÑAS DEBEN SER DIFICIL DE AVERIGUAR, SECRETAS Y SE HAN DE CAMBIAR DE VEZ EN CUANDO."
           },
           {
             text: "Tengo diferentes contraseñas para acceder al correo, a la red social, al foro del cole, etc. me cuesta mucho recodarlas asi que...",
             type: "mc",
-            answers: ["Las apunto en un papel cerca del ordenador, es donde las necesito","Itento memorizarla o uso un programa para la gestion de contraseñas, Son muy sencillos","Las comparto con mis amigos asi si un dia la necesito solo tengo que preguntar"],
+            answers: ["Las apunto en un papel cerca del ordenador, es donde las necesito","Intento memorizarla o uso un programa para la gestion de contraseñas, Son muy sencillos","Las comparto con mis amigos asi si un dia la necesito solo tengo que preguntar"],
             answer: "Intento memorizarla o uso un programa para la gestion de contraseñas, Son muy sencillos",
-            recomendation: "EN INTERNET EXISTEN UNA MULTITUD DE HERRAMIENTAS QUE NOS PERMITEN GESTIONAR LAS CONTRASEÑAS ADECUADAMENTE. USALAS Y PROTEGE TUS SERVICIOS."
+            recommendation: "EN INTERNET EXISTEN UNA MULTITUD DE HERRAMIENTAS QUE NOS PERMITEN GESTIONAR LAS CONTRASEÑAS ADECUADAMENTE. USALAS Y PROTEGE TUS SERVICIOS."
           },
            {
             text: "al entrar en una pagina web te pide datos como nombre,direccion,edad,eetc, para ver un video¿ rellenarias el formulario?",
             type: "mc",
             answers: ["claro tengo que ver el video","no doy mi informacion personal, a de saber para que la usaran","solo doy mi nombre y direccion, si doy mi edad igual no puedo ver el video"]
             ,answer: "solo doy mi nombre y direccion, si doy mi edad igual no puedo ver el video",
-            recomendation: "EN INTERNET EXISTEN UNA MULTITUD DE HERRAMIENTAS QUE NOS PERMITEN GESTIONAR LAS CONTRASEÑAS ADECUADAMENTE. USALAS Y PROTEGE TUS SERVICIOS."
+            recommendation: "EN INTERNET EXISTEN UNA MULTITUD DE HERRAMIENTAS QUE NOS PERMITEN GESTIONAR LAS CONTRASEÑAS ADECUADAMENTE. USALAS Y PROTEGE TUS SERVICIOS."
           },
           {
             text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",
             answers: ["m4st3r#$", "M4st3r#$", "Master#"],
             answer:"M4st3r#$",
-            recomendation: "LAS CONTRASEÑAS DEBEN SER DIFICIL DE AVERIGUAR, SECRETAS Y SE HAN DE CAMBIAR DE VEZ EN CUANDO."
+            recommendation: "LAS CONTRASEÑAS DEBEN SER DIFICIL DE AVERIGUAR, SECRETAS Y SE HAN DE CAMBIAR DE VEZ EN CUANDO."
           },
           {
             text: "tengo varias cuentas (facebook, pokemon go, instagram, gmail, cuenta bancaria, etc) cual es la mejor opción?",
             type: "mc",
             answers: ["Usar la misma contraseña para todas las cuentas", "Utilizar contraseñas diferentes", "Solo doy mi nombre y direccion, si doy mi edad igual no puedo ver el video"],
             answer:"No usar contraseñas",
-            recomendation: "NUESTRA INFORMACION PERSONAL ES MUY IMPORTANTE !NUESTRO NOMBRE DIRECCION Y DEMAS DATOS NO SE LOS PODEMOS DAR ACUALQUIERA."
+            recommendation: "NUESTRA INFORMACION PERSONAL ES MUY IMPORTANTE !NUESTRO NOMBRE DIRECCION Y DEMAS DATOS NO SE LOS PODEMOS DAR ACUALQUIERA."
           },
            {
             text: "Tu amigo está estudiando y te pide que inicies sesión en su cuenta de correo para que le pases algunos documentos ¿Qué haces?",
             type: "mc",
             answers: ["Es mi amigo, así que lo haré", "Sé que existe un riesgo, pero lo haré de todos modos", "Rechazo la solicitud y le recuerdo que las contraseñas no se deben compartir"],
             answer:"Rechazo la solicitud y le recuerdo que las contraseñas no se deben compartir",
-            recomendation: "NO DEBES USAR LA MISMA CONTRASEÑA EN TODAS TUS CUENTAS, YA QUE SI ALGUIEN SABE ALGUNA DE ELLAS, NO PODRÁ ACCEDER A TODAS TUS CUENTAS."
+            recommendation: "NO DEBES USAR LA MISMA CONTRASEÑA EN TODAS TUS CUENTAS, YA QUE SI ALGUIEN SABE ALGUNA DE ELLAS, NO PODRÁ ACCEDER A TODAS TUS CUENTAS."
           },
           {
             text: "Disponer de una contraseña dificil de averiguar es muy importante para proteger nuestra información. selecciona la mas segura de las 3",
             type: "mc",
             answers: ["1ng3N13r1a$istemaS", "1ng3n13r1a$istemas", "ingenieria$istemas"],
             answer:"1ng3N13r1a$istemaS",
-            recomendation: "LAS CONTRASEÑAS DEBEN SER DIFICIL DE AVERIGUAR, SECRETAS Y SE HAN DE CAMBIAR DE VEZ EN CUANDO."
+            recommendation: "LAS CONTRASEÑAS DEBEN SER DIFICIL DE AVERIGUAR, SECRETAS Y SE HAN DE CAMBIAR DE VEZ EN CUANDO."
           }
         ]
       },
@@ -229,7 +230,8 @@ export default {
   
   methods: {
     ...mapActions([
-       'setCustomerScorePokemon'
+       'setCustomerScorePokemon',
+       'setHasPlayedPokemon'
      ]),
     processOption: function(option) {
       switch (option) {
@@ -258,11 +260,6 @@ export default {
           } else {
             this.opponentHpBar.width = this.opponentFill + "%";
           }
-              console.log(this.opponentHP)
-               console.log(this.opponentFill)
-          
-           
-        
           //edit if HP !== 0
          
           
@@ -308,8 +305,8 @@ export default {
 
             this.battleText =
               this.userPokemon + " usa " + this.fightOptions[attack - 1] + "!";
-               this.recomendation = "LAS CONTRASEÑAS DEBEN SER DIFICIL DE AVERIGUAR, SECRETAS Y SE HAN DE CAMBIAR DE VEZ EN CUANDO."
-            swal(this.recomendation)
+            //    this.recomendation = "LAS CONTRASEÑAS DEBEN SER DIFICIL DE AVERIGUAR, SECRETAS Y SE HAN DE CAMBIAR DE VEZ EN CUANDO."
+            // swal(this.recomendation)
             //call opponent attack function
             setTimeout(() => {
               if (this.userAlive) {
@@ -388,10 +385,6 @@ export default {
           } else {
             this.opponentHpBar.width = this.opponentFill + "%";
           }
-              console.log(this.opponentHP)
-               console.log(this.opponentFill)
-          
-           
         
           //edit if HP !== 0
          
@@ -425,11 +418,6 @@ export default {
           } else {
             this.opponentHpBar.width = this.opponentFill + "%";
           }
-              console.log(this.opponentHP)
-               console.log(this.opponentFill)
-          
-           
-        
           //edit if HP !== 0
          
           
@@ -462,11 +450,6 @@ export default {
           } else {
             this.opponentHpBar.width = this.opponentFill + "%";
           }
-              console.log(this.opponentHP)
-               console.log(this.opponentFill)
-          
-           
-        
           //edit if HP !== 0
          
           
@@ -499,11 +482,6 @@ export default {
           } else {
             this.opponentHpBar.width = this.opponentFill + "%";
           }
-              console.log(this.opponentHP)
-               console.log(this.opponentFill)
-          
-           
-        
           //edit if HP !== 0
          
           
@@ -536,10 +514,6 @@ export default {
           } else {
             this.opponentHpBar.width = this.opponentFill + "%";
           }
-              console.log(this.opponentHP)
-               console.log(this.opponentFill)
-          
-           
         
           //edit if HP !== 0
          
@@ -569,7 +543,7 @@ export default {
     checkOpponentHp: function() {
       if (this.opponentHP <= 0) {
         //fainted
-        this.currentQuestion=0
+        // this.currentQuestion=0
         return true;
       } else {
         //battle continues
@@ -581,9 +555,11 @@ export default {
       this.endOn = true;
       if (pokemon === 1) {
         this.opponentAlive = false;
-        this.currentQuestion=0
-        this.setCustomerScorePokemon(100)
-        swal("Has ganado!")
+        // this.currentQuestion=0
+        const score = this.handleResults()
+        this.setCustomerScorePokemon(score)
+        this.setHasPlayedPokemon(true)
+        this.$router.push({name: 'menu'}); 
       } else {
         this.userHP = 0;
         this.userAlive = false;
@@ -641,17 +617,16 @@ export default {
       this.userHpBar.width = "100%";
       this.opponentHpBar.width = "100%";
       this.currentQuestion=0
-       this.$router.push({name: 'tuto'});    
+      this.$router.push({name: 'tuto'});    
     },
     startQuiz() {
       this.introStage = false;
       this.questionStage = true;
     },
     handleAnswer(e) {
-       this.answers[this.currentQuestion]=e.answer;
-       this.responsedAnswer =e.answer
-       this.recomendation =e.recomendation
-      
+      this.answers[this.currentQuestion]=e.answer;
+      this.responsedAnswer =e.answer
+      this.recommendation =e.recommendation
         if(this.responsedAnswer =="Luc4s2@poOY$" ||this.responsedAnswer =="Intento memorizarla o uso un programa para la gestion de contraseñas, Son muy sencillos"
         ||this.responsedAnswer =="solo doy mi nombre y direccion, si doy mi edad igual no puedo ver el video"||this.responsedAnswer =="M4st3r#$"
         ||this.responsedAnswer =="Utilizar contraseñas diferentes"
@@ -664,7 +639,7 @@ export default {
          }else if (this.pokemonNames=="Venasaur"){
             this.processAttack(8)
          }
-           
+        
         }else if(this.responsedAnswer =="123abc123" 
        ||this.responsedAnswer =="Las apunto en un papel cerca del ordenador, es donde las necesito"
        ||this.responsedAnswer =="claro tengo que ver el video"
@@ -686,32 +661,43 @@ export default {
           ||this.responsedAnswer =="Master#"
           ||this.responsedAnswer =="Sé que existe un riesgo, pero lo haré de todos modos"
           ||this.responsedAnswer == "ingenieria$istemas"){
-             if( this.pokemonNames=="Charmander"){
+             if( this.pokemonNames=="Charizard"){
            this.processAttack(3)
-         }else if (this.pokemonNames=="Squirtle"){
+         }else if (this.pokemonNames=="Blastoise"){
             this.processAttack(6)
-         }else if (this.pokemonNames=="Bulbasur"){
+         }else if (this.pokemonNames=="Venasaur"){
             this.processAttack(9)
          }
         }
-        swal(this.recomendation)
-        this.currentQuestion++;
+         this.currentQuestion++;
+        Swal.fire({
+        title: this.recommendation,
+        showClass: {
+          popup: 'animated fadeInDown faster'
+        },
+        hideClass: {
+          popup: 'animated fadeOutUp faster'
+        }
+      })
+        // swal(this.recommendation)
       
       },
     handleResults() {
       //console.log("handle results");
+        let score = 0;
       this.questions.forEach((a, index) => {
         if (this.answers[index] === a.answer){
           this.correct++;
+          score = score + 10;
         }else{
-            this.perc = ((this.correct / this.questions.length)*100).toFixed(2);
-      console.log(this.correct+' '+this.perc);
+        // this.perc = ((this.correct / this.questions.length)*100).toFixed(2);
+        // console.log(this.correct+' '+this.perc);
         }
-        
-       
       });
-      this.perc = ((this.correct / this.questions.length) * 100).toFixed(2);
-      console.log(this.correct + " " + this.perc);
+      return score;
+
+      // this.perc = ((this.correct / this.questions.length) * 100).toFixed(2);
+      // console.log(this.correct + " " + this.perc);
     }
   }
 };
@@ -753,9 +739,9 @@ body {
   position: relative;
   margin: auto;
   display: block;
-  margin-top: 3%;
-  width: 600px;
-  height: 420px;
+    // margin-top: 3%;
+  width: 450px;
+  height: 320px;
   background: #f8f8f8;
   z-index: 1;
 }
@@ -927,9 +913,9 @@ body {
 .battle-text-bottom-left {
   opacity: 0.95;
   position: absolute;
-  font-size: 22px;
+   font-size: 18px;
   color: #333333;
-  bottom: -30%;
+  bottom: -10%;
   left: 10%;
   text-align: left;
   font-family: "PT Sans Narrow";
@@ -951,10 +937,10 @@ body {
 .battle-text-bottom-right {
   opacity: 0.95;
   position: absolute;
-  font-size: 22px;
+ font-size: 18px;
   color: #333333;
-  bottom: -30%;
-  right: 20%;
+  bottom: -10%;
+  right: 10%;
   text-align: left;
   font-family: "PT Sans Narrow";
   cursor: pointer;

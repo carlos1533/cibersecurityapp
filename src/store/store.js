@@ -24,6 +24,7 @@ export default new Vuex.Store({
       scorevideo05:0,
       scorevideo06:0,
       scorePokemon: 0,
+      scorePokemon1:0,
       scoreError:0,
       totalScore: 0,
       memorygame:false,
@@ -72,7 +73,8 @@ export default new Vuex.Store({
       // return state.customer.scoreError
       return state.customer.scoreMemory + state.customer.scorePokemon + state.customer.scoreError +
       state.customer.scorevideo01 + state.customer.scorevideo02 + state.customer.scorevideo03
-      + state.customer.scorevideo04 + state.customer.scorevideo05 + state.customer.scorevideo06;
+      + state.customer.scorevideo04 + state.customer.scorevideo05 + state.customer.scorevideo06
+      + state.customer.scorePokemon1;
     }
   },
   mutations: {
@@ -115,6 +117,9 @@ export default new Vuex.Store({
     setCustomerScorePokemon(state, data){
       state.customer.scorePokemon= data
     },
+    setCustomerScorePokemon1(state, data){
+      state.customer.scorePokemon1= data
+    },
     retrieveToken(state, token) {
       state.token = token;
     },
@@ -148,6 +153,27 @@ export default new Vuex.Store({
     setCustomerScoreVideo06(state, data){
       state.customer.scorevideo06= data
     },
+    setCustomerHasPlayesVideo01(state, data){
+      state.customer.video01= data
+    },
+    setCustomerHasPlayesVideo02(state, data){
+      state.customer.video02= data
+    },
+    setCustomerHasPlayesVideo03(state, data){
+      state.customer.video03= data
+    },
+    setCustomerHasPlayesVideo04(state, data){
+      state.customer.video01= data
+    },
+    setCustomerHasPlayesVideo05(state, data){
+      state.customer.video05= data
+    },
+    setCustomerHasPlayesVideo06(state, data){
+      state.customer.video06= data
+    },
+    setCustomerHasPlayesVideo07(state, data){
+      state.customer.video07= data
+    },
     validatePassword(state, respuestareto1) {
       state.respuestareto1 = respuestareto1;
     },
@@ -165,6 +191,9 @@ export default new Vuex.Store({
     },
     setCustomerScorePokemon({commit}, data){
       commit('setCustomerScorePokemon', data)
+    },
+    setCustomerScorePokemon1({commit}, data){
+      commit('setCustomerScorePokemon1', data)
     },
     setHasPlayedMemory({commit},data){
       commit('setHasPlayedMemory', data)
@@ -195,6 +224,24 @@ export default new Vuex.Store({
     },
     setCustomerScoreVideo06({commit}, data){
       commit('setCustomerScoreVideo06', data)
+    },
+    setCustomerHasPlayesVideo01({commit}, data){
+      commit('setCustomerHasPlayesVideo01', data)
+    },
+    setCustomerHasPlayesVideo02({commit}, data){
+      commit('setCustomerHasPlayesVideo02', data)
+    },
+    setCustomerHasPlayesVideo03({commit}, data){
+      commit('setCustomerHasPlayesVideo03', data)
+    },
+    setCustomerHasPlayesVideo04({commit}, data){
+      commit('setCustomerHasPlayesVideo04', data)
+    },
+    setCustomerHasPlayesVideo05({commit}, data){
+      commit('setCustomerHasPlayesVideo05', data)
+    },
+    setCustomerHasPlayesVideo06({commit}, data){
+      commit('setCustomerHasPlayesVideo06', data)
     },
     setPokemonSelected({ commit }, pokemon,namePokemonSelected) {
       commit("setPokemonSelected", pokemon,namePokemonSelected);

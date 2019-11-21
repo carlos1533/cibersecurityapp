@@ -15,6 +15,7 @@
 <script>
 import question from "../../components/Nivel01/question";
 import { mapActions, mapGetters, mapState } from 'vuex'
+import swal from 'sweetalert';
 export default {
     data(){
         return{
@@ -41,12 +42,16 @@ export default {
         },
     created() {
         // this.title = title;
+          if(this.$store.getters.hasPlayedVideo4){
+      this.$router.push({name:'menu'})
+    }
       this.questions = this.preguntas.questions;
       this.introStage = true;
     },
     methods:{
               ...mapActions([
-       'setCustomerScoreVideo04'
+       'setCustomerScoreVideo04',
+       'setCustomerHasPlayesVideo04'
     ]),
           handleAnswer(e) {
            this.answers[this.currentQuestion]=e.answer;
@@ -56,7 +61,9 @@ export default {
         this.resultsStage = true;
           const score= 10
         this.setCustomerScoreVideo04(10)
-         this.$router.push({name: 'menu'});
+        swal('Evita utilizar información personal, como nombres, fecha de cumpleaños, nombre de mascota en tus contraseñas, ya que es algo que la mayoria conoce y podrían adivinar tu contraseña.')
+         this.setCustomerHasPlayesVideo04(true)
+         this.$router.push({name: 'videoGame'});
       } else {
         this.currentQuestion++;
       }

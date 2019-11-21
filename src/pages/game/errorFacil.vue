@@ -3,7 +3,7 @@
   <div class="container-fluid px-lg-5">
       <div class="row">
         <header>
-                  <h1>{{title}}</h1>
+                  <h1 class="title">{{title}}</h1>
                 <div class="progressContainer">
                   <progress class="progress is-info is-small" :value="(questionIndex/quiz.questions.length)*100" max="100">{{(questionIndex/quiz.questions.length)*100}}%</progress>
                   <p>{{(questionIndex/quiz.questions.length)*100}}% completado</p>
@@ -148,25 +148,26 @@ export default {
             ) {
                score = score + 10;
             }
-            // this.scoreError =  score;
          } 
-        //  this.scoreError = score
 
         this.setCustomerScoreE(score) 
         this.setHasPlayedError(true)
          return score;
-        //  console.log(score)
-        // this.setCustomerScoreError(score)
-         //return this.userResponses.filter(function(val) { return val }).length;
       }
     }
 }
 </script>
 
 <style scoped>
+   @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900|Dosis:300,400,600,700,800|Droid+Sans:400,700|Lato:300,400,700,900|PT+Sans:400,700|Ubuntu:300,400,500,700|Open+Sans:400,300,600,700|Roboto:400,300,500,700,900|Roboto+Condensed:400,300,700|Open+Sans+Condensed:300,700|Work+Sans:400,300,700|Play:400,700|Maven+Pro:400,500,700,900&subset=latin,latin-ext);
+
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 img{
    margin:10px;
    cursor: pointer;
+}
+.title{
+  font-family: 'Press Start 2P', 'Helvetica', 'Arial', sans-serif;
 }
 
 img:hover {

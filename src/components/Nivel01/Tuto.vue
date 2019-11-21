@@ -12,9 +12,9 @@
       </li>
     </ul> -->
     <div class="row ">
-      <div class="col-md-6 offset-md-3">
+      <div class="col-md-12 offset-md-3">
         
-        <h1>Tutorial</h1>
+        <h3>CONSTRUYE UNA CONTRASEÑA SEGURA</h3>
         <!--<img src="../../assets/nivel01/reto01/titulo.png" alt="Smiley face" class="img-fluid">-->
       </div>
 

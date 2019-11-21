@@ -27,11 +27,14 @@ export default {
        answer:''
      }
   },
-	props:['question','question-number'],
+  props:['question','question-number','recommendation'],
+  created(){
+  },
 	methods:{
 		submitAnswer:function() {
-			this.$emit('answer', {answer:this.answer});
+			this.$emit('answer', {answer:this.answer , recommendation: this.recommendation});
       this.answer = null;
+      this.recomendation = null;
 		}
 	}
 

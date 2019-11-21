@@ -15,6 +15,7 @@
 <script>
 import question from "../../components/Nivel01/question";
 import { mapActions, mapGetters, mapState } from 'vuex'
+import swal from 'sweetalert';
 export default {
     data(){
         return{
@@ -40,13 +41,17 @@ export default {
       }
         },
     created() {
+              if(this.$store.getters.hasPlayedVideo6){
+      this.$router.push({name:'menu'})
+    }
         // this.title = title;
       this.questions = this.preguntas.questions;
       this.introStage = true;
     },
     methods:{
-                    ...mapActions([
-       'setCustomerScoreVideo06'
+    ...mapActions([
+       'setCustomerScoreVideo06',
+       'setCustomerHasPlayesVideo05'
     ]),
           handleAnswer(e) {
            this.answers[this.currentQuestion]=e.answer;
@@ -55,8 +60,10 @@ export default {
         this.questionStage = false;
         this.resultsStage = true;
             const score= 10
-        this.setCustomerScoreVideo05(10)
-         this.$router.push({name: 'menu'});
+        this.setCustomerScoreVideo06(10)
+        swal('Proteger tu dispositivo te evitará muchos problemas !BlOQUEA TU SMARTPHONE!')
+          this.setCustomerHasPlayesVideo06(true)
+         this.$router.push({name: 'videoGame'});
       } else {
         this.currentQuestion++;
       }

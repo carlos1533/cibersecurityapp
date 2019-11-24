@@ -1,88 +1,77 @@
 <template>
   <div class="container-fluid">
-    <!-- <ul class="nav">
-      <li v-if="!loggedIn">
-        <router-link :to="{ name: 'login' }">Login</router-link>
-      </li>
-      <li v-if="!loggedIn">
-        <router-link :to="{ name: 'register' }">Registro</router-link>
-      </li>
-      <li v-if="loggedIn">
-        <router-link :to="{ name: 'logout' }">Salir</router-link>
-      </li>
-    </ul> -->
-    <div class="row ">
-      <div class="col-md-12 offset-md-3">
-        
-        <h3>CONSTRUYE UNA CONTRASEÑA SEGURA</h3>
-        <!--<img src="../../assets/nivel01/reto01/titulo.png" alt="Smiley face" class="img-fluid">-->
-      </div>
-
-      <div class="col-md-10 offset-md-2 ">
+    <div class="row">
+      <div class="col-md-10 offset-md-2">
         <div class="row">
-          <form  class="formulario" action="#" @submit.prevent="validar">
-            <div class="input-group ">
-              <img src="../../assets/nivel01/reto01/Ingrese contraseña.png" class="img-fluid">
+           <div class="col-md-2">
+           <router-link :to="{ name: 'menu' }">
+          <button type="button " class="btn btn-secondary light menu-button">Volver</button>
+        </router-link>
+        </div>
+        <div class="col-md-10">
+           <h4 class="title">CONSTRUYE UNA CONTRASEÑA SEGURA</h4>
+        </div>
+        </div>
+      </div>
+      <div class="col-md-10 offset-md-2">
+        <div class="row">
+          <form class="formulario" action="#" @submit.prevent="validar">
+            <div class="input-group">
+              <img src="../../assets/nivel01/reto01/Ingrese contraseña.png" class="img-fluid" />
               <input
                 type="text"
                 name="password"
                 id="password"
                 class="form-control form-control-lg rounded border border-primary input"
                 v-model="password"
-              >
+              />
             </div>
             <div v-if="messageServer" class="server-error">{{ messageServer }}</div>
             <div class="col-sm-12 siguiente">
               <button class="boton-login rounded" type="submit" :disabled="loading">
-                <img src="../../assets/nivel01/reto01/Siguiente.png" class="img-fluid">
+                <img src="../../assets/nivel01/reto01/Siguiente.png" class="img-fluid" />
               </button>
             </div>
           </form>
-        <div class="container ">
-             	<div class="ear ear-left"></div>
-			        <div class="ear ear-right"></div>
-              <div class="pika-body">
-    <div class="pika-head">
-      <div class="eye-left"></div>
-      <div class="eye-right"></div>
-      <div class="cheek-right"></div>
-      <div class="nose"></div>
-      <div class="mouth"></div>
-    </div>
-    
-    <div class="mid">
-      <div class="left-paw"></div>
-      <div class="right-paw"></div>
-      <div class="stripe1"></div>
-      <div class="stripe2"></div>
-    </div>
-    
-    <div class="left-foot"></div>
-    <div class="right-foot"></div>
-  </div>
-  <div class="tail">
-    <div class="part1"></div>
-    <div class="part2"></div>
-    <div class="part3"></div>
-    <div class="part4"></div>
-    <div class="part5"></div>
-  </div>
-        </div>
-         <template v-if="valid">
-           <router-link :to="{ name: 'home0' }">
-            <button            
-              class="boton-login rounded"
-              :disabled="loading"          
-            >
-             continuar
-            </button>
-          </router-link>
+          <div class="container">
+            <div class="ear ear-left"></div>
+            <div class="ear ear-right"></div>
+            <div class="pika-body">
+              <div class="pika-head">
+                <div class="eye-left"></div>
+                <div class="eye-right"></div>
+                <div class="cheek-right"></div>
+                <div class="nose"></div>
+                <div class="mouth"></div>
+              </div>
+
+              <div class="mid">
+                <div class="left-paw"></div>
+                <div class="right-paw"></div>
+                <div class="stripe1"></div>
+                <div class="stripe2"></div>
+              </div>
+
+              <div class="left-foot"></div>
+              <div class="right-foot"></div>
+            </div>
+            <div class="tail">
+              <div class="part1"></div>
+              <div class="part2"></div>
+              <div class="part3"></div>
+              <div class="part4"></div>
+              <div class="part5"></div>
+            </div>
+          </div>
+          <template v-if="valid">
+            <router-link :to="{ name: 'home0' }">
+              <button class="boton-login rounded" :disabled="loading">continuar</button>
+            </router-link>
           </template>
+        </div>
       </div>
-       
     </div>
   </div>
-   </div>
 </template>
 <script>
 export default {
@@ -92,9 +81,9 @@ export default {
       return this.$store.getters.loggedIn;
     }
   },
-  created(){
-    if(this.$store.getters.hasPlayedPokemom){
-      this.$router.push({name:'menu'})
+  created() {
+    if (this.$store.getters.hasPlayedPokemom) {
+      this.$router.push({ name: "menu" });
     }
   },
   props: {
@@ -104,7 +93,7 @@ export default {
   },
   data() {
     return {
-      valid:false,
+      valid: false,
       password: "",
       serverError: "",
       messageServer: "",
@@ -119,19 +108,15 @@ export default {
           password: this.password
         })
         .then(response => {
-          //console.log(this.$store);
           this.loading = false;
           this.messageServer = response.data;
-          if(this.messageServer=='Muy bien, tu contraseña es segura.'){
-            this.valid=true
+          if (this.messageServer == "Muy bien, tu contraseña es segura.") {
+            this.valid = true;
           }
-          // this.$router.push({ name: "reto1" });
         })
 
         .catch(error => {
-          console.log(error);
           this.loading = false;
-          //this.serverError = error.response.data.message;
           this.password = "";
           this.successMessage = "";
         });
@@ -140,11 +125,9 @@ export default {
 };
 </script>
 <style scoped>
-
-.formulario{
+.formulario {
   height: 100%;
 }
-
 
 .siguiente {
   align-self: flex-end;
@@ -152,7 +135,6 @@ export default {
 .login-form {
   width: 500px;
   height: 12000px;
-  
 }
 .input {
   margin: 0.8em;
@@ -221,15 +203,16 @@ export default {
   margin-bottom: 5px;
 }
 
-
-
-
-
 .container {
   width: 300px;
   height: 400px;
   position: relative;
-  background-image: linear-gradient(to bottom, #f40711 20%, #333333 60%, #fcfff4 30%);
+  background-image: linear-gradient(
+    to bottom,
+    #f40711 20%,
+    #333333 60%,
+    #fcfff4 30%
+  );
   border-radius: 50%;
 }
 .container .ear {
@@ -782,5 +765,14 @@ export default {
     transform: rotateZ(0deg);
   }
 }
+@import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
+.title {
+  font-family: "Press Start 2P", "Helvetica", "Arial", sans-serif;
+}
 
+.menu-button {
+  width: 100%;
+  border-radius: 10px;
+  font:500;
+}
 </style>

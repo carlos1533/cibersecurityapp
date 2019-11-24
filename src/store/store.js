@@ -71,10 +71,10 @@ export default new Vuex.Store({
     },
     customerTotalScore(state) {
       // return state.customer.scoreError
-      return state.customer.scoreMemory + state.customer.scorePokemon + state.customer.scoreError +
+      return  (state.customer.scoreMemory + state.customer.scorePokemon + state.customer.scoreError +
       state.customer.scorevideo01 + state.customer.scorevideo02 + state.customer.scorevideo03
       + state.customer.scorevideo04 + state.customer.scorevideo05 + state.customer.scorevideo06
-      + state.customer.scorePokemon1;
+      + state.customer.scorePokemon1);
     }
   },
   mutations: {
@@ -97,6 +97,7 @@ export default new Vuex.Store({
           scorevideo05:0,
           scorevideo06:0,
           scorePokemon: 0,
+          scorePokemon1:0,
           scoreError:0,
           totalScore: 0,
           memorygame:false,

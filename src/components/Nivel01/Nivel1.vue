@@ -1,62 +1,49 @@
 <template>
   <div class="container-fluid">
-    <!-- <ul class="nav">
-      <li v-if="!loggedIn">
-        <router-link :to="{ name: 'login' }">Login</router-link>
-      </li>
-      <li v-if="!loggedIn">
-        <router-link :to="{ name: 'register' }">Registro</router-link>
-      </li>
-      <li v-if="loggedIn">
-        <router-link :to="{ name: 'logout' }">Salir</router-link>
-      </li>
-    </ul> -->
     <div class="row">
-      <div class="col-md-6 offset-md-3">
+      <!-- <div class="col-md-6 offset-md-3">
         <img
           src="../../assets/nivel01/Nivel1 Contraseñas seguras.png"
           alt="Smiley face"
           class="img-fluid"
-        >
-        
-      </div>
-      <div class="col-md-10 offset-1">
-        <img src="../../assets/nivel01/nivel01-texto.png" alt="Smiley face" class="img-fluid">
-       
-      </div>
+        />
+      </div> -->
+      <!-- <div class="col-md-10 offset-1">
+        <img src="../../assets/nivel01/nivel01-texto.png" alt="Smiley face" class="img-fluid" />
+      </div> -->
       <div class="col-md-10 offset-1">
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-6">
             <img
               src="../../assets/nivel01/Seleccione Pokemon.png"
               alt="Smiley face"
               class="img-fluid"
-            >
-
+            />
           </div>
-        
+
           <select
-           @change="onHandleSelectedPokemon()"
-           v-model="imageSelected"  ref="imageSelected" prop="imageSelected" name="imageSelected">
+            @change="onHandleSelectedPokemon()"
+            v-model="imageSelected"
+            ref="imageSelected"
+            prop="imageSelected"
+            name="imageSelected"
+          >
             <option
               v-for="( element, index ) in elements"
               :value="element.src"
               :key="index"
-            >{{element.alt}}
-            </option>
+            >{{element.alt}}</option>
           </select>
-          <hr>Pokemón elegido:
-         
+          <hr />
+Pokemón elegido:
           <template v-if="imageSelected!=='' ">
-            <img :src="imageSelected">
+            <img :src="imageSelected" />
           </template>
         </div>
         <div class="col-sm-12">
-      <router-link :to="{ name: 'fight'}">
-            <button
-              class="boton-login rounded"
-              :disabled="loading">
-              <img src="../../assets/nivel01/Empezar.png" class="img-fluid">
+          <router-link :to="{ name: 'fight'}">
+            <button class="boton-login rounded" :disabled="loading">
+              <img src="../../assets/nivel01/Empezar.png" class="img-fluid" />
             </button>
           </router-link>
         </div>
@@ -65,8 +52,7 @@
   </div>
 </template>
 <script>
-
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState } from "vuex";
 export default {
   name: "Nivel1",
   computed: {
@@ -74,16 +60,15 @@ export default {
       return this.$store.getters.loggedIn;
     },
     ...mapState({
-      pokemonSelected:state=>state.pokemonSelected,
-      namePokemonSelected:state=>state.namePokemonSelected
+      pokemonSelected: state => state.pokemonSelected,
+      namePokemonSelected: state => state.namePokemonSelected
     })
-  }
-  ,
+  },
   props: {
     dataSuccessMessage: {
       type: String
-    } 
-    },
+    }
+  },
   data() {
     return {
       imageSelected: "",
@@ -95,17 +80,20 @@ export default {
       elements: [
         {
           id: "1",
-          src: "https://drive.google.com/uc?id=1JT2xCSd5RRiScGUnlIuNUvN5gxX9zJSp",
+          src:
+            "https://drive.google.com/uc?id=1JT2xCSd5RRiScGUnlIuNUvN5gxX9zJSp",
           alt: "Charizard"
         },
         {
           id: "2",
-          src: "https://drive.google.com/uc?id=1CU1t2sTE8wodJoqAUH2AZbryEv1KC1Fm",
+          src:
+            "https://drive.google.com/uc?id=1CU1t2sTE8wodJoqAUH2AZbryEv1KC1Fm",
           alt: "Blastoise"
         },
         {
           id: "3",
-          src: "https://drive.google.com/uc?id=1-zseG8uhlsuaQh7orGIuT5Y1MhkV4EVR",
+          src:
+            "https://drive.google.com/uc?id=1-zseG8uhlsuaQh7orGIuT5Y1MhkV4EVR",
           alt: "Venasaur"
         }
       ]
@@ -114,15 +102,12 @@ export default {
   created() {
     // const id = localStorage.getItem("auth")
   },
-  
+
   methods: {
+    ...mapActions(["setPokemonSelected"]),
 
-    ...mapActions([
-          'setPokemonSelected'
-    ]),
-
-    onHandleSelectedPokemon (){
-      this.setPokemonSelected(this.imageSelected)
+    onHandleSelectedPokemon() {
+      this.setPokemonSelected(this.imageSelected);
       // const id = localStorage.getItem("auth");
     },
     onSelectImage: function(data) {
@@ -206,10 +191,9 @@ export default {
   margin-top: 10px;
   margin-bottom: 5px;
 }
-img{
-    max-height: 100px;
-    margin-bottom: 13px;
-    transition: transform 0.3s ease, margin 0.3s ease;
-  
+img {
+  max-height: 100px;
+  margin-bottom: 13px;
+  transition: transform 0.3s ease, margin 0.3s ease;
 }
 </style>

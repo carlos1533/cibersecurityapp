@@ -1,92 +1,88 @@
 <template>
-
   <div>
-      <question
+    <question
       :question="questions[currentQuestion]"
       v-on:answer="handleAnswer"
       :question-number="currentQuestion+1"
     ></question>
-    <div v-if="resultsStage">
-    You got {{correct}} right out of {{questions.length}} questions. Your percentage is {{perc}}%.
   </div>
-    </div>
 </template>
 
 <script>
 import question from "../../components/Nivel01/question";
-import { mapActions, mapGetters, mapState } from 'vuex'
-import swal from 'sweetalert';
+import { mapActions, mapGetters, mapState } from "vuex";
+import swal from "sweetalert";
 export default {
-    data(){
-        return{
-        preguntas: {
+  data() {
+    return {
+      preguntas: {
         questions: [
-           {
+          {
             text: "¿Que le decimos a Paco?",
             type: "mc",
-            answers: ["ok, así ademas no me molesta","Vale, pero le pido que tenga cuidado con lo que hace en mi cuenta.","amigo, las contraseñas no se comparten. En cuento llegue a casa te lo envio"]
-            ,answer: "amigo, las contraseñas no se comparten. En cuento llegue a casa te lo envio"
+            answers: [
+              "ok, así ademas no me molesta",
+              "Vale, pero le pido que tenga cuidado con lo que hace en mi cuenta.",
+              "amigo, las contraseñas no se comparten. En cuento llegue a casa te lo envio"
+            ],
+            answer:
+              "amigo, las contraseñas no se comparten. En cuento llegue a casa te lo envio"
           }
-        ],
-        },
-         title:'',
-      questions:[],
-      currentQuestion:0,
-      answers:[],
-      correct:0,
-      perc:null,
-      introStage:false,
-      questionStage:false,
-      resultsStage:false
-      }
-        },
-    created() {
-        // this.title = title;
-          if(this.$store.getters.hasPlayedVideo4){
-      this.$router.push({name:'menu'})
+        ]
+      },
+      title: "",
+      questions: [],
+      currentQuestion: 0,
+      answers: [],
+      correct: 0,
+      perc: null,
+      introStage: false,
+      questionStage: false,
+      resultsStage: false
+    };
+  },
+  created() {
+    if (this.$store.getters.hasPlayedVideo4) {
+      this.$router.push({ name: "menu" });
     }
-      this.questions = this.preguntas.questions;
-      this.introStage = true;
-    },
-    methods:{
-              ...mapActions([
-       'setCustomerScoreVideo04',
-       'setCustomerHasPlayesVideo04'
-    ]),
-          handleAnswer(e) {
-           this.answers[this.currentQuestion]=e.answer;
-           if((this.currentQuestion+1) === this.questions.length) {
+    this.questions = this.preguntas.questions;
+    this.introStage = true;
+  },
+  methods: {
+    ...mapActions(["setCustomerScoreVideo04", "setCustomerHasPlayesVideo04"]),
+    handleAnswer(e) {
+      this.answers[this.currentQuestion] = e.answer;
+      if (this.currentQuestion + 1 === this.questions.length) {
         this.handleResults();
         this.questionStage = false;
         this.resultsStage = true;
-          const score= 10
-        this.setCustomerScoreVideo04(10)
-        swal('Evita utilizar información personal, como nombres, fecha de cumpleaños, nombre de mascota en tus contraseñas, ya que es algo que la mayoria conoce y podrían adivinar tu contraseña.')
-         this.setCustomerHasPlayesVideo04(true)
-         this.$router.push({name: 'videoGame'});
+        const score = 10;
+        this.setCustomerScoreVideo04(10);
+        swal(
+          "UNA CONTRASEÑA ROBUSTA Y DIFERENTE PARA CADA SERVICIO ES CUANTO DEBES RECORDAR PARA UN USO CORRECTO Y POR SUPUESTO NO LA COMPARTAS CON NADIE"
+        );
+        this.setCustomerHasPlayesVideo04(true);
+        this.$router.push({ name: "videoGame" });
       } else {
         this.currentQuestion++;
       }
-          },
-            handleResults() {
-            this.questions.forEach((a, index) => {
-        if (this.answers[index] === a.answer){
+    },
+    handleResults() {
+      this.questions.forEach((a, index) => {
+        if (this.answers[index] === a.answer) {
           this.correct++;
-        }else{
-            this.perc = ((this.correct / this.questions.length)*100).toFixed(2);
-      console.log(this.correct+' '+this.perc);
-        }  
+        } else {
+          this.perc = ((this.correct / this.questions.length) * 100).toFixed(2);
+        }
       });
       this.perc = ((this.correct / this.questions.length) * 100).toFixed(2);
-      console.log(this.correct + " " + this.perc);
     }
-    },
-     components: {
+  },
+  components: {
     question
   }
-}
+};
 </script>
 
 <style>
-
 </style>

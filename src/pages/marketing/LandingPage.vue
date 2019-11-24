@@ -1,28 +1,14 @@
 <template>
-  <div class="container-fluid">
-    <!-- <ul class="nav">
-      <li v-if="!loggedIn">
-        <router-link :to="{ name: 'login' }">Login</router-link>
-      </li>
-      <li v-if="!loggedIn">
-        <router-link :to="{ name: 'register' }">Registro</router-link>
-      </li>
-      <li v-if="loggedIn">
-        <router-link :to="{ name: 'logout' }">Salir</router-link>
-      </li>
-    </ul> -->
+  <div class="container">
     <div class="row">
-      <div class="col-md-8 offset-md-2 ">
-           <h1>Securitygame</h1>
+      <div class="col-md-6 offset-md-3 ">
+           <h1 class="title">Securitygame</h1>
               <div class="play-figure" v-if="!played" @click="played = true">
                 <img src="./../../assets/icons/elipses.svg" alt="elipse">
                 <img class="playing" src="./../../assets/icons/rectangle-playing.svg" alt="playing">
               </div>
             <iframe v-else width="560" height="315" :src="src" frameborder="0" allow="autoplay;" allowfullscreen></iframe>
             <br>
-        <!-- <div class="col-md-12">
-          <img src="../../assets/tuto.jpeg" class="img-fluid">
-        </div> -->
       </div>
       <div  v-if="played" class="col-md-4 m-auto">
           <router-link :to="{ name: 'menu' }">
@@ -50,6 +36,7 @@ export default {
 };
 </script>
 <style scoped>
+@import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
 .play-figure {
   position: relative;
   cursor: pointer;
@@ -60,5 +47,8 @@ export default {
   position: absolute;
   top: 117px;
   left: 117px;
+}
+.title {
+  font-family: "Press Start 2P", "Helvetica", "Arial", sans-serif;
 }
 </style>

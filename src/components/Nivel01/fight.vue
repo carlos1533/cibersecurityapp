@@ -1,16 +1,5 @@
 <template>
   <div>
-    <!-- <ul class="nav">
-      <li v-if="!loggedIn">
-        <router-link :to="{ name: 'login' }">Login</router-link>
-      </li>
-      <li v-if="!loggedIn">
-        <router-link :to="{ name: 'register' }">Registro</router-link>
-      </li>
-      <li v-if="loggedIn">
-        <router-link :to="{ name: 'logout' }">Salir</router-link>
-      </li>
-    </ul> -->
     <h1 class="title">Batalla Pokemon Inicial</h1>
     <div class="battle-scene">
       <div class="box-top-left">
@@ -19,22 +8,29 @@
           <div v-bind:style="opponentHpBar" class="hp-bar-fill"></div>
         </div>
         <h4 class="level">Level {{opponentLevel}}</h4>
-          <h4 class="hp">{{opponentHP}}/{{startUserHP}}</h4>
+        <h4 class="hp">{{opponentHP}}/{{startUserHP}}</h4>
       </div>
       <div class="box-top-right">
-        <img v-if="opponentAlive" v-bind:src="opponentPokemonSrc" class="pokemon-top">
+        <img v-if="opponentAlive" v-bind:src="opponentPokemonSrc" class="pokemon-top" />
       </div>
-    
+
       <div class="box-bottom-left">
-       
-        <img v-if="userAlive" v-bind:src="this.pokemon" class="pokemon-bottom">
-    
+        <img v-if="userAlive" v-bind:src="this.pokemon" class="pokemon-bottom" />
       </div>
-         
+
       <div class="box-bottom-right">
-      <h2 v-if="this.pokemon=='https://drive.google.com/uc?id=1He2-AuSj_C4n1WkzkQSw0WFS7FkViwSL'" class="pokemon">{{pokemonNames}}</h2>
-       <h2 v-if="this.pokemon=='https://drive.google.com/uc?id=1_fvt0YLkCW5iGY94Vivcoyo86IurqiXb'" class="pokemon">{{pokemonNames}}</h2>
-       <h2 v-if="this.pokemon=='https://drive.google.com/uc?id=1U_frs8J4TQ9nzSR-msnrqj5mMrffn2lv'" class="pokemon">{{pokemonNames}}</h2>  
+        <h2
+          v-if="this.pokemon=='https://drive.google.com/uc?id=1He2-AuSj_C4n1WkzkQSw0WFS7FkViwSL'"
+          class="pokemon"
+        >{{pokemonNames}}</h2>
+        <h2
+          v-if="this.pokemon=='https://drive.google.com/uc?id=1_fvt0YLkCW5iGY94Vivcoyo86IurqiXb'"
+          class="pokemon"
+        >{{pokemonNames}}</h2>
+        <h2
+          v-if="this.pokemon=='https://drive.google.com/uc?id=1U_frs8J4TQ9nzSR-msnrqj5mMrffn2lv'"
+          class="pokemon"
+        >{{pokemonNames}}</h2>
         <div class="hp-bar-bottom">
           <div v-bind:style="userHpBar" class="hp-bar-fill"></div>
         </div>
@@ -67,13 +63,13 @@
         </div>
       </div>
     </div>
-    <div class="col-md-8 offset-md-2 " >
+    <div class="col-md-8 offset-md-2">
       <question
-      v-if="fightOn"
-      :question="questions[currentQuestion]"
-      v-on:answer="handleAnswer"
-      :question-number="currentQuestion+1"
-    ></question>
+        v-if="fightOn"
+        :question="questions[currentQuestion]"
+        v-on:answer="handleAnswer"
+        :question-number="currentQuestion+1"
+      ></question>
     </div>
     <!-- end battle scene -->
   </div>
@@ -81,78 +77,98 @@
 
 <script>
 import question from "./question";
-import { mapActions, mapState } from 'vuex'
-import swal from 'sweetalert';
+import { mapActions, mapState } from "vuex";
+import Swal from "sweetalert2";
+import swal from "sweetalert";
 export default {
- 
   components: {
     question
   },
-  computed:{
-     loggedIn() {
+  computed: {
+    loggedIn() {
       return this.$store.getters.loggedIn;
     },
-     ...mapState({
-      pokemonSelected:state=>state.pokemonSelected
+    ...mapState({
+      pokemonSelected: state => state.pokemonSelected
     })
   },
-  props: {}
-  ,
-  
-  mounted(){
-    if(this.pokemonSelected=='https://drive.google.com/uc?id=1JT2xCSd5RRiScGUnlIuNUvN5gxX9zJSp'){
-         this.pokemon='https://drive.google.com/uc?id=1He2-AuSj_C4n1WkzkQSw0WFS7FkViwSL'
-      }else if(this.pokemonSelected=='https://drive.google.com/uc?id=1CU1t2sTE8wodJoqAUH2AZbryEv1KC1Fm'){
-           this.pokemon='https://drive.google.com/uc?id=1_fvt0YLkCW5iGY94Vivcoyo86IurqiXb'
-      } else if (this.pokemonSelected=='https://drive.google.com/uc?id=1-zseG8uhlsuaQh7orGIuT5Y1MhkV4EVR'){
-        this.pokemon='https://drive.google.com/uc?id=1U_frs8J4TQ9nzSR-msnrqj5mMrffn2lv'
-      }
-
+  props: {},
+  mounted() {
+    if (
+      this.pokemonSelected ==
+      "https://drive.google.com/uc?id=1JT2xCSd5RRiScGUnlIuNUvN5gxX9zJSp"
+    ) {
+      this.pokemon =
+        "https://drive.google.com/uc?id=1He2-AuSj_C4n1WkzkQSw0WFS7FkViwSL";
+    } else if (
+      this.pokemonSelected ==
+      "https://drive.google.com/uc?id=1CU1t2sTE8wodJoqAUH2AZbryEv1KC1Fm"
+    ) {
+      this.pokemon =
+        "https://drive.google.com/uc?id=1_fvt0YLkCW5iGY94Vivcoyo86IurqiXb";
+    } else if (
+      this.pokemonSelected ==
+      "https://drive.google.com/uc?id=1-zseG8uhlsuaQh7orGIuT5Y1MhkV4EVR"
+    ) {
+      this.pokemon =
+        "https://drive.google.com/uc?id=1U_frs8J4TQ9nzSR-msnrqj5mMrffn2lv";
+    }
   },
 
   data() {
     return {
-      pokemon:"",
+      pokemon: "",
       preguntas: {
         questions: [
           {
-            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
+            text:
+              "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",
-            answers: ["peru", "perucampeon", "brasil"]
-            ,answer: "perucampeon"
+            answers: ["peru", "perucampeon", "brasil"],
+            answer: "perucampeon"
           },
           {
-            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
+            text:
+              "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",
-            answers: ["PokemOn", "pokemon","pikachu"],
+            answers: ["PokemOn", "pokemon", "pikachu"],
             answer: "PokemOn"
           },
           {
-            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
+            text:
+              "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",
             answers: ["pOkemOn154", "pokemon154", "p0ke154"],
             answer: "pOkemOn154"
           },
-           {
-            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
+          {
+            text:
+              "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",
-            answers: ["m4st3r#$","master#","M4st3r#$"]
-            ,answer: "M4st3r#$"
+            answers: ["m4st3r#$", "master#", "M4st3r#$"],
+            answer: "M4st3r#$"
           },
           {
-            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
+            text:
+              "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",
-            answers: ["1ng3N13r1a$istemaS", "1ng3n13r1a$istemas", "ingenieria$istemas"],
+            answers: [
+              "1ng3N13r1a$istemaS",
+              "1ng3n13r1a$istemas",
+              "ingenieria$istemas"
+            ],
             answer: "1ng3N13r1a$istemaS"
           },
           {
-            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
+            text:
+              "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",
-            answers: ["15p0k3m0n36","15pokemon36","15P0k3M0n36"],
+            answers: ["15p0k3m0n36", "15pokemon36", "15P0k3M0n36"],
             answer: "15P0k3M0n36"
           },
           {
-            text: "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
+            text:
+              "¿Cuál es la contraseña que tiene caracteristicas más seguras?",
             type: "mc",
             answers: ["charizard25$", "Chariz4rd25$", "Char25$"],
             answer: "Chariz4rd25$"
@@ -176,11 +192,26 @@ export default {
       opponentLevel: 1,
       battleText: "Que hara el pokemon ahora?",
       battleOptions: ["Pelear", "", "", "Escapar"],
-      userAttackDamage: [10, 20, 10, 10,20,10,10,20,10],
-      opponentAttacks: ["Paranormal", "Cola Dragon", "Paranormal","Premonicion","Hidrobomba"],
-      opponentAttackDamage: [15, 15, 15,15,15],
-      fightOptions: ["Arañazo", "Lanzallamas", "Gruñido","Látigo","Hidrobomba",
-      "Cabezazo","Gruñido Growl","Bomba Germen","Polvo Veneno Poison Powder"],
+      userAttackDamage: [10, 20, 10, 10, 20, 10, 10, 20, 10],
+      opponentAttacks: [
+        "Paranormal",
+        "Cola Dragon",
+        "Paranormal",
+        "Premonicion",
+        "Hidrobomba"
+      ],
+      opponentAttackDamage: [15, 15, 15, 15, 15],
+      fightOptions: [
+        "Arañazo",
+        "Lanzallamas",
+        "Gruñido",
+        "Látigo",
+        "Hidrobomba",
+        "Cabezazo",
+        "Gruñido Growl",
+        "Bomba Germen",
+        "Polvo Veneno Poison Powder"
+      ],
       endOptions: ["Yes", "No"],
       fightOn: false,
       optionsOn: true,
@@ -201,22 +232,31 @@ export default {
       opponentHpBar: {
         width: "100%"
       },
-      pokemonNames:""
+      pokemonNames: ""
     };
   },
   created() {
-    if(this.$store.getters.hasPlayedPokemom){
-      this.$router.push({name:'menu'})
+    if (this.$store.getters.hasPlayedPokemom) {
+      this.$router.push({ name: "menu" });
     }
     this.questions = this.preguntas.questions;
     this.introStage = true;
-     if(this.pokemonSelected=='https://drive.google.com/uc?id=1JT2xCSd5RRiScGUnlIuNUvN5gxX9zJSp'){
-          this.pokemonNames="Charizard"
-      }else if(this.pokemonSelected=='https://drive.google.com/uc?id=1CU1t2sTE8wodJoqAUH2AZbryEv1KC1Fm'){
-           this.pokemonNames="Blastoise"
-      } else if (this.pokemonSelected=='https://drive.google.com/uc?id=1-zseG8uhlsuaQh7orGIuT5Y1MhkV4EVR'){
-        this.pokemonNames="Venasaur"
-      }
+    if (
+      this.pokemonSelected ==
+      "https://drive.google.com/uc?id=1JT2xCSd5RRiScGUnlIuNUvN5gxX9zJSp"
+    ) {
+      this.pokemonNames = "Charizard";
+    } else if (
+      this.pokemonSelected ==
+      "https://drive.google.com/uc?id=1CU1t2sTE8wodJoqAUH2AZbryEv1KC1Fm"
+    ) {
+      this.pokemonNames = "Blastoise";
+    } else if (
+      this.pokemonSelected ==
+      "https://drive.google.com/uc?id=1-zseG8uhlsuaQh7orGIuT5Y1MhkV4EVR"
+    ) {
+      this.pokemonNames = "Venasaur";
+    }
 
     /* fetch('https://api.myjson.com/bins/ahn1p')
     .then(res => res.json())
@@ -226,11 +266,9 @@ export default {
       this.introStage = true;
     })*/
   },
-  
+
   methods: {
-     ...mapActions([
-       'setCustomerScorePokemon1'
-     ]),
+    ...mapActions(["setCustomerScorePokemon1"]),
     processOption: function(option) {
       switch (option) {
         case 1:
@@ -252,20 +290,16 @@ export default {
         case 1:
           //handle scratch
 
-              this.opponentHP -= this.userAttackDamage[attack - 1];
-              this.opponentFill -= this.userAttackDamage[attack - 1];
-              if (this.opponentFill <= 0) {
+          this.opponentHP -= this.userAttackDamage[attack - 1];
+          this.opponentFill -= this.userAttackDamage[attack - 1];
+          if (this.opponentFill <= 0) {
             this.opponentHpBar.width = "0%";
           } else {
             this.opponentHpBar.width = this.opponentFill + "%";
           }
-      
-          
-           
-        
+
           //edit if HP !== 0
-         
-          
+
           if (this.checkOpponentHp()) {
             this.battleText = this.opponentPokemon + " fainted! Play again?";
             this.processFaint(1);
@@ -288,11 +322,11 @@ export default {
           break;
         case 2:
           //handle fly
-              this.opponentHP -= this.userAttackDamage[attack - 1];
-              this.opponentFill -= this.userAttackDamage[attack - 1];
-        
+          this.opponentHP -= this.userAttackDamage[attack - 1];
+          this.opponentFill -= this.userAttackDamage[attack - 1];
+
           //edit if HP !== 0
-      
+
           if (this.opponentFill <= 0) {
             this.opponentHpBar.width = "0%";
           } else {
@@ -377,23 +411,20 @@ export default {
             }, 1000);
           }
           break;
-          case 5:
+        case 5:
           //handle scratch
-              this.opponentHP -= this.userAttackDamage[attack - 1];
-              this.opponentFill -= this.userAttackDamage[attack - 1];
-              if (this.opponentFill <= 0) {
+          this.opponentHP -= this.userAttackDamage[attack - 1];
+          this.opponentFill -= this.userAttackDamage[attack - 1];
+          if (this.opponentFill <= 0) {
             this.opponentHpBar.width = "0%";
           } else {
             this.opponentHpBar.width = this.opponentFill + "%";
           }
-              console.log(this.opponentHP)
-               console.log(this.opponentFill)
-          
-           
-        
+          console.log(this.opponentHP);
+          console.log(this.opponentFill);
+
           //edit if HP !== 0
-         
-          
+
           if (this.checkOpponentHp()) {
             this.battleText = this.opponentPokemon + " fainted! Play again?";
             this.processFaint(1);
@@ -414,20 +445,18 @@ export default {
             }, 1000);
           }
           break;
-             case 6:
+        case 6:
           //handle scratch
-              this.opponentHP -= this.userAttackDamage[attack - 1];
-              this.opponentFill -= this.userAttackDamage[attack - 1];
-              if (this.opponentFill <= 0) {
+          this.opponentHP -= this.userAttackDamage[attack - 1];
+          this.opponentFill -= this.userAttackDamage[attack - 1];
+          if (this.opponentFill <= 0) {
             this.opponentHpBar.width = "0%";
           } else {
             this.opponentHpBar.width = this.opponentFill + "%";
           }
-           
-        
+
           //edit if HP !== 0
-         
-          
+
           if (this.checkOpponentHp()) {
             this.battleText = this.opponentPokemon + " fainted! Play again?";
             this.processFaint(1);
@@ -448,23 +477,20 @@ export default {
             }, 1000);
           }
           break;
-             case 7:
+        case 7:
           //handle scratch
-              this.opponentHP -= this.userAttackDamage[attack - 1];
-              this.opponentFill -= this.userAttackDamage[attack - 1];
-              if (this.opponentFill <= 0) {
+          this.opponentHP -= this.userAttackDamage[attack - 1];
+          this.opponentFill -= this.userAttackDamage[attack - 1];
+          if (this.opponentFill <= 0) {
             this.opponentHpBar.width = "0%";
           } else {
             this.opponentHpBar.width = this.opponentFill + "%";
           }
-              console.log(this.opponentHP)
-               console.log(this.opponentFill)
-          
-           
-        
+          console.log(this.opponentHP);
+          console.log(this.opponentFill);
+
           //edit if HP !== 0
-         
-          
+
           if (this.checkOpponentHp()) {
             this.battleText = this.opponentPokemon + " fainted! Play again?";
             this.processFaint(1);
@@ -485,23 +511,20 @@ export default {
             }, 1000);
           }
           break;
-             case 8:
+        case 8:
           //handle scratch
-              this.opponentHP -= this.userAttackDamage[attack - 1];
-              this.opponentFill -= this.userAttackDamage[attack - 1];
-              if (this.opponentFill <= 0) {
+          this.opponentHP -= this.userAttackDamage[attack - 1];
+          this.opponentFill -= this.userAttackDamage[attack - 1];
+          if (this.opponentFill <= 0) {
             this.opponentHpBar.width = "0%";
           } else {
             this.opponentHpBar.width = this.opponentFill + "%";
           }
-              console.log(this.opponentHP)
-               console.log(this.opponentFill)
-          
-           
-        
+          console.log(this.opponentHP);
+          console.log(this.opponentFill);
+
           //edit if HP !== 0
-         
-          
+
           if (this.checkOpponentHp()) {
             this.battleText = this.opponentPokemon + " fainted! Play again?";
             this.processFaint(1);
@@ -521,24 +544,21 @@ export default {
               }
             }, 1000);
           }
-          break;  
-           case 9:
+          break;
+        case 9:
           //handle scratch
-              this.opponentHP -= this.userAttackDamage[attack - 1];
-              this.opponentFill -= this.userAttackDamage[attack - 1];
-              if (this.opponentFill <= 0) {
+          this.opponentHP -= this.userAttackDamage[attack - 1];
+          this.opponentFill -= this.userAttackDamage[attack - 1];
+          if (this.opponentFill <= 0) {
             this.opponentHpBar.width = "0%";
           } else {
             this.opponentHpBar.width = this.opponentFill + "%";
           }
-              console.log(this.opponentHP)
-               console.log(this.opponentFill)
-          
-           
-        
+          console.log(this.opponentHP);
+          console.log(this.opponentFill);
+
           //edit if HP !== 0
-         
-          
+
           if (this.checkOpponentHp()) {
             this.battleText = this.opponentPokemon + " fainted! Play again?";
             this.processFaint(1);
@@ -558,14 +578,14 @@ export default {
               }
             }, 1000);
           }
-          break;   
+          break;
       }
     },
     checkOpponentHp: function() {
       if (this.opponentHP <= 0) {
         //fainted
-        this.currentQuestion=0
-        
+        this.currentQuestion = 0;
+
         return true;
       } else {
         //battle continues
@@ -577,11 +597,11 @@ export default {
       this.endOn = true;
       if (pokemon === 1) {
         this.opponentAlive = false;
-        this.currentQuestion=0
-        const score = this.handleResults()
-        this.setCustomerScorePokemon1(score)
-        swal("Felicitaciones ahora pasas a la batalla final")
-         this.$router.push({name: 'fight2'});  
+        this.currentQuestion = 0;
+        const score = this.handleResults();
+        this.setCustomerScorePokemon1(score);
+        swal("Felicitaciones ahora pasas a la batalla final");
+        this.$router.push({ name: "fight2" });
       } else {
         this.userHP = 0;
         this.userAlive = false;
@@ -616,7 +636,7 @@ export default {
     checkUserHp: function() {
       if (this.userHP <= 0) {
         //fainted
-        this.currentQuestion=0
+        this.currentQuestion = 0;
         return true;
       } else {
         //battle continues
@@ -637,55 +657,72 @@ export default {
       this.opponentFill = 100;
       this.userHpBar.width = "100%";
       this.opponentHpBar.width = "100%";
-      this.currentQuestion=0
+      this.currentQuestion = 0;
     },
     handleAnswer(e) {
-       this.answers[this.currentQuestion]=e.answer;
-       this.responsedAnswer =e.answer
-      
-        if(this.responsedAnswer =="perucampeon" ||this.responsedAnswer =="PokemOn"
-        ||this.responsedAnswer =="pOkemOn154"||this.responsedAnswer =="M4st3r#$"
-        ||this.responsedAnswer =="1ng3N13r1a$istemaS"
-        ||this.responsedAnswer =="15P0k3M0n36"
-        ||this.responsedAnswer =="Chariz4rd25$"){
-         if( this.pokemonNames=="Charizard"){
-           this.processAttack(2)
-         }else if (this.pokemonNames=="Blastoise"){
-            this.processAttack(5)
-         }else if (this.pokemonNames=="Venasaur"){
-            this.processAttack(8)
-         }
-           
-        }else if(this.responsedAnswer =="peru" ||this.responsedAnswer =="pokemon"
-       ||this.responsedAnswer =="pokemon154"
-       ||this.responsedAnswer =="m4st3r#$"
-       ||this.responsedAnswer =="1ng3n13r1a$istemas"
-       ||this.responsedAnswer =="15p0k3m0n36"
-       ||this.responsedAnswer =="charizard25$"){
-            if( this.pokemonNames=="Charizard"){
-           this.processAttack(1)
-         }else if (this.pokemonNames=="Blastoise"){
-            this.processAttack(4)
-         }else if (this.pokemonNames=="Venasaur"){
-            this.processAttack(6)
-         }
-        }else if(this.responsedAnswer =="brasil" ||this.responsedAnswer =="pikachu"
-        ||this.responsedAnswer =="p0ke154"
-         ||this.responsedAnswer =="master#"
-          ||this.responsedAnswer =="ingenieria$istemas"
-           ||this.responsedAnswer =="15pokemon36"
-           ||this.responsedAnswer =="Char25$"){
-             if( this.pokemonNames=="Charizard"){
-           this.processAttack(3)
-         }else if (this.pokemonNames=="Blastoise"){
-            this.processAttack(6)
-         }else if (this.pokemonNames=="Venasaur"){
-            this.processAttack(9)
-         }
+      this.answers[this.currentQuestion] = e.answer;
+      this.responsedAnswer = e.answer;
+
+      if (
+        this.responsedAnswer == "perucampeon" ||
+        this.responsedAnswer == "PokemOn" ||
+        this.responsedAnswer == "pOkemOn154" ||
+        this.responsedAnswer == "M4st3r#$" ||
+        this.responsedAnswer == "1ng3N13r1a$istemaS" ||
+        this.responsedAnswer == "15P0k3M0n36" ||
+        this.responsedAnswer == "Chariz4rd25$"
+      ) {
+        if (this.pokemonNames == "Charizard") {
+          this.processAttack(2);
+           swal('Correcto')
+        } else if (this.pokemonNames == "Blastoise") {
+          this.processAttack(5);
+           swal('Correcto')
+        } else if (this.pokemonNames == "Venasaur") {
+          this.processAttack(8);
+           swal('Correcto')
         }
-        this.currentQuestion++;
-      
-      },
+      } else if (
+        this.responsedAnswer == "peru" ||
+        this.responsedAnswer == "pokemon" ||
+        this.responsedAnswer == "pokemon154" ||
+        this.responsedAnswer == "m4st3r#$" ||
+        this.responsedAnswer == "1ng3n13r1a$istemas" ||
+        this.responsedAnswer == "15p0k3m0n36" ||
+        this.responsedAnswer == "charizard25$"
+      ) {
+        if (this.pokemonNames == "Charizard") {
+          this.processAttack(1);
+           swal('Incorrecto')
+        } else if (this.pokemonNames == "Blastoise") {
+          this.processAttack(4);
+           swal('Incorrecto')
+        } else if (this.pokemonNames == "Venasaur") {
+          this.processAttack(6);
+           swal('Incorrecto')
+        }
+      } else if (
+        this.responsedAnswer == "brasil" ||
+        this.responsedAnswer == "pikachu" ||
+        this.responsedAnswer == "p0ke154" ||
+        this.responsedAnswer == "master#" ||
+        this.responsedAnswer == "ingenieria$istemas" ||
+        this.responsedAnswer == "15pokemon36" ||
+        this.responsedAnswer == "Char25$"
+      ) {
+        if (this.pokemonNames == "Charizard") {
+          this.processAttack(3);
+           swal('Incorrecto')
+        } else if (this.pokemonNames == "Blastoise") {
+          this.processAttack(6);
+           swal('Incorrecto')
+        } else if (this.pokemonNames == "Venasaur") {
+          this.processAttack(9);
+           swal('Incorrecto')
+        }
+      }
+      this.currentQuestion++;
+    },
     handleResults() {
       //console.log("handle results");
       // this.questions.forEach((a, index) => {
@@ -695,19 +732,19 @@ export default {
       //       this.perc = ((this.correct / this.questions.length)*100).toFixed(2);
       // console.log(this.correct+' '+this.perc);
       //   }
-        
-       
+
       // });
       // this.perc = ((this.correct / this.questions.length) * 100).toFixed(2);
       // console.log(this.correct + " " + this.perc);
-            let score = 0;
+      let score = 0;
       this.questions.forEach((a, index) => {
-        if (this.answers[index] === a.answer){
+        if (this.answers[index] === a.answer) {
           this.correct++;
           score = score + 10;
-        }else{
-        // this.perc = ((this.correct / this.questions.length)*100).toFixed(2);
-        // console.log(this.correct+' '+this.perc);
+          console.log(score)
+        } else {
+          // this.perc = ((this.correct / this.questions.length)*100).toFixed(2);
+          // console.log(this.correct+' '+this.perc);
         }
       });
       return score;

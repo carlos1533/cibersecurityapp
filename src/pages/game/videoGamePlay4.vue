@@ -12,6 +12,7 @@
 import question from "../../components/Nivel01/question";
 import { mapActions, mapGetters, mapState } from "vuex";
 import swal from "sweetalert";
+import Swal from "sweetalert2";
 export default {
   data() {
     return {
@@ -58,9 +59,6 @@ export default {
         this.resultsStage = true;
         const score = 10;
         this.setCustomerScoreVideo04(10);
-        swal(
-          "UNA CONTRASEÑA ROBUSTA Y DIFERENTE PARA CADA SERVICIO ES CUANTO DEBES RECORDAR PARA UN USO CORRECTO Y POR SUPUESTO NO LA COMPARTAS CON NADIE"
-        );
         this.setCustomerHasPlayesVideo04(true);
         this.$router.push({ name: "videoGame" });
       } else {
@@ -71,7 +69,31 @@ export default {
       this.questions.forEach((a, index) => {
         if (this.answers[index] === a.answer) {
           this.correct++;
+          Swal.fire({
+            title: "Recomendacion",
+            text:
+              "UNA CONTRASEÑA ROBUSTA Y DIFERENTE PARA CADA SERVICIO ES CUANTO DEBES RECORDAR PARA UN USO CORRECTO Y POR SUPUESTO NO LA COMPARTAS CON NADIE",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Confirmar"
+          }).then(result => {
+            Swal.fire("Correcto!", "Has respondido bien", "success");
+          });
         } else {
+          Swal.fire({
+            title: "Recomendacion",
+            text:
+              "UNA CONTRASEÑA ROBUSTA Y DIFERENTE PARA CADA SERVICIO ES CUANTO DEBES RECORDAR PARA UN USO CORRECTO Y POR SUPUESTO NO LA COMPARTAS CON NADIE",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Confirmar"
+          }).then(result => {
+            Swal.fire("Incorrecto!", "Has respondido mal", "warning");
+          });
           this.perc = ((this.correct / this.questions.length) * 100).toFixed(2);
         }
       });

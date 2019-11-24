@@ -12,6 +12,7 @@
 import question from "../../components/Nivel01/question";
 import { mapActions, mapGetters, mapState } from "vuex";
 import swal from "sweetalert";
+import Swal from "sweetalert2";
 export default {
   data() {
     return {
@@ -42,6 +43,9 @@ export default {
     };
   },
   created() {
+    if (this.$store.getters.hasPlayedVideo1) {
+      this.$router.push({ name: "menu" });
+    }
     this.questions = this.preguntas.questions;
     this.introStage = true;
   },
@@ -55,9 +59,6 @@ export default {
         this.resultsStage = true;
         const score = 10;
         this.setCustomerScoreVideo01(10);
-        swal(
-          "UTILIZA CONTRASEÑAS ROBUSTAS QUE NO SEAN FACILES DE ADIVINAR, CONVINA MAYUSCULAS, MINUSCULAS, NÚMEROS Y CARACTERES RAROS."
-        );
         this.setCustomerHasPlayesVideo01(true);
         this.$router.push({ name: "videoGame" });
       } else {
@@ -68,7 +69,29 @@ export default {
       this.questions.forEach((a, index) => {
         if (this.answers[index] === a.answer) {
           this.correct++;
+          Swal.fire({
+            title: "Recomendacion",
+            text: "UTILIZA CONTRASEÑAS ROBUSTAS QUE NO SEAN FACILES DE ADIVINAR, CONVINA MAYUSCULAS, MINUSCULAS, NÚMEROS Y CARACTERES RAROS.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Confirmar"
+          }).then(result => {
+                Swal.fire("Correcto!", "Has respondido bien", "success");
+          });
         } else {
+          Swal.fire({
+            title: "Recomendacion",
+            text: "UTILIZA CONTRASEÑAS ROBUSTAS QUE NO SEAN FACILES DE ADIVINAR, CONVINA MAYUSCULAS, MINUSCULAS, NÚMEROS Y CARACTERES RAROS.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Confirmar"
+          }).then(result => {
+                Swal.fire("Incorrecto!", "Has respondido mal", "error");
+          });
           this.perc = ((this.correct / this.questions.length) * 100).toFixed(2);
         }
       });

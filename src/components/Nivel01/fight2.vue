@@ -153,7 +153,7 @@ export default {
               "solo doy mi nombre y direccion, si doy mi edad igual no puedo ver el video"
             ],
             answer:
-              "solo doy mi nombre y direccion, si doy mi edad igual no puedo ver el video",
+              "no doy mi informacion personal, a de saber para que la usaran",
             recommendation:
               "EN INTERNET EXISTEN UNA MULTITUD DE HERRAMIENTAS QUE NOS PERMITEN GESTIONAR LAS CONTRASEÑAS ADECUADAMENTE. USALAS Y PROTEGE TUS SERVICIOS."
           },
@@ -692,7 +692,7 @@ export default {
         this.responsedAnswer ==
           "Intento memorizarla o uso un programa para la gestion de contraseñas, Son muy sencillos" ||
         this.responsedAnswer ==
-          "solo doy mi nombre y direccion, si doy mi edad igual no puedo ver el video" ||
+        "no doy mi informacion personal, a de saber para que la usaran"||
         this.responsedAnswer == "M4st3r#$" ||
         this.responsedAnswer == "Utilizar contraseñas diferentes" ||
         this.responsedAnswer ==
@@ -735,7 +735,7 @@ export default {
         this.responsedAnswer ==
           "Las comparto con mis amigos asi si un dia la necesito solo tengo que preguntar" ||
         this.responsedAnswer ==
-          "no doy mi informacion personal, a de saber para que la usaran" ||
+          "solo doy mi nombre y direccion, si doy mi edad igual no puedo ver el video" ||
         this.responsedAnswer == "Master#" ||
         this.responsedAnswer == "No usar contraseñas" ||
         this.responsedAnswer == "Master#" ||

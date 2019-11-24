@@ -5,6 +5,21 @@
     leave-active-class="animated zoomOut"
     mode="out-in"
   >
+   <template v-if="!this.continue">
+      <div class="header">
+        <h1>Minijuego: Encuentra el error</h1>
+        <div>
+          <span
+            class="label"
+          >Lee atentamente los escenarios que se le presentan a Chicho y elige el comportamiento correcto. Por cada respuesta correcta gana 10 puntos ¡Buena Suerte! </span>
+          <router-link :to="{ name: 'menu' }">
+            <button type="button" class="btn btn-secondary light">Volver</button>
+          </router-link>
+          <button type="button" class="btn btn-primary" @click="start()">Continuar</button>
+        </div>
+      </div>
+    </template>
+    <template v-if="this.continue === true">
     <div class="container-fluid px-lg-5">
       <div class="row">
         <header>
@@ -31,7 +46,7 @@
           :class="{ 'is-selected': userResponses[questionIndex] == index}"
           :key="index"
         >
-          <img :src="response.text" @click="handleAnswer(index)" />
+          <img :src="response.text" @click="handleAnswer(index,response)" />
         </div>
       </div>
       <div
@@ -57,10 +72,12 @@
         <!--/resultTitleBlock-->
       </div>
     </div>
+    </template>
   </transition>
 </template>
 <script>
 import swal from "sweetalert";
+import Swal from "sweetalert2";
 import { mapActions, mapGetters, mapState } from "vuex";
 import Vue from "vue";
 var quiz = {
@@ -71,12 +88,16 @@ var quiz = {
         responses: [
           {
             text:
-              "https://drive.google.com/uc?id=1GQ50u3dd2oqsa96tgck9zyKlL3ZV42vI"
+              "https://drive.google.com/uc?id=1GQ50u3dd2oqsa96tgck9zyKlL3ZV42vI",
+              isAnswer:false,
+              recommendation:'Nunca compartas tus contraseñas con nadie, recuerda que las contraseñas son privadas y personales.'
           },
           {
             text:
               "https://drive.google.com/uc?id=14w0YUtLYlYTioslDaVHPBgebqXeuIUKU",
-            correct: true
+            correct: true,
+            isAnswer:true,
+            recommendation:'Nunca compartas tus contraseñas con nadie, recuerda que las contraseñas son privadas y personales.'
           }
         ]
       },
@@ -86,11 +107,15 @@ var quiz = {
           {
             text:
               "https://drive.google.com/uc?id=1b7AY49blY_Yruj4MR1z9q08ONWjRmWlE",
-            correct: true
+            correct: true,
+            isAnswer:true,
+            recommendation:'Usa contraseñas robustas y diferentes para cada cuenta y porsupuesto no la compartas con nadie'
           },
           {
             text:
-              "https://drive.google.com/uc?id=1mfrmNU8MGMiPBV1aaI_uRdASHQTtc344"
+              "https://drive.google.com/uc?id=1mfrmNU8MGMiPBV1aaI_uRdASHQTtc344",
+              isAnswer:false,
+              recommendation:'Usa contraseñas robustas y diferentes para cada cuenta y porsupuesto no la compartas con nadie'
           }
         ]
       },
@@ -99,12 +124,16 @@ var quiz = {
         responses: [
           {
             text:
-              "https://drive.google.com/uc?id=1OZb79t991swnFO163Gx8DU-dsqdvVy0r"
+              "https://drive.google.com/uc?id=1OZb79t991swnFO163Gx8DU-dsqdvVy0r",
+              isAnswer:false,
+              recommendation:'Evita escribir tus contraseñas y dejarlas cerca de la computadora, alguien prodría verla y acceder a tu información.'
           },
           {
             text:
               "https://drive.google.com/uc?id=1qh2a_l_-Vaboqlxm-8PJwb7OHoZ8cr1G",
-            correct: true
+            correct: true,
+            isAnswer:true,
+            recommendation:'Evita escribir tus contraseñas y dejarlas cerca de la computadora, alguien prodría verla y acceder a tu información.'
           }
         ]
       },
@@ -114,11 +143,15 @@ var quiz = {
           {
             text:
               "https://drive.google.com/uc?id=1s8PKN-1O_KHMgM29klpDkSU8kxl8_gzA",
-            correct: true
+            correct: true,
+            isAnswer:true,
+            recommendation:'Evita utilizar información personal, como nombres, fecha de cumpleaños, nombre de mascota en tus contraseñas, ya que es algo que la mayoria conoce y  podrían adivinar tu contraseña.'
           },
           {
             text:
-              "https://drive.google.com/uc?id=1fQiCDWKGNmjyMtHCeuuo5CCvbq1XkXJk"
+              "https://drive.google.com/uc?id=1fQiCDWKGNmjyMtHCeuuo5CCvbq1XkXJk",
+              isAnswer:false,
+              recommendation:'Evita utilizar información personal, como nombres, fecha de cumpleaños, nombre de mascota en tus contraseñas, ya que es algo que la mayoria conoce y podrían adivinar tu contraseña.'
           }
         ]
       },
@@ -128,11 +161,15 @@ var quiz = {
           {
             text:
               "https://drive.google.com/uc?id=1OU2-uL2gBFQGlqY703CD9FWzhKeis3ir",
-            correct: true
+            correct: true,
+            isAnswer:true,
+            recommendation:'Las contraseña deben ser dificil de averiguar, secretas y se deben cambiar de vez en cuando.'
           },
           {
             text:
-              "https://drive.google.com/uc?id=1s7Rhmo9V4u0U2Bmg-PlDdXrzNP5DiVUx"
+              "https://drive.google.com/uc?id=1s7Rhmo9V4u0U2Bmg-PlDdXrzNP5DiVUx",
+              isAnswer:false,
+              recommendation:'Las contraseña deben ser dificil de averiguar, secretas y se deben cambiar de vez en cuando.'
           }
         ]
       },
@@ -142,11 +179,15 @@ var quiz = {
           {
             text:
               "https://drive.google.com/uc?id=1vrNokk7oh1Ut3bi2ZGr7MwSEF_04ufpM",
-            correct: true
+            correct: true,
+            isAnswer:true,
+            recommendation:'Proteger tu dispositivo te evitará muchos problemas !BlOQUEA TU SMARTPHONE!'
           },
           {
             text:
-              "https://drive.google.com/uc?id=1FDX9r-Zqb3Mc3qev5LBr1yM7ehHnnPZ7"
+              "https://drive.google.com/uc?id=1FDX9r-Zqb3Mc3qev5LBr1yM7ehHnnPZ7",
+              isAnswer:false,
+              recommendation:'Proteger tu dispositivo te evitará muchos problemas !BlOQUEA TU SMARTPHONE!'
           }
         ]
       }
@@ -177,14 +218,19 @@ export default {
     }
   },
   methods: {
+     start() {
+      this.continue = true;
+    },
     ...mapActions(["setCustomerScoreE", "setHasPlayedError"]),
     finish: function() {
       this.$router.push({ name: "menu" });
       // this.questionIndex=0;
       // this.userResponses=Array(this.quiz.questions.length).fill(null);
     },
-    handleAnswer: function(index) {
+    handleAnswer: function(index, response) {
       Vue.set(this.userResponses, this.questionIndex, index);
+     console.log(response)
+     Swal.fire({title:response.recommendation})
       this.questionIndex++;
     },
     next: function() {
@@ -283,6 +329,21 @@ img:hover {
 }
 .is-active {
   color: #00e676;
+}
+.header {
+  font-family: "Press Start 2P", "Helvetica", "Arial", sans-serif;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #555;
+}
+
+.header div {
+  display: inline-block;
+  width: 35%;
+}
+
+.header .value {
+  font-weight: bold;
 }
 /* .subtitle {
   font-family: Montserrat, sans-serif;

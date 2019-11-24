@@ -755,15 +755,15 @@ export default {
         }
       }
       this.currentQuestion++;
-      Swal.fire({
-        title: this.recommendation,
-        showClass: {
-          popup: "animated fadeInDown faster"
-        },
-        hideClass: {
-          popup: "animated fadeOutUp faster"
-        }
-      });
+      // Swal.fire({
+      //   title: this.recommendation,
+      //   showClass: {
+      //     popup: "animated fadeInDown faster"
+      //   },
+      //   hideClass: {
+      //     popup: "animated fadeOutUp faster"
+      //   }
+      // });
       // swal(this.recommendation)
     },
     handleResults() {

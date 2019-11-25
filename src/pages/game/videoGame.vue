@@ -1,11 +1,13 @@
 <template>
-  <transition
-    :duration="{ enter: 500, leave: 300 }"
-    enter-active-class="animated zoomIn"
-    leave-active-class="animated zoomOut"
-    mode="out-in"
+  <div
   >
-    <template v-if="!this.continue">
+    <template v-if="!this.$store.getters.hasPlayedVideo1 && !this.continue
+    && !this.$store.getters.hasPlayedVideo2
+    && !this.$store.getters.hasPlayedVideo3
+    && !this.$store.getters.hasPlayedVideo4
+    && !this.$store.getters.hasPlayedVideo5
+    && !this.$store.getters.hasPlayedVideo6
+    ">
       <div class="header">
         <h1>Mira y responde</h1>
         <div>
@@ -19,7 +21,13 @@
         </div>
       </div>
     </template>
-    <template v-if="this.continue === true">
+    <template v-if="this.$store.getters.hasPlayedVideo1 === true || this.continue
+    || this.$store.getters.hasPlayedVideo2 ||
+     this.$store.getters.hasPlayedVideo3 ||
+      this.$store.getters.hasPlayedVideo4 ||
+       this.$store.getters.hasPlayedVideo5 ||
+        this.$store.getters.hasPlayedVideo6
+    ">
       <div class="container-fluid">
         <div class="row align-items-center">
           <div class="col-md-4">
@@ -66,7 +74,7 @@
         </div>
       </div>
     </template>
-  </transition>
+  </div>
 </template>
 
 <script>
@@ -87,6 +95,9 @@ export default {
   computed: {
     loggedIn() {
       return this.$store.getters.loggedIn;
+    },
+    hasPlayedVideo1(){
+      return this.$store.getters.hasPlayedVideo1
     }
   },
   methods: {

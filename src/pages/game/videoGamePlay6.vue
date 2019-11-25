@@ -23,11 +23,11 @@ export default {
             type: "mc",
             answers: [
               "Es lo mínimo que tiene que hacer para conocer el fantastico premio",
-              "el que algo quiere algo le cuesta y los datos personales no son importantes",
-              "la información personal es muy valiosa y no se la debemos dar a cualquiera"
+              "El que algo quiere algo le cuesta y los datos personales no son importantes",
+              "La información personal es muy valiosa y no se la debemos dar a cualquiera"
             ],
             answer:
-              "la información personal es muy valiosa y no se la debemos dar a cualquiera."
+              "La información personal es muy valiosa y no se la debemos dar a cualquiera"
           }
         ]
       },
@@ -93,7 +93,7 @@ export default {
             cancelButtonColor: "#d33",
             confirmButtonText: "Confirmar"
           }).then(result => {
-            Swal.fire("Incorrecto!", "Has respondido mal", "warning");
+            Swal.fire("Incorrecto!", "Has respondido mal", "error");
           });
           // this.perc = ((this.correct / this.questions.length) * 100).toFixed(2);
         }

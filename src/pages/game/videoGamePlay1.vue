@@ -57,9 +57,6 @@ export default {
         this.handleResults();
         this.questionStage = false;
         this.resultsStage = true;
-        const score = 10;
-        this.setCustomerScoreVideo01(10);
-        this.setCustomerHasPlayesVideo01(true);
         this.$router.push({ name: "videoGame" });
       } else {
         this.currentQuestion++;
@@ -71,31 +68,36 @@ export default {
           this.correct++;
           Swal.fire({
             title: "Recomendacion",
-            text: "UTILIZA CONTRASEÑAS ROBUSTAS QUE NO SEAN FACILES DE ADIVINAR, CONVINA MAYUSCULAS, MINUSCULAS, NÚMEROS Y CARACTERES RAROS.",
+            text:
+              "UTILIZA CONTRASEÑAS ROBUSTAS QUE NO SEAN FACILES DE ADIVINAR, CONVINA MAYUSCULAS, MINUSCULAS, NÚMEROS Y CARACTERES RAROS.",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Confirmar"
           }).then(result => {
-                Swal.fire("Correcto!", "Has respondido bien", "success");
+            Swal.fire("Correcto!", "Has respondido bien", "success");
           });
+          const score = 10;
+          this.setCustomerScoreVideo01(10);
+          this.setCustomerHasPlayesVideo01(true);
+          this.perc = ((this.correct / this.questions.length) * 100).toFixed(2);
         } else {
           Swal.fire({
             title: "Recomendacion",
-            text: "UTILIZA CONTRASEÑAS ROBUSTAS QUE NO SEAN FACILES DE ADIVINAR, CONVINA MAYUSCULAS, MINUSCULAS, NÚMEROS Y CARACTERES RAROS.",
+            text:
+              "UTILIZA CONTRASEÑAS ROBUSTAS QUE NO SEAN FACILES DE ADIVINAR, CONVINA MAYUSCULAS, MINUSCULAS, NÚMEROS Y CARACTERES RAROS.",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Confirmar"
           }).then(result => {
-                Swal.fire("Incorrecto!", "Has respondido mal", "error");
+            Swal.fire("Incorrecto!", "Has respondido mal", "error");
           });
-          this.perc = ((this.correct / this.questions.length) * 100).toFixed(2);
+          // this.perc = ((this.correct / this.questions.length) * 100).toFixed(2);
         }
       });
-      this.perc = ((this.correct / this.questions.length) * 100).toFixed(2);
     }
   },
   components: {

@@ -57,9 +57,6 @@ export default {
         this.handleResults();
         this.questionStage = false;
         this.resultsStage = true;
-        const score = 10;
-        this.setCustomerScoreVideo03(10);
-        this.setCustomerHasPlayesVideo03(true);
         this.$router.push({ name: "videoGame" });
       } else {
         this.currentQuestion++;
@@ -81,6 +78,10 @@ export default {
           }).then(result => {
             Swal.fire("Correcto!", "Has respondido bien", "success");
           });
+           const score = 10;
+          this.setCustomerScoreVideo03(10);
+          this.setCustomerHasPlayesVideo03(true);
+          this.perc = ((this.correct / this.questions.length) * 100).toFixed(2);
         } else {
           Swal.fire({
             title: "Recomendacion",
@@ -94,10 +95,9 @@ export default {
           }).then(result => {
             Swal.fire("Incorrecto!", "Has respondido mal", "warning");
           });
-          this.perc = ((this.correct / this.questions.length) * 100).toFixed(2);
+         // this.perc = ((this.correct / this.questions.length) * 100).toFixed(2);
         }
       });
-      this.perc = ((this.correct / this.questions.length) * 100).toFixed(2);
     }
   },
   components: {

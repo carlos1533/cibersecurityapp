@@ -1,16 +1,6 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <!-- <div class="col-md-6 offset-md-3">
-        <img
-          src="../../assets/nivel01/Nivel1 Contraseñas seguras.png"
-          alt="Smiley face"
-          class="img-fluid"
-        />
-      </div> -->
-      <!-- <div class="col-md-10 offset-1">
-        <img src="../../assets/nivel01/nivel01-texto.png" alt="Smiley face" class="img-fluid" />
-      </div> -->
       <div class="col-md-10 offset-1">
         <div class="row">
           <div class="col-md-6">
@@ -34,19 +24,20 @@
               :key="index"
             >{{element.alt}}</option>
           </select>
-          <hr />
-Pokemón elegido:
+          <hr />Pokemón elegido:
           <template v-if="imageSelected!=='' ">
             <img :src="imageSelected" />
           </template>
         </div>
-        <div class="col-sm-12">
-          <router-link :to="{ name: 'fight'}">
-            <button class="boton-login rounded" :disabled="loading">
-              <img src="../../assets/nivel01/Empezar.png" class="img-fluid" />
-            </button>
-          </router-link>
-        </div>
+        <v-show v-if="show">
+          <div class="col-sm-12">
+            <router-link :to="{ name: 'fight'}">
+              <button class="boton-login rounded" :disabled="loading">
+                <img src="../../assets/nivel01/Empezar.png" class="img-fluid" />
+              </button>
+            </router-link>
+          </div>
+        </v-show>
       </div>
     </div>
   </div>
@@ -77,6 +68,7 @@ export default {
       serverError: "",
       successMessage: this.dataSuccessMessage,
       loading: false,
+      show:false,
       elements: [
         {
           id: "1",
@@ -108,7 +100,7 @@ export default {
 
     onHandleSelectedPokemon() {
       this.setPokemonSelected(this.imageSelected);
-      // const id = localStorage.getItem("auth");
+      this.show= true;
     },
     onSelectImage: function(data) {
       console.log("fire event onSelectImage: ", data);

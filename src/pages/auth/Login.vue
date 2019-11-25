@@ -1,16 +1,5 @@
 <template>
   <div class="container-fluid">
-    <!-- <ul class="nav">
-      <li v-if="!loggedIn">
-        <router-link :to="{ name: 'login' }">Login</router-link>
-      </li>
-      <li v-if="!loggedIn">
-        <router-link :to="{ name: 'register' }">Registro</router-link>
-      </li>
-      <li v-if="loggedIn">
-        <router-link :to="{ name: 'logout' }">Salir</router-link>
-      </li>
-    </ul> -->
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <img src="../../assets/login/TITULO.png" alt="Smiley face" class="img-fluid">

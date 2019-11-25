@@ -1,17 +1,6 @@
 
 <template>
 <div class="container-fluid">
-   <!-- <ul class="nav">
-      <li v-if="!loggedIn">
-        <router-link :to="{ name: 'login' }">Login</router-link>
-      </li>
-      <li v-if="!loggedIn">
-        <router-link :to="{ name: 'register' }">Registro</router-link>
-      </li>
-      <li v-if="loggedIn">
-        <router-link :to="{ name: 'logout' }">Salir</router-link>
-      </li>
-    </ul> -->
     <div class="header">
         <h1>Nivel Intermedio</h1>
         <div><span class="label">Tiempo:</span> <span class="value">{{ time }} </span></div>
@@ -312,6 +301,7 @@ html {
   -o-transition: opacity 0.5s;
   -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
+  cursor: pointer;
 }
 
 .cards .card .front,

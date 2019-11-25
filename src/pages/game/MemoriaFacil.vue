@@ -361,6 +361,7 @@ html {
   -o-transition: opacity 0.5s;
   -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
+  cursor: pointer;
 }
 
 .cards .card .front,

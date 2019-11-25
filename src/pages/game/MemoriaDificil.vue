@@ -1,134 +1,156 @@
 
 <template>
-<div class="container-fluid">
+  <div class="container-fluid">
     <div class="header">
-        <h1>Nivel Dificil</h1>
-        <div><span class="label">Tiempo:</span> <span class="value">{{ time }} </span></div>
-        <div><span class="label">Turnos:</span> <span class="value">{{ turns }} </span></div>
-        <div><span class="label">Puntaje:</span> <span class="value">{{ score }} </span></div>
-        </div>
-        <div class="cards">
-        <div class="card" v-for="card in cards"  :key="card.name" :class="{ flipped: card.flipped, found: card.found }" @click="flipCard(card)">
-            <div class="back"></div>
-            <div class="front" :style="{ backgroundImage: 'url(' + card.image + ')' }"></div>
-        </div>
-        </div>
-        <div class="splash" v-if="showSplash">
-        <div class="overlay"></div>
-        <div class="content">
-            <div class="title">Se acabo!</div>
-              <div class="title">Puntaje Obtenido: {{ score }}</div>
-              <div class="title">
-                ¡Recuerda siempre que cuantos más caracteres tenga tu contraseña y combines números, letras mayúsculas, letras minúsculas y caracteres especiales, más segura será!
-              </div>
-              <router-link :to="{ name: 'menu' }">
-                    <button>Continuar!</button>
-              </router-link>
-        </div>
-        </div>
-        <div id="info" class="splash hidden">
-        <div class="overlay"></div>
-        <div class="content">
-            <div id="info-title" class="title"></div>
-            <img id="info-image" src="" height=70>
-            <div id="info-description" class="score"></div>
-            <button @click="closeModal()">keep playing</button>
-        </div>
-        </div>
+      <h1>Nivel Dificil</h1>
+      <div>
+        <span class="label">Tiempo:</span>
+        <span class="value">{{ time }}</span>
+      </div>
+      <div>
+        <span class="label">Turnos:</span>
+        <span class="value">{{ turns }}</span>
+      </div>
+      <div>
+        <span class="label">Puntaje:</span>
+        <span class="value">{{ score }}</span>
+      </div>
     </div>
+    <div class="cards">
+      <div
+        class="card"
+        v-for="card in cards"
+        :key="card.name"
+        :class="{ flipped: card.flipped, found: card.found }"
+        @click="flipCard(card)"
+      >
+        <div class="back"></div>
+        <div class="front" :style="{ backgroundImage: 'url(' + card.image + ')' }"></div>
+      </div>
+    </div>
+    <div class="splash" v-if="showSplash">
+      <div class="overlay"></div>
+      <div class="content">
+        <div class="title">Se acabo!</div>
+        <div class="title">Puntaje Obtenido: {{ score }}</div>
+        <div
+          class="title"
+        >¡Recuerda siempre que cuantos más caracteres tenga tu contraseña y combines números, letras mayúsculas, letras minúsculas y caracteres especiales, más segura será!</div>
+        <router-link :to="{ name: 'menu' }">
+          <button>Continuar!</button>
+        </router-link>
+      </div>
+    </div>
+    <div id="info" class="splash hidden">
+      <div class="overlay"></div>
+      <div class="content">
+        <div id="info-title" class="title"></div>
+        <img id="info-image" src height="70" />
+        <div id="info-description" class="score"></div>
+        <button @click="closeModal()">keep playing</button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import _ from 'lodash'
-import moment from 'moment'
-import { mapActions, mapGetters, mapState } from 'vuex'
-import $ from 'jquery'
+import _ from "lodash";
+import moment from "moment";
+import { mapActions, mapGetters, mapState } from "vuex";
+import $ from "jquery";
 // import tz from 'moment-timezone'
 let CardTypes = [
   {
     name: "password01",
     image: "https://drive.google.com/uc?id=15SskYiAitJqjVoJX5KaK7OE8BZfiW2M_",
-    info: "Vue.js features an incrementally adoptable architecture that focuses on declarative rendering and component composition. Advanced features required for complex applications such as routing, state management and build tooling are offered via officially maintained supporting libraries and packages."
+    info:
+      "Vue.js features an incrementally adoptable architecture that focuses on declarative rendering and component composition. Advanced features required for complex applications such as routing, state management and build tooling are offered via officially maintained supporting libraries and packages."
   },
   {
     name: "express",
     image: "https://drive.google.com/uc?id=1SjLeX81T6fhP6WhffsJTFZpqFum0jN_b",
-    info: "Express.js, or simply Express, is a web application framework for Node.js, released as free and open-source software under the MIT License. It is designed for building web applications and APIs.[3] It has been called the de facto standard server framework for Node.js"
+    info:
+      "Express.js, or simply Express, is a web application framework for Node.js, released as free and open-source software under the MIT License. It is designed for building web applications and APIs.[3] It has been called the de facto standard server framework for Node.js"
   },
   {
     name: "mongo",
     image: "https://drive.google.com/uc?id=1ITbnMhShAYAgm0cAn2YG5pW87L2Xe0Sb",
-    info: "MongoDB is a cross-platform document-oriented database program. It is issued under the Server Side Public License, which is currently being evaluated for OSI certification. Classified as a NoSQL database program, MongoDB uses JSON-like documents with schemata. MongoDB is developed by MongoDB Inc."
+    info:
+      "MongoDB is a cross-platform document-oriented database program. It is issued under the Server Side Public License, which is currently being evaluated for OSI certification. Classified as a NoSQL database program, MongoDB uses JSON-like documents with schemata. MongoDB is developed by MongoDB Inc."
   },
   {
     name: "nodejs",
     image: "https://drive.google.com/uc?id=16yJaz85tZxWx9Zv9tCYRKJwmPvz3oVAB",
-    info: "Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser. Typically, JavaScript is used primarily for client-side scripting, in which scripts written in JavaScript are embedded in a webpage's HTML and run client-side by a JavaScript engine in the user's web browser. Node.js lets developers use JavaScript to write Command Line tools and for server-side scripting—running scripts server-side to produce dynamic web page content before the page is sent to the user's web browser."
+    info:
+      "Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser. Typically, JavaScript is used primarily for client-side scripting, in which scripts written in JavaScript are embedded in a webpage's HTML and run client-side by a JavaScript engine in the user's web browser. Node.js lets developers use JavaScript to write Command Line tools and for server-side scripting—running scripts server-side to produce dynamic web page content before the page is sent to the user's web browser."
   },
   {
     name: "webpack",
     image: "https://drive.google.com/uc?id=1JNqy3XpGpabPVw4k3o4LwCmLo4W4hLyg",
-    info: "Webpack is an open-source JavaScript module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset. Webpack takes modules with dependencies and generates static assets representing those modules. It is a module bundler primarily for JavaScript, but it can transform front-end assets like HTML, CSS, even images if the corresponding plugins are included."
+    info:
+      "Webpack is an open-source JavaScript module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset. Webpack takes modules with dependencies and generates static assets representing those modules. It is a module bundler primarily for JavaScript, but it can transform front-end assets like HTML, CSS, even images if the corresponding plugins are included."
   },
-   {
+  {
     name: "mongo1",
     image: "https://drive.google.com/uc?id=16h4hrfL3RrTqBv9f2q1MwDAZWnZczFSP",
-    info: "MongoDB is a cross-platform document-oriented database program. It is issued under the Server Side Public License, which is currently being evaluated for OSI certification. Classified as a NoSQL database program, MongoDB uses JSON-like documents with schemata. MongoDB is developed by MongoDB Inc."
+    info:
+      "MongoDB is a cross-platform document-oriented database program. It is issued under the Server Side Public License, which is currently being evaluated for OSI certification. Classified as a NoSQL database program, MongoDB uses JSON-like documents with schemata. MongoDB is developed by MongoDB Inc."
   },
   {
     name: "nodejs2",
     image: "https://drive.google.com/uc?id=18ylJhMgyRKJQFVD2war_dzB7eBG_NxKv",
-    info: "Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser. Typically, JavaScript is used primarily for client-side scripting, in which scripts written in JavaScript are embedded in a webpage's HTML and run client-side by a JavaScript engine in the user's web browser. Node.js lets developers use JavaScript to write Command Line tools and for server-side scripting—running scripts server-side to produce dynamic web page content before the page is sent to the user's web browser."
+    info:
+      "Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser. Typically, JavaScript is used primarily for client-side scripting, in which scripts written in JavaScript are embedded in a webpage's HTML and run client-side by a JavaScript engine in the user's web browser. Node.js lets developers use JavaScript to write Command Line tools and for server-side scripting—running scripts server-side to produce dynamic web page content before the page is sent to the user's web browser."
   },
   {
     name: "webpack3",
     image: "https://drive.google.com/uc?id=13aixBXOjhIPRt2tznhk0prMzo0gW68x-",
-    info: "Webpack is an open-source JavaScript module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset. Webpack takes modules with dependencies and generates static assets representing those modules. It is a module bundler primarily for JavaScript, but it can transform front-end assets like HTML, CSS, even images if the corresponding plugins are included."
+    info:
+      "Webpack is an open-source JavaScript module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset. Webpack takes modules with dependencies and generates static assets representing those modules. It is a module bundler primarily for JavaScript, but it can transform front-end assets like HTML, CSS, even images if the corresponding plugins are included."
   },
   {
     name: "nodejs4",
     image: "https://drive.google.com/uc?id=1WKLCp9fXM3vFX-RLZ7xp7q4-f5DGrshN",
-    info: "Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser. Typically, JavaScript is used primarily for client-side scripting, in which scripts written in JavaScript are embedded in a webpage's HTML and run client-side by a JavaScript engine in the user's web browser. Node.js lets developers use JavaScript to write Command Line tools and for server-side scripting—running scripts server-side to produce dynamic web page content before the page is sent to the user's web browser."
+    info:
+      "Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser. Typically, JavaScript is used primarily for client-side scripting, in which scripts written in JavaScript are embedded in a webpage's HTML and run client-side by a JavaScript engine in the user's web browser. Node.js lets developers use JavaScript to write Command Line tools and for server-side scripting—running scripts server-side to produce dynamic web page content before the page is sent to the user's web browser."
   },
   {
     name: "webpack4",
     image: "https://drive.google.com/uc?id=1mYjNoz7lNA3B222tGzMkiWZ4t7ugRU-D",
-    info: "Webpack is an open-source JavaScript module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset. Webpack takes modules with dependencies and generates static assets representing those modules. It is a module bundler primarily for JavaScript, but it can transform front-end assets like HTML, CSS, even images if the corresponding plugins are included."
+    info:
+      "Webpack is an open-source JavaScript module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset. Webpack takes modules with dependencies and generates static assets representing those modules. It is a module bundler primarily for JavaScript, but it can transform front-end assets like HTML, CSS, even images if the corresponding plugins are included."
   }
-]
+];
 let shuffleCards = function shuffleCards() {
-  let cards = [].concat(_.cloneDeep(CardTypes), _.cloneDeep(CardTypes))
+  let cards = [].concat(_.cloneDeep(CardTypes), _.cloneDeep(CardTypes));
   return _.shuffle(cards);
-}
+};
 export default {
-    data(){
-        return{
-            showSplash: false,
-            cards: [],
-            started: false,
-            continue: false,
-            startTime: 0,
-            turns: 0,
-            flipBackTimer: null,
-            timer: null,
-            time: "--:--",
-            score: 0
-        }
-    },
-    watch:{
-      time: function (val) {
-      if (val ==='01:31') {
-          this.finishGame()
+  data() {
+    return {
+      showSplash: false,
+      cards: [],
+      started: false,
+      continue: false,
+      startTime: 0,
+      turns: 0,
+      flipBackTimer: null,
+      timer: null,
+      time: "--:--",
+      score: 0
+    };
+  },
+  watch: {
+    time: function(val) {
+      if (val === "01:31") {
+        this.finishGame();
       }
     }
-    },
-   methods: {
-      ...mapActions([
-       'setCustomerScore',
-       'setHasPlayedMemory'
-     ]),
-    start () {
-        this.continue = true
+  },
+  methods: {
+    ...mapActions(["setCustomerScore", "setHasPlayedMemory"]),
+    start() {
+      this.continue = true;
     },
     resetGame: function resetGame() {
       this.showSplash = false;
@@ -138,7 +160,7 @@ export default {
       this.started = false;
       this.startTime = 0;
 
-      _.each(cards, function (card) {
+      _.each(cards, function(card) {
         card.flipped = false;
         card.found = false;
       });
@@ -155,14 +177,15 @@ export default {
     },
 
     flippedCards: function flippedCards() {
-      return _.filter(this.cards, function (card) { return card.flipped; });
+      return _.filter(this.cards, function(card) {
+        return card.flipped;
+      });
     },
 
     sameFlippedCard: function sameFlippedCard() {
       var flippedCards = this.flippedCards();
       if (flippedCards.length == 2) {
-        if (flippedCards[0].name == flippedCards[1].name)
-          return true;
+        if (flippedCards[0].name == flippedCards[1].name) return true;
       }
     },
 
@@ -173,47 +196,53 @@ export default {
     showInfoAboutFramework: function showInfoAboutFramework() {
       this.showModal();
       var flippedCard = this.flippedCards()[0];
-      $("#info-title").html("Want to learn more about " + this.capitalizeString(flippedCard.name) + "?");
+      $("#info-title").html(
+        "Want to learn more about " +
+          this.capitalizeString(flippedCard.name) +
+          "?"
+      );
       $("#info-description").html(flippedCard.info);
       $("#info-image").attr("src", flippedCard.image);
     },
 
     setCardFounds: function setCardFounds() {
-      _.each(this.cards, function (card) {
-        if (card.flipped)
-          card.found = true;
+      _.each(this.cards, function(card) {
+        if (card.flipped) card.found = true;
       });
     },
 
     checkAllFound: function checkAllFound() {
-      var foundCards = _.filter(this.cards, function (card) { return card.found; });
-      if (foundCards.length == this.cards.length)
-        return true;
+      var foundCards = _.filter(this.cards, function(card) {
+        return card.found;
+      });
+      if (foundCards.length == this.cards.length) return true;
     },
 
     startGame: function startGame() {
       var _this = this;
       this.started = true;
-      this.startTime = moment()
-      this.timer = setInterval(function () {
+      this.startTime = moment();
+      this.timer = setInterval(function() {
         // _this.updateScore()
         _this.time = moment(moment().diff(_this.startTime)).format("mm:ss");
       }, 1000);
     },
 
     updateScore: function updateScore() {
-      var elapsedTime = moment().diff(this.startTime, 'seconds')
-      var score =  10
+      var elapsedTime = moment().diff(this.startTime, "seconds");
+      var score = 10;
       // var score = 1000 - elapsedTime * 2 - this.turns * 10
-      this.score = this.score + score
+      this.score = this.score + score;
       // this.score = Math.max(score, 0)
     },
 
     finishGame: function finishGame() {
       this.started = false;
       clearInterval(this.timer);
-      this.setHasPlayedMemory(true)
-       this.setCustomerScore(this.$store.state.customer.scoreMemory + this.score)
+      this.setHasPlayedMemory(true);
+      this.setCustomerScore(
+        this.$store.state.customer.scoreMemory + this.score
+      );
       // this.updateScore();
       this.showSplash = true;
     },
@@ -229,37 +258,36 @@ export default {
       var flipCount = this.flippedCards().length;
       if (flipCount == 0) {
         card.flipped = !card.flipped;
-      } else
-        if (flipCount == 1) {
-          card.flipped = !card.flipped;
-          this.turns += 1;
-          if (this.sameFlippedCard()) {
-            // Match!
-            this.updateScore();
-            // this.showInfoAboutFramework();
-            this.flipBackTimer = setTimeout(function () {
-              _this2.clearFlipBackTimer();
-              _this2.setCardFounds();
-              _this2.clearFlips();
+      } else if (flipCount == 1) {
+        card.flipped = !card.flipped;
+        this.turns += 1;
+        if (this.sameFlippedCard()) {
+          // Match!
+          this.updateScore();
+          // this.showInfoAboutFramework();
+          this.flipBackTimer = setTimeout(function() {
+            _this2.clearFlipBackTimer();
+            _this2.setCardFounds();
+            _this2.clearFlips();
 
-              if (_this2.checkAllFound()) {
-                _this2.finishGame();
-              }
-
-            }, 200);
-          } else {
-            // Wrong match
-               this.flipBackTimer = setTimeout(function () {
-              _this2.clearFlipBackTimer();
-              _this2.clearFlips();
-            }, 1000);
-           
-          }
+            if (_this2.checkAllFound()) {
+              _this2.finishGame();
+            }
+          }, 200);
+        } else {
+          // Wrong match
+          this.flipBackTimer = setTimeout(function() {
+            _this2.clearFlipBackTimer();
+            _this2.clearFlips();
+          }, 1000);
         }
+      }
     },
 
     clearFlips: function clearFlips() {
-      _.map(this.cards, function (card) { return card.flipped = false; });
+      _.map(this.cards, function(card) {
+        return (card.flipped = false);
+      });
     },
 
     clearFlipBackTimer: function clearFlipBackTimer() {
@@ -268,23 +296,58 @@ export default {
     }
   },
 
-  created () {
-    this.resetGame()
+  created() {
+    this.resetGame();
   }
-}
+};
 </script>
 
 <style scoped>
-    @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900|Dosis:300,400,600,700,800|Droid+Sans:400,700|Lato:300,400,700,900|PT+Sans:400,700|Ubuntu:300,400,500,700|Open+Sans:400,300,600,700|Roboto:400,300,500,700,900|Roboto+Condensed:400,300,700|Open+Sans+Condensed:300,700|Work+Sans:400,300,700|Play:400,700|Maven+Pro:400,500,700,900&subset=latin,latin-ext);
+@import url(
+  https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,
+  400,
+  600,
+  700,
+  900|Dosis:300,
+  400,
+  600,
+  700,
+  800|Droid+Sans:400,
+  700|Lato:300,
+  400,
+  700,
+  900|PT+Sans:400,
+  700|Ubuntu:300,
+  400,
+  500,
+  700|Open+Sans:400,
+  300,
+  600,
+  700|Roboto:400,
+  300,
+  500,
+  700,
+  900|Roboto+Condensed:400,
+  300,
+  700|Open+Sans+Condensed:300,
+  700|Work+Sans:400,
+  300,
+  700|Play:400,
+  700|Maven+Pro:400,
+  500,
+  700,
+  900&subset=latin,
+  latin-ext
+);
 
-@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+@import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
 
 html {
-  font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif;
+  font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
 }
 
 .header {
-  font-family: 'Press Start 2P', 'Helvetica', 'Arial', sans-serif;
+  font-family: "Press Start 2P", "Helvetica", "Arial", sans-serif;
   text-align: center;
   padding-bottom: 10px;
   border-bottom: 1px solid #555;
@@ -309,6 +372,7 @@ html {
   -o-transition: opacity 0.5s;
   -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
+  cursor: pointer;
 }
 
 .cards .card .front,
@@ -424,8 +488,9 @@ html {
 }
 
 .splash .content button {
-  font-family: 'Press Start 2P', 'Helvetica', 'Arial', sans-serif; margin-top: 1.0em;
-  margin-top: 1.0em;
+  font-family: "Press Start 2P", "Helvetica", "Arial", sans-serif;
+  margin-top: 1em;
+  margin-top: 1em;
   background-color: #444;
   padding: 20px;
   -moz-border-radius: 4px;

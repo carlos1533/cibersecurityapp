@@ -15,8 +15,7 @@
     <label :for="'answer'+index">{{mcanswer}}</label><br/>
     </div>
   </div>
-
-  <button @click="submitAnswer">Responder</button>
+ <button v-show="this.answer !==''" @click="submitAnswer">Responder</button>
 </div>
 </template>
 
@@ -32,9 +31,10 @@ export default {
   },
 	methods:{
 		submitAnswer:function() {
-			this.$emit('answer', {answer:this.answer , recommendation: this.recommendation});
-      this.answer = null;
-      this.recomendation = null;
+        this.$emit('answer', {answer:this.answer , recommendation: this.recommendation});
+        this.answer = null;
+        this.recomendation = null;
+		
 		}
 	}
 

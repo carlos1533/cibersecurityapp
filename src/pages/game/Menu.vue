@@ -1,15 +1,15 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-2">
+      <div class="col-3">
         <router-link :to="{ name: 'memoria' }">
           <button type="button" class="btn btn-secondary dark menu-button">Memoria</button>
         </router-link>
       </div>
-      <div class="col-8">
+      <div class="col-4">
         <p style="text-align:center;">Encuentra las parejas y acumula puntaje ¡Suerte!</p>
       </div>
-      <div class="col-2">
+      <div class="col-4">
         <p>
           Puntaje:{{customerTotalScore}}
         </p>
@@ -17,7 +17,7 @@
     </div>
     <br />
     <div class="row">
-      <div class="col-2">
+      <div class="col-3">
         <router-link :to="{ name: 'errorFacil' }">
           <button type="button" class="btn btn-secondary dark menu-button">Encuentra el error</button>
         </router-link>
@@ -28,7 +28,7 @@
     </div>
     <br />
     <div class="row">
-      <div class="col-2">
+      <div class="col-3">
         <router-link :to="{ name: 'videoGame' }">
           <button type="button" class="btn btn-secondary dark menu-button">Mira y responde</button>
         </router-link>
@@ -41,7 +41,7 @@
     </div>
     <br />
     <div class="row">
-      <div class="col-2">
+      <div class="col-3">
         <router-link :to="{ name: 'tuto' }">
           <button type="button" class="btn btn-secondary dark menu-button">Batallas Pokemón</button>
         </router-link>

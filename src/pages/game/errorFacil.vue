@@ -36,7 +36,7 @@
         </div>
 
         <div
-          class="d-flex flex-row justify-content-center"
+          class="img-container"
           v-if="questionIndex<quiz.questions.length"
           v-bind:key="questionIndex"
         >
@@ -209,7 +209,7 @@ var quiz = {
 export default {
   data() {
     return {
-      title: "Elegi la imagen correcta!",
+      title: "Elegir la imagen correcta!",
       quiz: quiz,
       scoreError: 0,
       questionIndex: 0,
@@ -360,8 +360,8 @@ img:hover {
 .header {
   font-family: "Press Start 2P", "Helvetica", "Arial", sans-serif;
   text-align: center;
-  padding-bottom: 10px;
   border-bottom: 1px solid #555;
+  padding: 0.4rem;
 }
 
 .header div {
@@ -376,4 +376,32 @@ img:hover {
   font-family: Montserrat, sans-serif;
   font-weight: normal;
 } */
+.img-container{
+
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+}
+@media (min-width: 344px) {  
+  .title {font-size:1.5rem;}
+  .img-container {
+    flex-direction: column;
+  } /*1rem = 16px*/
+}
+@media (min-width: 768px) {  
+  .title {font-size:2rem;} /*1rem = 16px*/
+}
+ 
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+  .title {font-size:2.5rem;} /*1rem = 16px*/
+}
+ 
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  
+  .title {font-size:3rem;}
+  .img-container{
+    flex-direction: row;
+  } /*1rem = 16px*/    
+}
 </style>
